@@ -24,10 +24,6 @@ const routes: Routes = [
 				loadChildren: () => import( './pages/elements/elements.module' ).then( m => m.ElementsModule )
 			},
 			{
-				path: 'blog',
-				loadChildren: () => import( './pages/blog/blog.module' ).then( m => m.BlogModule )
-			},
-			{
 				path: 'pages',
 				loadChildren: () => import( './pages/others/pages.module' ).then( m => m.PagesModule )
 			},

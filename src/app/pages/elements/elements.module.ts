@@ -9,7 +9,6 @@ import { SharedModule } from '../../shared/shared.module';
 
 import { AccordionsPageComponent } from './accordions/accordion.component';
 import { BannersPageComponent } from './banners/banner.component';
-import { BlogPostPageComponent } from './blog-post/blog-post.component';
 import { ButtonsPageComponent } from './buttons/button.component';
 import { CallToActionPageComponent } from './call-to-action/call-to-action.component';
 import { IconBoxesPageComponent } from './icon-boxes/icon-box.component';
@@ -27,7 +26,6 @@ import { ElementsListComponent } from './shared/elements-list/elements-list.comp
 	declarations: [
 		AccordionsPageComponent,
 		BannersPageComponent,
-		BlogPostPageComponent,
 		ButtonsPageComponent,
 		CallToActionPageComponent,
 		IconBoxesPageComponent,

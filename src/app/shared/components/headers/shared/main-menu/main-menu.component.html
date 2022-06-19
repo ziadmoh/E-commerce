@@ -305,12 +305,6 @@
                                         <li [class.active]="current.includes('shop/sidebar/list')">
                                             <a routerLink="/shop/sidebar/list">Shop List</a>
                                         </li>
-                                        <li [class.active]="current.includes('shop/sidebar/2cols')">
-                                            <a routerLink="/shop/sidebar/2cols">Shop Grid 2 Columns</a>
-                                        </li>
-                                        <li [class.active]="current.includes('shop/sidebar/3cols')">
-                                            <a routerLink="/shop/sidebar/3cols">Shop Grid 3 Columns</a>
-                                        </li>
                                         <li [class.active]="current.includes('shop/sidebar/4cols')">
                                             <a routerLink="/shop/sidebar/4cols">Shop Grid 4 Columns</a>
                                         </li>
@@ -509,77 +503,6 @@
                 </li>
             </ul>
         </li>
-        <li [class.active]="current.includes('/blog/')">
-            <a routerLink="/blog/classic" class="sf-with-ul">Blog</a>
-            <ul>
-                <li [class.active]="current.includes('blog/classic')">
-                    <a routerLink="/blog/classic">Classic</a>
-                </li>
-                <li [class.active]="current.includes('blog/listing')">
-                    <a routerLink="/blog/listing">Listing</a>
-                </li>
-                <li [class.active]="current.includes('blog/grid')">
-                    <a routerLink="/blog/grid/grid-2" class="sf-with-ul">Grid</a>
-                    <ul>
-                        <li [class.active]="current.includes('blog/grid/grid-2')">
-                            <a routerLink="/blog/grid/grid-2">Grid 2 columns</a>
-                        </li>
-                        <li [class.active]="current.includes('blog/grid/grid-3')">
-                            <a routerLink="/blog/grid/grid-3">Grid 3 columns</a>
-                        </li>
-                        <li [class.active]="current.includes('blog/grid/grid-4')">
-                            <a routerLink="/blog/grid/grid-4">Grid 4 columns</a>
-                        </li>
-                        <li [class.active]="current.includes('blog/grid/grid-sidebar')">
-                            <a routerLink="/blog/grid/grid-sidebar">Grid sidebar</a>
-                        </li>
-                    </ul>
-                </li>
-                <li [class.active]="current.includes('blog/masonry')">
-                    <a routerLink="/blog/masonry/masonry-2" class="sf-with-ul">Masonry</a>
-                    <ul>
-                        <li [class.active]="current.includes('blog/masonry/masonry-2')">
-                            <a routerLink="/blog/masonry/masonry-2">Masonry 2 columns</a>
-                        </li>
-                        <li [class.active]="current.includes('blog/masonry/masonry-3')">
-                            <a routerLink="/blog/masonry/masonry-3">Masonry 3 columns</a>
-                        </li>
-                        <li [class.active]="current.includes('blog/masonry/masonry-4')">
-                            <a routerLink="/blog/masonry/masonry-4">Masonry 4 columns</a>
-                        </li>
-                        <li [class.active]="current.includes('blog/masonry/masonry-sidebar')">
-                            <a routerLink="/blog/masonry/masonry-sidebar">Masonry sidebar</a>
-                        </li>
-                    </ul>
-                </li>
-                <li [class.active]="current.includes('blog/mask')">
-                    <a routerLink="/blog/mask/grid" class="sf-with-ul">Mask</a>
-                    <ul>
-                        <li [class.active]="current.includes('blog/mask/grid')">
-                            <a routerLink="/blog/mask/grid">Blog mask grid</a>
-                        </li>
-                        <li [class.active]="current.includes('blog/mask/masonry')">
-                            <a routerLink="/blog/mask/masonry">Blog mask masonry</a>
-                        </li>
-                    </ul>
-                </li>
-                <li [class.active]="current.includes('blog/single')">
-                    <a routerLink="/blog/single/default/cras-ornare-tristique-elit." class="sf-with-ul">Single Post</a>
-                    <ul>
-                        <li [class.active]="current.includes('blog/single/default')">
-                            <a routerLink="/blog/single/default/cras-ornare-tristique-elit.">Default with sidebar</a>
-                        </li>
-                        <li [class.active]="current.includes('blog/single/fullwidth')">
-                            <a routerLink="/blog/single/fullwidth/fusce-pellentesque-suscipit.">Fullwidth no sidebar</a>
-                        </li>
-                        <li [class.active]="current.includes('blog/single/sidebar')">
-                            <a routerLink="/blog/single/sidebar/utaliquam-sollicitzdvudin-leo">Fullwidth with
-                                sidebar</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
         <li [class.active]="current.includes('/elements')">
             <a routerLink="/elements" class="sf-with-ul">Elements</a>
 
@@ -613,9 +536,6 @@
                 </li>
                 <li [class.active]="current.includes('elements/testimonials')">
                     <a routerLink="/elements/testimonials">Testimonials</a>
-                </li>
-                <li [class.active]="current.includes('elements/blog-posts')">
-                    <a routerLink="/elements/blog-posts">Blog Posts</a>
                 </li>
                 <li [class.active]="current.includes('elements/cta')">
                     <a routerLink="/elements/cta">Call to Action</a>

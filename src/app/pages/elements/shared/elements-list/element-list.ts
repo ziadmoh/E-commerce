@@ -13,10 +13,6 @@ export const elements: ElementItem[] = [
         name: "banners"
     },
     {
-        link: "/elements/blog-posts",
-        name: "blog posts"
-    },
-    {
         link: "/elements/buttons",
         name: "buttons"
     },

@@ -45,7 +45,7 @@ export class AppComponent {
 		});
 
 		navigationEnd.subscribe((event: any) => {
-			if (!event.url.includes('/shop/sidebar') && !event.url.includes('/shop/nosidebar') && !event.url.includes('/shop/market') && !event.url.includes('/blog')) {
+			if (!event.url.includes('/shop/sidebar') && !event.url.includes('/shop/nosidebar') && !event.url.includes('/shop/market')) {
 				this.viewPort.scrollToPosition([0, 0]);
 			}
 

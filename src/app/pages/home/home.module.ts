@@ -9,14 +9,11 @@ import { SharedModule } from '../../shared/shared.module';
 import { SpecialCollectionComponent } from './special-collection/special-collection.component';
 import { TopCollectionComponent } from './top-collection/top-collection.component';
 import { IndexComponent } from './index/index.component';
-import { BlogCollectionComponent } from './blog-collection/blog-collection.component';
-
 @NgModule({
 	declarations: [
 		SpecialCollectionComponent,
 		TopCollectionComponent,
 		IndexComponent,
-		BlogCollectionComponent
 	],
 
 	imports: [

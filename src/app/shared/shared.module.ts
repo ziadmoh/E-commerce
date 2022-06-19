@@ -67,12 +67,6 @@ import { CatFilterPipe } from './pipes/cat-filter.pipe';
 import { AttrFilterPipe } from './pipes/attr-filter.pipe';
 import { SafeContentPipe } from './pipes/safe-content.pipe';
 
-// // Post Component
-import { PostOneComponent } from './components/blog-post/post-one/post-one.component';
-import { PostTwoComponent } from './components/blog-post/post-two/post-two.component';
-import { PostThreeComponent } from './components/blog-post/post-three/post-three.component';
-import { PostFourComponent } from './components/blog-post/post-four/post-four.component';
-
 @NgModule({
 	declarations: [
 		// header
@@ -130,11 +124,6 @@ import { PostFourComponent } from './components/blog-post/post-four/post-four.co
 		SafeContentPipe,
 		CountDownComponent,
 
-		// // blog-post
-		PostOneComponent,
-		PostTwoComponent,
-		PostThreeComponent,
-		PostFourComponent,
 		CountToComponent
 	],
 
@@ -194,11 +183,6 @@ import { PostFourComponent } from './components/blog-post/post-four/post-four.co
 		AttrFilterPipe,
 		SafeContentPipe,
 
-		// // blog-post
-		PostOneComponent,
-		PostTwoComponent,
-		PostThreeComponent,
-		PostFourComponent,
 	],
 
 	entryComponents: [

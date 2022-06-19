@@ -12,7 +12,6 @@ import { ButtonsPageComponent } from './buttons/button.component';
 import { AccordionsPageComponent } from './accordions/accordion.component';
 import { TabsPageComponent } from './tabs/tab.component';
 import { TestimonialPageComponent } from './testimonials/testimonial.component';
-import { BlogPostPageComponent } from './blog-post/blog-post.component';
 import { CallToActionPageComponent } from './call-to-action/call-to-action.component';
 import { IconBoxesPageComponent } from './icon-boxes/icon-box.component';
 import { ElementsListPageComponent } from './elements-list/elements-list.component';
@@ -61,10 +60,6 @@ const routes: Routes = [
             {
                 path: 'testimonials',
                 component: TestimonialPageComponent
-            },
-            {
-                path: 'blog-posts',
-                component: BlogPostPageComponent
             },
             {
                 path: 'cta',

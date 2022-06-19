@@ -28,10 +28,6 @@ export class SidebarPageComponent implements OnInit {
 
 			if (this.type == 'list') {
 				this.pageTitle = 'List';
-			} else if (this.type == '2cols') {
-				this.pageTitle = 'Grid 2 Columns';
-			} else if (this.type == '3cols') {
-				this.pageTitle = 'Grid 3 Columns';
 			} else if (this.type == '4cols') {
 				this.pageTitle = 'Grid 4 Columns';
 			}

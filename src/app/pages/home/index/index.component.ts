@@ -25,7 +25,6 @@ export class IndexComponent implements OnInit {
 
 		this.apiService.fetchHomeData().subscribe(result => {
 			this.products = result.products;
-			this.posts = result.blogs;
 			this.loaded = true;
 		})
 	}

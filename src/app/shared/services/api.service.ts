@@ -42,30 +42,6 @@ export class ApiService {
 	/**
 	 * Get Products
 	 */
-	public fetchBlogData(params: any, initial = 'blogs/classic', perPage: number,): Observable<any> {
-		let temp = initial;
-		if (!initial.includes('?')) {
-			temp += '?';
-		}
-
-		for (let key in params) {
-			temp += key + '=' + params[key] + '&';
-		}
-
-		if (!params.page) {
-			temp += 'page=1';
-		}
-
-		if (!params.perPage) {
-			temp += '&perPage=' + perPage;
-		}
-
-		return this.http.get(`${environment.SERVER_URL}/${temp}`);
-	}
-
-	/**
-	 * Get Products
-	 */
 	public fetchSinglePost(slug: string): Observable<any> {
 		return this.http.get(`${environment.SERVER_URL}/${'single/' + slug + '?demo=' + environment.demo}`);
 	}
@@ -96,12 +72,5 @@ export class ApiService {
 	 */
 	public fetchElementData(): Observable<any> {
 		return this.http.get(`${environment.SERVER_URL}/elements/products`);
-	}
-
-	/**
-	 * Get Element Blog
-	 */
-	public fetchElementBlog(): Observable<any> {
-		return this.http.get(`${environment.SERVER_URL}/elements/blogs`);
 	}
 }

@@ -65,22 +65,3 @@ export const specialSlider = {
     }
 }
 
-export const blogSlider = {
-    ...sliderOpt,
-    nav: false,
-    dots: true,
-    items: 3,
-    margin: 20,
-    loop: false,
-    responsive: {
-        0: {
-            items: 1
-        },
-        576: {
-            items: 2
-        },
-        992: {
-            items: 3
-        }
-    }
-}

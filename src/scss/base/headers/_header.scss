@@ -991,26 +991,7 @@
 			}
 		}
 
-		.container::before {
-			position: absolute;
-			content: '';
-			left: 28.5rem;
-			height: 1.5rem;
-			width: .1rem;
-			top: 50%;
-			background-color: #ccc;
-			transform: translateY(-50%);
-		}
-		.container::after {
-			position: absolute;
-			content: '';
-			right: 28rem;
-			height: 1.5rem;
-			width: .1rem;
-			top: 50%;
-			background-color: #ccc;
-			transform: translateY(-50%);
-		}
+
 	}
 
 	.header-middle {
