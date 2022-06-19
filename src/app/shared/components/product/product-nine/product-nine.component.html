@@ -8,12 +8,12 @@
                 <span class="product-label label-out" *ngIf="!product.stock || product.stock == 0">Out Of Stock</span>
 
                 <a [routerLink]="['/product/default/'+ product.slug]">
-                    <molla-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product"
+                    <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product"
                         [width]="product.sm_pictures[0].width" [height]="product.sm_pictures[0].height"
                         class="product-image" fixedPt="100%">
-                    </molla-image>
-                    <molla-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product" class="product-image-hover"
-                        *ngIf="product.sm_pictures[1]" fixedPt="100%"></molla-image>
+                    </app-ecommerce-image>
+                    <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product" class="product-image-hover"
+                        *ngIf="product.sm_pictures[1]" fixedPt="100%"></app-ecommerce-image>
                 </a>
             </figure>
         </div>

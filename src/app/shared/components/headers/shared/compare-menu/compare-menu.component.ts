@@ -4,7 +4,7 @@ import { Product } from 'src/app/shared/classes/product';
 import { CompareService } from 'src/app/shared/services/compare.service';
 
 @Component({
-	selector: 'molla-compare-menu',
+	selector: 'app-ecommerce-compare-menu',
 	templateUrl: './compare-menu.component.html',
 	styleUrls: ['./compare-menu.component.scss']
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component( {
-	selector: 'molla-accordion',
+	selector: 'app-ecommerce-accordion',
 	templateUrl: './accordion.component.html',
 	styleUrls: [ './accordion.component.scss' ]
 } )

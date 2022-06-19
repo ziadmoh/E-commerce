@@ -1,12 +1,12 @@
 <div class="product product-sm">
     <figure class="product-media">
         <a [routerLink]="['/product/default/'+ product.slug]">
-            <molla-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product"
+            <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product"
                 [width]="product.sm_pictures[0].width" [height]="product.sm_pictures[0].height" fixedPt="100%"
                 class="product-image">
-            </molla-image>
-            <molla-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product" fixedPt="100%"
-                class="product-image-hover" *ngIf="product.sm_pictures[1]"></molla-image>
+            </app-ecommerce-image>
+            <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product" fixedPt="100%"
+                class="product-image-hover" *ngIf="product.sm_pictures[1]"></app-ecommerce-image>
         </a>
     </figure>
 

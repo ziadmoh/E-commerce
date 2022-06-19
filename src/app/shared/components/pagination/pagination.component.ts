@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-	selector: 'molla-pagination',
+	selector: 'app-ecommerce-pagination',
 	templateUrl: './pagination.component.html',
 	styleUrls: ['./pagination.component.scss']
 })

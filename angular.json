@@ -15,7 +15,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "molla",
+      "prefix": "app-ecommerce",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -33,7 +33,7 @@
             ],
             "styles": [
               "src/assets/css/bootstrap.min.css",
-              "src/assets/css/fonts-molla.min.css",
+              "src/assets/css/fonts-app-ecommerce.min.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -110,7 +110,7 @@
             ],
             "styles": [
               "src/assets/css/bootstrap.min.css",
-              "src/assets/css/fonts-molla.min.css",
+              "src/assets/css/fonts-app-ecommerce.min.css",
               "src/styles.scss"
             ],
             "scripts": []

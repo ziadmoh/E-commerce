@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component( {
-	selector: 'molla-quantity-input',
+	selector: 'app-ecommerce-quantity-input',
 	templateUrl: './quantity-input.component.html',
 	styleUrls: [ './quantity-input.component.scss' ]
 } )

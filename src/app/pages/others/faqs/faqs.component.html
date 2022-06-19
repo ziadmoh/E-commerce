@@ -1,5 +1,5 @@
 <main class="main">
-    <molla-page-header title="F.A.Q" subtitle="Pages"></molla-page-header>
+    <app-ecommerce-page-header title="F.A.Q" subtitle="Pages"></app-ecommerce-page-header>
 
     <nav class="breadcrumb-nav border-0 mb-0">
         <div class="container">
@@ -20,13 +20,13 @@
             <div *ngFor="let faqs of faqGroups;let i = index">
                 <h2 class="title text-center mb-3">{{ faqs.title }}</h2>
 
-                <molla-accordion [adClass]="faqs.items[0].adClass" [accordionID]="'accordion' + (1 + i)">
-                    <molla-card *ngFor="let card of faqs.items[0].cards; let isFirst = first"
+                <app-ecommerce-accordion [adClass]="faqs.items[0].adClass" [accordionID]="'accordion' + (1 + i)">
+                    <app-ecommerce-card *ngFor="let card of faqs.items[0].cards; let isFirst = first"
                         [adClass]="faqs.items[0].cardAclass" [title]="card.title" [parent]="'accordion' + (1 + i)"
                         [show]="isFirst && ! i ? true : false">
                         {{ card.body }}
-                    </molla-card>
-                </molla-accordion>
+                    </app-ecommerce-card>
+                </app-ecommerce-accordion>
             </div>
         </div>
     </div>

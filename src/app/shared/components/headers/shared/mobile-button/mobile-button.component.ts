@@ -3,7 +3,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 
 @Component({
-	selector: 'molla-mobile-button',
+	selector: 'app-ecommerce-mobile-button',
 	templateUrl: './mobile-button.component.html',
 	styleUrls: ['./mobile-button.component.scss']
 })

@@ -6,7 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 
 @Component({
-	selector: 'molla-newsletter-modal',
+	selector: 'app-ecommerce-newsletter-modal',
 	templateUrl: './newsletter-modal.component.html',
 	styleUrls: ['./newsletter-modal.component.scss']
 })

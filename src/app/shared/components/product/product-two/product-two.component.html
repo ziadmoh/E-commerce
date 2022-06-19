@@ -6,10 +6,10 @@
         <span class="product-label label-out" *ngIf="!product.stock || product.stock == 0">Out Of Stock</span>
 
         <a [routerLink]="['/product/default/'+ product.slug]">
-            <molla-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product" class="product-image">
-            </molla-image>
-            <molla-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product" class="product-image-hover"
-                *ngIf="product.sm_pictures[1]"></molla-image>
+            <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product" class="product-image">
+            </app-ecommerce-image>
+            <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product" class="product-image-hover"
+                *ngIf="product.sm_pictures[1]"></app-ecommerce-image>
         </a>
 
         <div class="product-action action-icon-top" *ngIf="product.stock && product.stock !== 0">

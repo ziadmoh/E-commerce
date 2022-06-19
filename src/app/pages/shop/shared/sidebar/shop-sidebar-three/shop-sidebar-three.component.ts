@@ -4,7 +4,7 @@ import { shopData } from '../../data';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-	selector: 'molla-shop-sidebar-three',
+	selector: 'app-ecommerce-shop-sidebar-three',
 	templateUrl: './shop-sidebar-three.component.html',
 	styleUrls: ['./shop-sidebar-three.component.scss']
 })

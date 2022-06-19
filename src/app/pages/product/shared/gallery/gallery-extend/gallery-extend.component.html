@@ -5,8 +5,8 @@
     <span class="product-label label-out" *ngIf="!product.stock || product.stock == 0">Out Of Stock</span>
 
     <owl-carousel [carouselClasses]="'product-gallery-carousel owl-full owl-nav-dark'" [options]="options">
-        <molla-image class="d-block position-relative" [src]="SERVER_URL + product.pictures[i].url"
+        <app-ecommerce-image class="d-block position-relative" [src]="SERVER_URL + product.pictures[i].url"
             *ngFor="let item of product.pictures;let i = index;">
-        </molla-image>
+        </app-ecommerce-image>
     </owl-carousel>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 
 @Component({
-	selector: 'molla-shop-sidebar-two',
+	selector: 'app-ecommerce-shop-sidebar-two',
 	templateUrl: './shop-sidebar-two.component.html',
 	styleUrls: ['./shop-sidebar-two.component.scss']
 })

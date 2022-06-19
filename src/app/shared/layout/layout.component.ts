@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { routeAnimation } from '../data';
 
 @Component({
-	selector: 'molla-layout',
+	selector: 'app-ecommerce-layout',
 	templateUrl: './layout.component.html',
 	styleUrls: ['./layout.component.scss'],
 	animations: [

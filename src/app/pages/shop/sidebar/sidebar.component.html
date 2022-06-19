@@ -70,11 +70,11 @@
                         </div>
                     </div>
 
-                    <molla-shop-list-one [type]="type" [products]="products" [loaded]="loaded">
-                    </molla-shop-list-one>
+                    <app-ecommerce-shop-list-one [type]="type" [products]="products" [loaded]="loaded">
+                    </app-ecommerce-shop-list-one>
 
-                    <molla-pagination [perPage]="perPage" [total]="totalCount" *ngIf="totalCount > perPage">
-                    </molla-pagination>
+                    <app-ecommerce-pagination [perPage]="perPage" [total]="totalCount" *ngIf="totalCount > perPage">
+                    </app-ecommerce-pagination>
                 </div>
 
                 <aside class="col-lg-3 skel-shop-sidebar order-lg-first skeleton-body" [class.loaded]="firstLoad">
@@ -85,8 +85,8 @@
                         <div class="skel-widget"></div>
                     </div>
                     <ng-template #sidebarLoaded>
-                        <molla-shop-sidebar-one [toggle]="toggle">
-                        </molla-shop-sidebar-one>
+                        <app-ecommerce-shop-sidebar-one [toggle]="toggle">
+                        </app-ecommerce-shop-sidebar-one>
 
                         <button class="sidebar-fixed-toggler" (click)="toggleSidebar()" *ngIf="toggle">
                             <i class="icon-cog"></i>

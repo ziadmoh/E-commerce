@@ -65,8 +65,8 @@
 
     <div class="details-filter-row details-row-size">
         <label for="qty">Qty:</label>
-        <molla-quantity-input [max]="product.stock" (changeQty)="onChangeQty( $event )" [value]="qty">
-        </molla-quantity-input>
+        <app-ecommerce-quantity-input [max]="product.stock" (changeQty)="onChangeQty( $event )" [value]="qty">
+        </app-ecommerce-quantity-input>
     </div>
 
     <div class="product-details-action">
@@ -102,9 +102,9 @@
                 <div class="col-6">
                     <figure class="product-media">
                         <a [routerLink]="['/product/default/'+ product.slug]">
-                            <molla-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product"
+                            <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product"
                                 class="product-image">
-                            </molla-image>
+                            </app-ecommerce-image>
                         </a>
                     </figure>
                     <h3 class="product-title">
@@ -136,8 +136,8 @@
                         </ng-template>
                     </ng-template>
 
-                    <molla-quantity-input [max]="product.stock" (changeQty)="onChangeQty2( $event )" [value]="qty2">
-                    </molla-quantity-input>
+                    <app-ecommerce-quantity-input [max]="product.stock" (changeQty)="onChangeQty2( $event )" [value]="qty2">
+                    </app-ecommerce-quantity-input>
 
                     <div class="product-details-action">
                         <a href="javascript:;" class="btn-product btn-cart"

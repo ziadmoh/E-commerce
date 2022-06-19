@@ -940,7 +940,7 @@
 	}
 
 	& > label,
-	& > molla-quantity-input, 
+	& > app-ecommerce-quantity-input, 
 	& > .btn-cart {
 		margin-bottom: 2.2rem;
 	}
@@ -1471,7 +1471,7 @@
 
 @include mq( "xs", "max" ) {
 	.product-media {
-		molla-count-down, .product-countdown-container {
+		app-ecommerce-count-down, .product-countdown-container {
 			display: none;
 		}
 	}

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ElementRef, Renderer2, HostListener } from '@angular/core';
 
 @Component({
-	selector: 'molla-count-to',
+	selector: 'app-ecommerce-count-to',
 	templateUrl: './count-to.component.html',
 	styleUrls: ['./count-to.component.scss']
 })

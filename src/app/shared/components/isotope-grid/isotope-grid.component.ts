@@ -5,7 +5,7 @@ declare var imagesLoaded: any;
 declare var $: any;
 
 @Component({
-	selector: 'molla-isotope-grid',
+	selector: 'app-ecommerce-isotope-grid',
 	templateUrl: './isotope-grid.component.html',
 	styleUrls: ['./isotope-grid.component.scss']
 })

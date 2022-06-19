@@ -152,7 +152,7 @@
 		width: 100%;
 	}
 
-	molla-product-twelve {
+	app-ecommerce-product-twelve {
 		display: flex;
 	}
 }
@@ -275,7 +275,7 @@
 				color: $dark-text;
 				content: '\f110';
 				display: block;
-				font-family: 'molla';
+				font-family: 'app-ecommerce';
 				font-size: 1.4rem;
 				line-height: 1;
 				position: absolute;
@@ -424,7 +424,7 @@
 
 		&:after {
     		color: #fff;
-			font-family: 'molla';
+			font-family: 'app-ecommerce';
 			content: '\ec2d';
     		font-size: 1rem;
     		line-height: 1;

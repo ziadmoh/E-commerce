@@ -7,7 +7,7 @@ import { UtilsService } from 'src/app/shared/services/utils.service';
 import { introSlider, brandSlider } from '../data';
 
 @Component({
-	selector: 'molla-index',
+	selector: 'app-ecommerce-index',
 	templateUrl: './index.component.html',
 	styleUrls: ['./index.component.scss']
 })

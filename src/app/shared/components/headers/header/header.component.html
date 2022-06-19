@@ -49,15 +49,15 @@
     <div class="header-middle">
         <div [class]="containerClass">
             <div class="header-left">
-                <molla-mobile-button></molla-mobile-button>
+                <app-ecommerce-mobile-button></app-ecommerce-mobile-button>
 
                 <a routerLink="/" class="logo">
-                    <img src="assets/images/logo.png" alt="Molla Logo" width="104" height="27">
+                    <img src="assets/images/logo.png" alt="E-Store Logo" width="104" height="27">
                 </a>
             </div>
 
             <div class="header-center">
-                <molla-header-search style="width: 100%;"></molla-header-search>
+                <app-ecommerce-header-search style="width: 100%;"></app-ecommerce-header-search>
             </div>
 
             <div class="header-right">
@@ -70,9 +70,9 @@
                     </a>
                 </div>
 
-                <molla-wishlist-menu></molla-wishlist-menu>
+                <app-ecommerce-wishlist-menu></app-ecommerce-wishlist-menu>
 
-                <molla-cart-menu></molla-cart-menu>
+                <app-ecommerce-cart-menu></app-ecommerce-cart-menu>
             </div>
         </div>
     </div>
@@ -81,7 +81,7 @@
         <div class="header-bottom sticky-header" [class.fixed]="utilsService.isSticky">
             <div [ngClass]="containerClass">
                 <div class="header-left">
-                    <molla-category-menu style="display: contents;"></molla-category-menu>
+                    <app-ecommerce-category-menu style="display: contents;"></app-ecommerce-category-menu>
                 </div>
             </div>
         </div>

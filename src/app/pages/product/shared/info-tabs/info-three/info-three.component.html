@@ -1,5 +1,5 @@
-<molla-accordion [adClass]="'accordion-plus product-details-accordion mb-2'" [id]="'product-accordion'">
-    <molla-card [adClass]="'card-box card-sm bg-light'" [show]="false" [parent]="'product-accordion'"
+<app-ecommerce-accordion [adClass]="'accordion-plus product-details-accordion mb-2'" [id]="'product-accordion'">
+    <app-ecommerce-card [adClass]="'card-box card-sm bg-light'" [show]="false" [parent]="'product-accordion'"
         [title]="'Description'">
         <div id="product-accordion-desc">
             <div class="card-body">
@@ -25,9 +25,9 @@
                 </div>
             </div>
         </div>
-    </molla-card>
+    </app-ecommerce-card>
 
-    <molla-card [adClass]="'card-box card-sm bg-light'" [show]="false" [parent]="'product-accordion'"
+    <app-ecommerce-card [adClass]="'card-box card-sm bg-light'" [show]="false" [parent]="'product-accordion'"
         [title]="'Additional Information'">
         <div id="product-accordion-info">
             <div class="card-body">
@@ -53,9 +53,9 @@
                 </div>
             </div>
         </div>
-    </molla-card>
+    </app-ecommerce-card>
 
-    <molla-card [adClass]="'card-box card-sm bg-light'" [show]="true" [parent]="'product-accordion'"
+    <app-ecommerce-card [adClass]="'card-box card-sm bg-light'" [show]="true" [parent]="'product-accordion'"
         [title]="'Shipping & Returns'">
         <div id="product-accordion-shipping">
             <div class="card-body">
@@ -69,9 +69,9 @@
                 </div>
             </div>
         </div>
-    </molla-card>
+    </app-ecommerce-card>
 
-    <molla-card [adClass]="'card-box card-sm bg-light'" [show]="false" [parent]="'product-accordion'"
+    <app-ecommerce-card [adClass]="'card-box card-sm bg-light'" [show]="false" [parent]="'product-accordion'"
         [title]="'Reviews (' + product.review + ')'">
         <div id="product-accordion-review">
             <div class="card-body">
@@ -184,5 +184,5 @@
                 </div>
             </div>
         </div>
-    </molla-card>
-</molla-accordion>
+    </app-ecommerce-card>
+</app-ecommerce-accordion>

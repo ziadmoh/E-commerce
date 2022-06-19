@@ -11,7 +11,7 @@ import { CompareService } from 'src/app/shared/services/compare.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-	selector: 'molla-product-three',
+	selector: 'app-ecommerce-product-three',
 	templateUrl: './product-three.component.html',
 	styleUrls: ['./product-three.component.scss']
 })

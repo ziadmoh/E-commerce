@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-	selector: 'molla-top-collection',
+	selector: 'app-ecommerce-top-collection',
 	templateUrl: './top-collection.component.html',
 	styleUrls: ['./top-collection.component.scss']
 })

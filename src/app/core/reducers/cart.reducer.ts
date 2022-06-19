@@ -21,7 +21,7 @@ function getState(key: string) {
     return (localStorage.getItem(key) && JSON.parse(localStorage.getItem(key)).cart) ? JSON.parse(localStorage.getItem(key)).cart : initialState;
 }
 
-export function cartReducer(state = getState('molla'), action) {
+export function cartReducer(state = getState('app-ecommerce'), action) {
     switch (action.type) {
         case ADD_TO_CART:
             var findIndex = state.data.findIndex(item => item.id == action.payload.product.id);

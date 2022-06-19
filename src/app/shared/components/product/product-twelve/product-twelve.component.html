@@ -7,15 +7,15 @@
             Stock</span>
 
         <a [routerLink]="['/product/default/'+ product.slug]">
-            <molla-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product" class="product-image">
-            </molla-image>
-            <molla-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product" class="product-image-hover"
-                *ngIf="product.sm_pictures[1]"></molla-image>
+            <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product" class="product-image">
+            </app-ecommerce-image>
+            <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product" class="product-image-hover"
+                *ngIf="product.sm_pictures[1]"></app-ecommerce-image>
         </a>
 
         <div class="product-countdown-container" *ngIf="product.until">
             <span class="product-countdown-title">offer ends in:</span>
-            <molla-count-down [until]="product.until" [compact]="true"></molla-count-down>
+            <app-ecommerce-count-down [until]="product.until" [compact]="true"></app-ecommerce-count-down>
         </div>
 
         <div class="product-action-vertical">

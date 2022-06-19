@@ -18,9 +18,9 @@
                 <a [routerLink]="'/product/default/' + product.slug" class="autocomplete-suggestion"
                     *ngFor="let product of suggestions">
                     <figure class="mb-0 mr-3" style="width: 40px; height: 40px;">
-                        <molla-image [src]="SERVER_URL + product.sm_pictures[0].url" width="40" height="40" alt="Product"
+                        <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url" width="40" height="40" alt="Product"
                             class="bg-transparent">
-                        </molla-image>
+                        </app-ecommerce-image>
                     </figure>
 
                     <div class="search-name" [innerHTML]="matchEmphasize(product.name) | safeContent"></div>

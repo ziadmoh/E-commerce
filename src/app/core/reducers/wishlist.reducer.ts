@@ -15,7 +15,7 @@ function getState(key: string) {
     return (localStorage.getItem(key) && JSON.parse(localStorage.getItem(key)).wishlist) ? JSON.parse(localStorage.getItem(key)).wishlist : initialState;
 }
 
-export function wishlistReducer(state = getState('molla'), action) {
+export function wishlistReducer(state = getState('app-ecommerce'), action) {
     switch (action.type) {
         case ADD_TO_WISHLIST:
             if (state.data.findIndex(item => item.id === action.payload.product.id) == -1) {

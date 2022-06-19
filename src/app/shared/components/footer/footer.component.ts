@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-	selector: 'molla-footer',
+	selector: 'app-ecommerce-footer',
 	templateUrl: './footer.component.html',
 	styleUrls: ['./footer.component.scss']
 })

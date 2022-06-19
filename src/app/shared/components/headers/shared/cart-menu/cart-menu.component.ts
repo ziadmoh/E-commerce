@@ -4,7 +4,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-	selector: 'molla-cart-menu',
+	selector: 'app-ecommerce-cart-menu',
 	templateUrl: './cart-menu.component.html',
 	styleUrls: ['./cart-menu.component.scss']
 })

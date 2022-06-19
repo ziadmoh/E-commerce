@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-	selector: 'molla-page-header',
+	selector: 'app-ecommerce-page-header',
 	templateUrl: './page-header.component.html',
 	styleUrls: ['./page-header.component.scss']
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-	selector: 'molla-count-down',
+	selector: 'app-ecommerce-count-down',
 	templateUrl: './count-down.component.html',
 	styleUrls: ['./count-down.component.scss']
 })

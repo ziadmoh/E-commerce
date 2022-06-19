@@ -15,7 +15,7 @@ import { sliderOpt } from 'src/app/shared/data';
 declare var $: any;
 
 @Component({
-	selector: 'molla-quick-view-two',
+	selector: 'app-ecommerce-quick-view-two',
 	templateUrl: './quick-view-two.component.html',
 	styleUrls: ['./quick-view-two.component.scss'],
 	encapsulation: ViewEncapsulation.None

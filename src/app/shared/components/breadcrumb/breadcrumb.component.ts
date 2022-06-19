@@ -5,7 +5,7 @@ import { Product } from '../../classes/product';
 import { environment } from 'src/environments/environment';
 
 @Component({
-	selector: 'molla-breadcrumb',
+	selector: 'app-ecommerce-breadcrumb',
 	templateUrl: './breadcrumb.component.html',
 	styleUrls: ['./breadcrumb.component.scss']
 })

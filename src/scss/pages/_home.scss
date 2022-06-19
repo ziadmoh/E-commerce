@@ -113,7 +113,7 @@ button:focus {
 	}
 }
 
-molla-quick-view, .container.quickView-container {
+app-ecommerce-quick-view, .container.quickView-container {
 	max-width: 100%;
 }
 
@@ -131,7 +131,7 @@ molla-quick-view, .container.quickView-container {
 .fullscreen-container {
 	position: relative;
 	button.mfp-close {
-		font: normal normal 2.6rem/1 'molla';
+		font: normal normal 2.6rem/1 'app-ecommerce';
 		position: absolute;
 		color: #666;
 		top: 0.6rem;
@@ -331,7 +331,7 @@ molla-quick-view, .container.quickView-container {
 		right: 1.5rem;
 		padding: 0;
 		font: {
-			family: 'molla';
+			family: 'app-ecommerce';
 			size: 2rem;
 		}
 		background-color: #fff;
@@ -357,7 +357,7 @@ molla-quick-view, .container.quickView-container {
 }
 
 .quickView-modal {
-	molla-quick-view {
+	app-ecommerce-quick-view {
 		margin-left: auto;
 		margin-right: auto;
 	}

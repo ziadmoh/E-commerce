@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { specialSlider } from '../data';
 
 @Component({
-	selector: 'molla-special-collection',
+	selector: 'app-ecommerce-special-collection',
 	templateUrl: './special-collection.component.html',
 	styleUrls: ['./special-collection.component.scss']
 })

@@ -3,7 +3,7 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-	selector: 'molla-main-menu',
+	selector: 'app-ecommerce-main-menu',
 	templateUrl: './main-menu.component.html',
 	styleUrls: ['./main-menu.component.scss']
 })

@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
-	selector: 'molla-root',
+	selector: 'app-ecommerce-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss']
 })
@@ -52,11 +52,11 @@ export class AppComponent {
 			this.modalService.dismissAll();
 		})
 
-		if (localStorage.getItem("molla-angular-demo") !== environment.demo) {
+		if (localStorage.getItem("app-ecommerce-angular-demo") !== environment.demo) {
 			this.store.dispatch(new RefreshStoreAction());
 		}
 
-		localStorage.setItem("molla-angular-demo", environment.demo);
+		localStorage.setItem("app-ecommerce-angular-demo", environment.demo);
 	}
 
 	@HostListener('window: scroll', ['$event'])

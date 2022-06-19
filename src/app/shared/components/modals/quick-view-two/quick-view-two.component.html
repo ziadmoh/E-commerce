@@ -10,9 +10,9 @@
                     <a href="#"
                         [ngClass]="'product-gallery-item h-auto p-lg-0 mb-0 mb-lg-1 ' + ( i === currentIndex ? ' active' : '' )"
                         (click)="changeImage( $event, i )" *ngFor="let item of product.pictures; let i = index;">
-                        <molla-image [src]="SERVER_URL + product.sm_pictures[i].url" alt="Product side"
+                        <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[i].url" alt="Product side"
                             class="product-image mb-0" [fixedPt]="paddingTop">
-                        </molla-image>
+                        </app-ecommerce-image>
                     </a>
                 </div>
                 <div class="product-lg mb-1 mb-lg-0 col-lg-10 pl-lg-3 pl-0 pr-0 pr-lg-3 order-lg-last order-first"
@@ -25,9 +25,9 @@
 
                     <owl-carousel carouselClasses="product-gallery-carousel owl-full owl-nav-dark" [options]="options"
                         id="owl-quickview" #singleSlider>
-                        <molla-image class="d-block position-relative"
+                        <app-ecommerce-image class="d-block position-relative"
                             *ngFor="let item of product.pictures; let i = index;" [src]="SERVER_URL + item.url">
-                        </molla-image>
+                        </app-ecommerce-image>
                     </owl-carousel>
                 </div>
             </div>
@@ -109,8 +109,8 @@
 
                     <div class="details-filter-row details-row-size">
                         <label for="qty">Qty:</label>
-                        <molla-quantity-input [max]="product.stock" (changeQty)="onChangeQty( $event )" [value]="qty">
-                        </molla-quantity-input>
+                        <app-ecommerce-quantity-input [max]="product.stock" (changeQty)="onChangeQty( $event )" [value]="qty">
+                        </app-ecommerce-quantity-input>
                     </div>
 
                     <div class="product-details-action">

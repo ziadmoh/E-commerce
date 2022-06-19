@@ -5,7 +5,7 @@ import { UtilsService } from 'src/app/shared/services/utils.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 
 @Component({
-	selector: 'molla-header',
+	selector: 'app-ecommerce-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss']
 })

@@ -17,8 +17,8 @@
                 <span>Prev</span>
                 <div class="product-detail">
                     <figure class="overflow-hidden">
-                        <molla-image [src]="SERVER_URL + prev.sm_pictures[0].url" alt="Product" class="product-image">
-                        </molla-image>
+                        <app-ecommerce-image [src]="SERVER_URL + prev.sm_pictures[0].url" alt="Product" class="product-image">
+                        </app-ecommerce-image>
                     </figure>
                     <h3 class="product-name">{{ prev.name }}</h3>
                 </div>
@@ -29,8 +29,8 @@
                 <i class="icon-angle-right"></i>
                 <div class="product-detail">
                     <figure class="overflow-hidden">
-                        <molla-image [src]="SERVER_URL + next.sm_pictures[0].url" alt="Product" class="product-image">
-                        </molla-image>
+                        <app-ecommerce-image [src]="SERVER_URL + next.sm_pictures[0].url" alt="Product" class="product-image">
+                        </app-ecommerce-image>
                     </figure>
                     <h3 class="product-name">{{ next.name }}</h3>
                 </div>

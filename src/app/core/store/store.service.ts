@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 export class StoreService {
     constructor(store: Store<any>) {
         store.subscribe(items => {
-            localStorage.setItem('molla', JSON.stringify(items));
+            localStorage.setItem('app-ecommerce', JSON.stringify(items));
         })
     }
 }

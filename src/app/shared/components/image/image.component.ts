@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
-	selector: 'molla-image',
+	selector: 'app-ecommerce-image',
 	templateUrl: './image.component.html',
 	styleUrls: ['./image.component.scss']
 })

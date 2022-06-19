@@ -71,9 +71,9 @@
             <div class="col-md-6">
                 <div class="product-details-action mb-1">
                     <div class="details-action-col">
-                        <molla-quantity-input [max]="product.stock" (changeQty)="onChangeQty( $event )" [value]="qty"
+                        <app-ecommerce-quantity-input [max]="product.stock" (changeQty)="onChangeQty( $event )" [value]="qty"
                             adClass="mr-2 mr-sm-4">
-                        </molla-quantity-input>
+                        </app-ecommerce-quantity-input>
 
                         <a href="javascript:;" class="btn-product btn-cart"
                             [class.btn-disabled]="!cartService.canAddToCart( product, qty ) || ( product.variants.length > 0 && !( selectedVariant.color && selectedVariant.size != '' ) )"

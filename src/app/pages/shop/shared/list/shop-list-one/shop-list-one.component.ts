@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-	selector: 'molla-shop-list-one',
+	selector: 'app-ecommerce-shop-list-one',
 	templateUrl: './shop-list-one.component.html',
 	styleUrls: ['./shop-list-one.component.scss']
 })

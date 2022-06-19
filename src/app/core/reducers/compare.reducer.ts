@@ -15,7 +15,7 @@ function getState ( key: string ) {
     return ( localStorage.getItem( key ) && JSON.parse( localStorage.getItem( key ) ).compare ) ? JSON.parse( localStorage.getItem( key ) ).compare : initialState;
 }
 
-export function compareReducer ( state = getState( 'molla' ), action ) {
+export function compareReducer ( state = getState( 'app-ecommerce' ), action ) {
     switch ( action.type ) {
         case ADD_TO_COMPARE:
             if ( state.data.findIndex( item => item.id == action.payload.product.id ) == -1 ) {

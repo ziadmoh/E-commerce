@@ -15,9 +15,9 @@
                     </div>
                     <ng-template #loadedBlock>
                         <div class="row justify-content-center">
-                            <molla-product-twelve class="col-6 col-md-4 col-lg-3 col-xl-5col" [product]="product"
+                            <app-ecommerce-product-twelve class="col-6 col-md-4 col-lg-3 col-xl-5col" [product]="product"
                                 *ngFor="let product of products | catFilter : cat">
-                            </molla-product-twelve>
+                            </app-ecommerce-product-twelve>
                         </div>
                     </ng-template>
                 </div>

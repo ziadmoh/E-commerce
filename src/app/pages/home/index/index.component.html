@@ -142,7 +142,7 @@
         </div>
     </div>
 
-    <molla-special-collection [products]="products" [loaded]="loaded"></molla-special-collection>
+    <app-ecommerce-special-collection [products]="products" [loaded]="loaded"></app-ecommerce-special-collection>
 
     <div class="deal-container pt-5 pb-3">
         <div class="container">
@@ -160,8 +160,8 @@
                                 <span class="old-price">Was $240.00</span>
                             </div>
 
-                            <molla-count-down [wrap]="'deal-countdown'" until="+10h" format="HMS" [labelsShort]="true">
-                            </molla-count-down>
+                            <app-ecommerce-count-down [wrap]="'deal-countdown'" until="+10h" format="HMS" [labelsShort]="true">
+                            </app-ecommerce-count-down>
 
                             <a routerLink="/shop/sidebar/3cols" class="btn btn-outline-dark">
                                 <span>Shop Now</span><i class="icon-long-arrow-right"></i>
@@ -194,7 +194,7 @@
         </div>
     </div>
 
-    <molla-top-collection [products]="products | attrFilter : 'top'" [loaded]="loaded"></molla-top-collection>
+    <app-ecommerce-top-collection [products]="products | attrFilter : 'top'" [loaded]="loaded"></app-ecommerce-top-collection>
 
     <div class="container">
         <hr>

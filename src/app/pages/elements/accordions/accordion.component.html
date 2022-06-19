@@ -1,5 +1,5 @@
 <div class="main">
-    <molla-page-header [title]="'Accordions'" [subtitle]="'Elements'"></molla-page-header>
+    <app-ecommerce-page-header [title]="'Accordions'" [subtitle]="'Elements'"></app-ecommerce-page-header>
 
     <nav class="breadcrumb-nav">
         <div class="container">
@@ -21,15 +21,15 @@
 
                 <div class="row">
                     <div class="col-md-6" *ngFor="let accordion of accordionGroup.items; let j = index">
-                        <molla-accordion [adClass]="accordion.adClass" [accordionID]="'accordion' + ( 1 + j + i * 2 )">
-                            <molla-card *ngFor="let card of accordion.cards; let isFirst = first"
+                        <app-ecommerce-accordion [adClass]="accordion.adClass" [accordionID]="'accordion' + ( 1 + j + i * 2 )">
+                            <app-ecommerce-card *ngFor="let card of accordion.cards; let isFirst = first"
                                 [adClass]="accordion.cardAclass" [title]="card.title"
                                 [parent]="'accordion' + ( 1 + j + i * 2 )" [icon]="accordion.showIcon? card.icon : null"
                                 [show]="isFirst ? true : false">
 
                                 {{ card.body }}
-                            </molla-card>
-                        </molla-accordion>
+                            </app-ecommerce-card>
+                        </app-ecommerce-accordion>
                     </div>
                 </div>
 

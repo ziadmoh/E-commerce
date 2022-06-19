@@ -8,8 +8,8 @@
         <ng-template #elseBlock>
             <owl-carousel [carouselClasses]="'owl-simple'">
                 <div>
-                    <molla-product-eight [product]="product" *ngFor="let product of products | slice : 0 : 4 ">
-                    </molla-product-eight>
+                    <app-ecommerce-product-eight [product]="product" *ngFor="let product of products | slice : 0 : 4 ">
+                    </app-ecommerce-product-eight>
                 </div>
             </owl-carousel>
         </ng-template>

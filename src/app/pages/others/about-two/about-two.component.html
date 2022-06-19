@@ -1,5 +1,5 @@
 <div class="main">
-    <molla-page-header title="About Us 2" subtitle="Pages"></molla-page-header>
+    <app-ecommerce-page-header title="About Us 2" subtitle="Pages"></app-ecommerce-page-header>
     <nav class="breadcrumb-nav border-0 mb-0">
         <div class="container">
             <ol class="breadcrumb">
@@ -26,8 +26,8 @@
                             est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. </p>
                         <img src="assets/images/about/about-2/signature.png" alt="signature" class="mx-auto mb-5">
 
-                        <molla-image src="assets/images/about/about-2/img-1.jpg" width="933" height="390" alt="signature"
-                            class="mx-auto w-100 mb-6"></molla-image>
+                        <app-ecommerce-image src="assets/images/about/about-2/img-1.jpg" width="933" height="390" alt="signature"
+                            class="mx-auto w-100 mb-6"></app-ecommerce-image>
                     </div>
                 </div>
             </div>
@@ -54,8 +54,8 @@
                     <div class="col-6 col-md-3" *ngFor="let counter of counters;">
                         <div class="count-container text-center">
                             <div class="count-wrapper text-white">
-                                <molla-count-to [from]="0" [to]="counter.limit" [speed]="3000" [interval]="50">0
-                                </molla-count-to>
+                                <app-ecommerce-count-to [from]="0" [to]="counter.limit" [speed]="3000" [interval]="50">0
+                                </app-ecommerce-count-to>
                                 {{ counter.unit }}
                             </div>
                             <h3 class="count-title text-white">{{ counter.text }}</h3>
@@ -73,7 +73,7 @@
                     <div class="col-sm-6 col-lg-3" *ngFor="let member of members">
                         <div class="member member-2 text-center">
                             <figure class="member-media">
-                                <molla-image [src]="member.img" width="277" height="300" alt="member photo"></molla-image>
+                                <app-ecommerce-image [src]="member.img" width="277" height="300" alt="member photo"></app-ecommerce-image>
 
                                 <figcaption class="member-overlay">
                                     <div class="social-icons social-icons-simple">

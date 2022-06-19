@@ -1,5 +1,5 @@
 <main class="main">
-    <molla-page-header title="Wishlist" subtitle="Shop"></molla-page-header>
+    <app-ecommerce-page-header title="Wishlist" subtitle="Shop"></app-ecommerce-page-header>
 
     <nav class="breadcrumb-nav">
         <div class="container">
@@ -42,8 +42,8 @@
                                 <div class="product">
                                     <figure class="product-media">
                                         <a [routerLink]="['/product/default/'+ product.slug]">
-                                            <molla-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product">
-                                            </molla-image>
+                                            <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product">
+                                            </app-ecommerce-image>
                                         </a>
                                     </figure>
 

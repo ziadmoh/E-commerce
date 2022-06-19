@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 declare var $: any;
 
 @Component({
-	selector: 'molla-mobile-menu',
+	selector: 'app-ecommerce-mobile-menu',
 	templateUrl: './mobile-menu.component.html',
 	styleUrls: ['./mobile-menu.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush

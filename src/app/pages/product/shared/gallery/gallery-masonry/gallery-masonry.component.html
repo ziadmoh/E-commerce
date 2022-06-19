@@ -6,8 +6,8 @@
             <span class="product-label label-top" *ngIf="product.top">Top</span>
             <span class="product-label label-out" *ngIf="!product.stock || product.stock == 0">Out Of Stock</span>
 
-            <molla-image class="d-block position-relative"
-                [src]="SERVER_URL + product.pictures[currentIndex].url"></molla-image>
+            <app-ecommerce-image class="d-block position-relative"
+                [src]="SERVER_URL + product.pictures[currentIndex].url"></app-ecommerce-image>
 
             <button id="btn-product-gallery" href="javascript:;" class="btn-product-gallery" (click)="openLightBox()">
                 <i class="icon-arrows"></i>
@@ -19,32 +19,32 @@
                 <div class="col-5 d-flex mb-1">
                     <button [class]="'product-masonry-item p-0 w-100' + ( 0 === currentIndex ? ' active' : '' )"
                         (click)="changeImage( $event, 0 )">
-                        <molla-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product back" class="w-100">
-                        </molla-image>
+                        <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url" alt="Product back" class="w-100">
+                        </app-ecommerce-image>
                     </button>
                 </div>
 
                 <div class="col-7 d-flex mb-1" *ngIf="product.sm_pictures.length > 1">
                     <button [class]="'product-masonry-item p-0 w-100' + ( 1 === currentIndex ? ' active' : '' )"
                         (click)="changeImage( $event, 1 )">
-                        <molla-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product back" class="w-100">
-                        </molla-image>
+                        <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[1].url" alt="Product back" class="w-100">
+                        </app-ecommerce-image>
                     </button>
                 </div>
 
                 <div class="col-7 d-flex mb-1" *ngIf="product.sm_pictures.length > 2">
                     <button [class]="'product-masonry-item p-0 w-100' + ( 2 === currentIndex ? ' active' : '' )"
                         (click)="changeImage( $event, 2 )">
-                        <molla-image [src]="SERVER_URL + product.sm_pictures[2].url" alt="Product back" class="w-100">
-                        </molla-image>
+                        <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[2].url" alt="Product back" class="w-100">
+                        </app-ecommerce-image>
                     </button>
                 </div>
 
                 <div class="col-5 d-flex mb-1" *ngIf="product.sm_pictures.length > 3">
                     <button [class]="'product-masonry-item p-0 w-100' + ( 3 === currentIndex ? ' active' : '' )"
                         (click)="changeImage( $event, 3 )">
-                        <molla-image [src]="SERVER_URL + product.sm_pictures[3].url" alt="Product back" class="w-100">
-                        </molla-image>
+                        <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[3].url" alt="Product back" class="w-100">
+                        </app-ecommerce-image>
                     </button>
                 </div>
             </div>

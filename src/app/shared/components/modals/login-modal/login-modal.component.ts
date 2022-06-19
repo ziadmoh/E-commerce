@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'molla-login-modal',
+	selector: 'app-ecommerce-login-modal',
 	templateUrl: './login-modal.component.html',
 	styleUrls: ['./login-modal.component.scss']
 })

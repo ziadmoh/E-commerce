@@ -1,5 +1,5 @@
 <div class="main shop-market">
-    <molla-page-header title="Shop Market" subtitle="Shop"></molla-page-header>
+    <app-ecommerce-page-header title="Shop Market" subtitle="Shop"></app-ecommerce-page-header>
 
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
         <div class="container">
@@ -106,10 +106,10 @@
                         </div>
                     </div>
 
-                    <molla-shop-list-two [products]="products" [loaded]="loaded"></molla-shop-list-two>
+                    <app-ecommerce-shop-list-two [products]="products" [loaded]="loaded"></app-ecommerce-shop-list-two>
 
-                    <molla-pagination [perPage]="perPage" [total]="totalCount" *ngIf="totalCount > perPage">
-                    </molla-pagination>
+                    <app-ecommerce-pagination [perPage]="perPage" [total]="totalCount" *ngIf="totalCount > perPage">
+                    </app-ecommerce-pagination>
                 </div>
 
                 <aside class="col-lg-3 col-xl-5col skel-shop-sidebar order-lg-first skeleton-body"
@@ -121,8 +121,8 @@
                         <div class="skel-widget"></div>
                     </div>
                     <ng-template #sidebarLoaded>
-                        <molla-shop-sidebar-three [toggle]="toggle">
-                        </molla-shop-sidebar-three>
+                        <app-ecommerce-shop-sidebar-three [toggle]="toggle">
+                        </app-ecommerce-shop-sidebar-three>
 
                         <button class="sidebar-fixed-toggler" (click)="toggleSidebar()" *ngIf="toggle">
                             <i class="icon-cog"></i>

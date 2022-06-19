@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 
 @Component({
-	selector: 'molla-wishlist-menu',
+	selector: 'app-ecommerce-wishlist-menu',
 	templateUrl: './wishlist-menu.component.html',
 	styleUrls: ['./wishlist-menu.component.scss']
 })

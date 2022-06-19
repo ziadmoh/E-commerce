@@ -1,5 +1,5 @@
 <main class="main">
-    <molla-page-header title="Shopping Cart" subtitle="Shop"></molla-page-header>
+    <app-ecommerce-page-header title="Shopping Cart" subtitle="Shop"></app-ecommerce-page-header>
 
     <nav class="breadcrumb-nav">
         <div class="container">
@@ -49,9 +49,9 @@
                                             <div class="product">
                                                 <figure class="product-media">
                                                     <a [routerLink]="['/product/default/'+ product.slug]">
-                                                        <molla-image [src]="SERVER_URL + product.sm_pictures[0].url"
+                                                        <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url"
                                                             alt="Product">
-                                                        </molla-image>
+                                                        </app-ecommerce-image>
                                                     </a>
                                                 </figure>
 
@@ -65,9 +65,9 @@
                                             {{ ( product.sale_price ? product.sale_price.toFixed( 2 ) : product.price.toFixed( 2 ) ) | currency }}
                                         </td>
                                         <td class="quantity-col">
-                                            <molla-quantity-input adClass="cart-product-quantity" [value]="product.qty"
+                                            <app-ecommerce-quantity-input adClass="cart-product-quantity" [value]="product.qty"
                                                 [max]="product.stock" (changeQty)="onChangeQty( $event, product )">
-                                            </molla-quantity-input>
+                                            </app-ecommerce-quantity-input>
                                         </td>
                                         <td class="total-col">{{ product.sum | currency }}</td>
                                         <td class="remove-col"><button class="btn-remove"

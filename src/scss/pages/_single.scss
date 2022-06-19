@@ -83,7 +83,7 @@
 			font-weight: normal;
 			font-size: 3rem;
 			line-height: 1;
-			font-family: 'molla';
+			font-family: 'app-ecommerce';
 			position: absolute;
 			left: 3rem;
 			top: 4rem;
@@ -247,7 +247,7 @@
 	&:after {
 		color: #333;
 		display: block;
-		font-family: 'molla';
+		font-family: 'app-ecommerce';
 		font-size: 1.5rem;
 		line-height: 1;
 		position: absolute;
@@ -411,7 +411,7 @@
 	transition: all .35s ease;
 
 	&:after {
-		font-family: 'molla';
+		font-family: 'app-ecommerce';
 		content: '\f279';
 		font-size: 1.5rem;
 		margin-left: .7rem;
@@ -522,7 +522,7 @@
 		left: 0;
 		height: 14px;
 		line-height: 1;
-        font-family: 'molla';
+        font-family: 'app-ecommerce';
 		text-indent: 0;
 		overflow: hidden;
 		white-space: nowrap;

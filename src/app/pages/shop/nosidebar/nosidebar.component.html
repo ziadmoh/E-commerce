@@ -1,5 +1,5 @@
 <div class="main">
-    <molla-page-header [title]="pageTitle" subtitle="Shop"></molla-page-header>
+    <app-ecommerce-page-header [title]="pageTitle" subtitle="Shop"></app-ecommerce-page-header>
     <nav class="breadcrumb-nav mb-2">
         <div [class]="containerClass">
             <ol class="breadcrumb">
@@ -49,8 +49,8 @@
                 </div>
             </div>
 
-            <molla-shop-list-three [products]="products" [loaded]="loaded" [cols]="cols">
-            </molla-shop-list-three>
+            <app-ecommerce-shop-list-three [products]="products" [loaded]="loaded" [cols]="cols">
+            </app-ecommerce-shop-list-three>
 
             <div class="load-more-container text-center" [class.d-none]="totalCount <= products.length && !moreLoading">
                 <a href="javascript:;" class="btn btn-outline-darker btn-load-more" (click)="loadMore($event)">
@@ -59,8 +59,8 @@
                 </a>
             </div>
 
-            <molla-shop-sidebar-one [toggle]="true">
-            </molla-shop-sidebar-one>
+            <app-ecommerce-shop-sidebar-one [toggle]="true">
+            </app-ecommerce-shop-sidebar-one>
 
             <button class="sidebar-fixed-toggler d-lg-none" (click)="toggleSidebar()">
                 <i class="icon-cog"></i>

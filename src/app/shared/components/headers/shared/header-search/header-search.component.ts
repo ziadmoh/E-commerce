@@ -7,7 +7,7 @@ import { UtilsService } from 'src/app/shared/services/utils.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-	selector: 'molla-header-search',
+	selector: 'app-ecommerce-header-search',
 	templateUrl: './header-search.component.html',
 	styleUrls: ['./header-search.component.scss']
 })

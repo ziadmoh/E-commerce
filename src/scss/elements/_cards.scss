@@ -50,7 +50,7 @@
 			right: 1.2rem;
 			top: 50%;
 			color: $primary-color;
-			font-family: "molla";
+			font-family: "app-ecommerce";
 			line-height: 1;
 			transform: translateY(-50%);
 			-ms-transform: translateY(-50%);
@@ -176,7 +176,7 @@
 	}
 }
 
-molla-card + molla-card .card {
+app-ecommerce-card + app-ecommerce-card .card {
     border-top: none !important;
 }
 
