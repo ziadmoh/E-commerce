@@ -518,14 +518,14 @@ a:focus {
 
     &:hover,
     &:focus {
-        color: $primary-color;
+        color: $secondary-color;
     }
 }
 
 .btn-expandable {
 
     span {
-        background-color: $primary-color;
+        background-color: $secondary-color;
     }
 }
 
@@ -1531,14 +1531,14 @@ a:focus {
         border: none;
 
         &:before {
-            color: $primary-color;
+            color: $secondary-color;
         }
 
         &:hover,
         &:focus {
-            color: $primary-color;
+            color: $secondary-color;
             span {
-                color: $primary-color;
+                color: $secondary-color;
             }
             background-color: transparent;
         }

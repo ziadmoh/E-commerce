@@ -11,7 +11,6 @@ import { CartMenuComponent } from './components/headers/shared/cart-menu/cart-me
 import { CompareMenuComponent } from './components/headers/shared/compare-menu/compare-menu.component';
 import { WishlistMenuComponent } from './components/headers/shared/wishlist-menu/wishlist-menu.component';
 import { CategoryMenuComponent } from './components/headers/shared/category-menu/category-menu.component';
-import { MainMenuComponent } from './components/headers/shared/main-menu/main-menu.component';
 import { HeaderSearchComponent } from './components/headers/shared/header-search/header-search.component';
 import { MobileButtonComponent } from './components/headers/shared/mobile-button/mobile-button.component';
 import { MobileMenuComponent } from './components/headers/shared/mobile-menu/mobile-menu.component';
@@ -74,7 +73,6 @@ import { SafeContentPipe } from './pipes/safe-content.pipe';
 		CompareMenuComponent,
 		WishlistMenuComponent,
 		CategoryMenuComponent,
-		MainMenuComponent,
 		HeaderSearchComponent,
 		MobileButtonComponent,
 		MobileMenuComponent,

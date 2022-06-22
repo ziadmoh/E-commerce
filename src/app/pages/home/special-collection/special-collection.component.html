@@ -11,8 +11,8 @@
                     <owl-carousel id="products-carousel"
                         carouselClasses="owl-simple carousel-equal-height carousel-with-shadow"
                         [options]="sliderOption">
-                        <app-ecommerce-product-twelve [product]="product" *ngFor="let product of products | attrFilter : attr">
-                        </app-ecommerce-product-twelve>
+                        <app-ecommerce-product-three [product]="product" *ngFor="let product of products | attrFilter : attr">
+                        </app-ecommerce-product-three>
                     </owl-carousel>
                 </ng-template>
             </ng-template>

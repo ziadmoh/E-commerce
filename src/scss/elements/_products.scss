@@ -144,7 +144,7 @@
 
 	.countdown-amount {
 		display: inline-block;
-		color: #ef837b;
+		color: #D54D7E;
 		font-weight: 500;
 		font-size: 1.8rem;
 		letter-spacing: -.03em;
@@ -289,7 +289,7 @@
 }
 
 .new-price {
-	color: #ef837b;
+	color: #D54D7E;
 	margin-right: .8rem;
 }
 
@@ -330,12 +330,12 @@
 
 	&.label-sale {
 		color: #fff;
-		background-color: #ef837b;
+		background-color: #D54D7E;
 	}
 
 	&.label-new {
 		color: #fff;
-		background-color: #a6c76c;
+		background-color: #3A81C3;
 	}
 
 	&.label-top {
@@ -718,7 +718,7 @@
 
 	&:hover,
 	&:focus {
-		color: $primary-color;
+		color: $secondary-color;
 		background: none;
 	}
 }
@@ -1577,7 +1577,7 @@
 
 	.product-label.label-deal {
 	    color: #fff;
-	    background-color: #ef837b;
+	    background-color: #D54D7E;
 	    padding: .5rem 2rem;
 	    left: 0;
 	    box-shadow: 0 5px 10px rgba(34, 34, 34, 0.2);
@@ -1588,7 +1588,7 @@
 .product.product-11 {
 	a:hover,
 	a:focus {
-		color: $primary-color;
+		color: $secondary-color;
 	}
 	.btn-product-icon {
 		color: #333;
@@ -1596,8 +1596,8 @@
 		&:hover,
 		&:focus {
 			color: #fff;
-			background-color: $primary-color;
-			border-color: $primary-color;
+			background-color: $secondary-color;
+			border-color: $secondary-color;
 		}
 	}
 	.product-price {
@@ -1657,7 +1657,7 @@
 	.btn-wishlist {
 		&.added-to-wishlist {
 			&::before {
-				color: $primary-color;
+				color: $secondary-color;
 			}
 		}
 	}
