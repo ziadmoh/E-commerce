@@ -21,7 +21,6 @@ export class IndexComponent implements OnInit {
 	brandSlider = brandSlider;
 
 	constructor(public apiService: ApiService, public utilsService: UtilsService, private modalService: ModalService,) {
-		this.modalService.openNewsletter();
 
 		this.apiService.fetchHomeData().subscribe(result => {
 			this.products = result.products;

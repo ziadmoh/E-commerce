@@ -1,0 +1,16 @@
+li{
+    .aside-link{
+        font-weight: 500;
+        letter-spacing: 1px;
+        border: none !important;
+        color: #465DBB !important;
+        
+    }
+    &.active{
+        .aside-link{
+            background-color: #465DBB !important;
+            color: #fff !important;
+            border-radius: 10px;
+        }
+    }
+}

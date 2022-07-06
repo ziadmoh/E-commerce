@@ -27,13 +27,14 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
+              "src/assets/images/imagine-ai.ico",
               "src/assets",
               "src/.htaccess"
             ],
             "styles": [
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/fonts-app-ecommerce.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -43,7 +44,8 @@
               "src/assets/js/bootstrap.bundle.min.js",
               "./node_modules/masonry-layout/dist/masonry.pkgd.min.js",
               "./node_modules/isotope-layout/dist/isotope.pkgd.min.js",
-              "./node_modules/imagesloaded/imagesloaded.pkgd.js"
+              "./node_modules/imagesloaded/imagesloaded.pkgd.js",
+              "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
             ]
           },
           "configurations": {
@@ -105,7 +107,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
+              "src/assets/images/imagine-ai.ico",
               "src/assets"
             ],
             "styles": [

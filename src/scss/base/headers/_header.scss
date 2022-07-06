@@ -1485,7 +1485,7 @@
 /* header 1 */
 .header-1 {
 	$font-family: 'Jost', sans-serif;
-	$primary-color: #3A81C3;
+	$primary-color: #DC4F3F;
 	background-color: #fff;
 
 	a, p { font-family: $font-family; }
@@ -1533,7 +1533,7 @@
 			&:hover,
 			&:focus,
 			&:active {
-				color: #3A81C3;
+				color: #DC4F3F;
 				background-color: transparent;
 			}
 		}

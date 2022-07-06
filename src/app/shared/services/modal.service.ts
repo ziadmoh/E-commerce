@@ -8,7 +8,6 @@ import { Product } from 'src/app/shared/classes/product';
 
 import { QuickViewComponent } from 'src/app/shared/components/modals/quick-view/quick-view.component';
 import { QuickViewTwoComponent } from 'src/app/shared/components/modals/quick-view-two/quick-view-two.component';
-import { NewsletterModalComponent } from '../components/modals/newsletter-modal/newsletter-modal.component';
 import { LoginModalComponent } from '../components/modals/login-modal/login-modal.component';
 import { VideoModalComponent } from '../components/modals/video-modal/video-modal.component';
 
@@ -102,24 +101,6 @@ export class ModalService {
 	constructor(private modalService: NgbModal, private router: Router, private http: HttpClient) {
 	}
 
-	openNewsletter() {
-		if (this.timer) window.clearTimeout(this.timer);
-		if (!Cookie.get(`hideNewsletter-${environment.demo}`)) {
-			this.timer = window.setTimeout(() => {
-				this.modalService.dismissAll();
-				(document.querySelector('.logo') as HTMLElement).focus({ preventScroll: true });
-
-				setTimeout(() => {
-					if (this.router.url === '/' && !document.querySelector('.newsletter-modal')) {
-						this.modalService.open(
-							NewsletterModalComponent,
-							this.modalOption1
-						)
-					}
-				}, 400);
-			}, 5000);
-		}
-	}
 
 	// Show login modal
 	showLoginModal() {

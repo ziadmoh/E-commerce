@@ -50,7 +50,6 @@ import { CountToComponent } from './components/count-to/count-to.component';
 import { QuickViewComponent } from './components/modals/quick-view/quick-view.component';
 import { QuickViewTwoComponent } from './components/modals/quick-view-two/quick-view-two.component';
 import { VideoModalComponent } from './components/modals/video-modal/video-modal.component';
-import { NewsletterModalComponent } from './components/modals/newsletter-modal/newsletter-modal.component';
 import { LoginModalComponent } from './components/modals/login-modal/login-modal.component';
 import { IsotopeGridComponent } from './components/isotope-grid/isotope-grid.component';
 import { ImageComponent } from './components/image/image.component';
@@ -65,6 +64,7 @@ import { ContentAnimDirective } from './directives/content-anim.directive';
 import { CatFilterPipe } from './pipes/cat-filter.pipe';
 import { AttrFilterPipe } from './pipes/attr-filter.pipe';
 import { SafeContentPipe } from './pipes/safe-content.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -99,7 +99,6 @@ import { SafeContentPipe } from './pipes/safe-content.pipe';
 		PageHeaderComponent,
 		QuickViewComponent,
 		QuickViewTwoComponent,
-		NewsletterModalComponent,
 		LoginModalComponent,
 		VideoModalComponent,
 		QuantityInputComponent,
@@ -132,6 +131,8 @@ import { SafeContentPipe } from './pipes/safe-content.pipe';
 		TranslateModule,
 		OwlModule,
 		LazyLoadImageModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 
 	exports: [
@@ -187,7 +188,6 @@ import { SafeContentPipe } from './pipes/safe-content.pipe';
 		VideoModalComponent,
 		QuickViewComponent,
 		QuickViewTwoComponent,
-		NewsletterModalComponent,
 		LoginModalComponent
 	]
 })

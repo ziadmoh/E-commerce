@@ -29,13 +29,16 @@ import { cartReducer } from './core/reducers/cart.reducer';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './shared/layout/layout.component';
 
-// Social Login 
+// Social Login
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider,GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from 'src/environments/environment';
+import { AdminModule } from './admin/admin.module';
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
     HttpClientModule,
     OwlModule,
     ElementsModule,
+    AdminModule,
     PagesModule,
     SharedModule,
     HomeModule,
@@ -73,8 +77,12 @@ import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
         autoLogin: false,
         providers: [
           {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(environment.GoogleAppClientId)
+          },
+          {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('2419387921542762')
+            provider: new FacebookLoginProvider(environment.FaceBookAppId)
           }
         ],
         onError: (err) => {

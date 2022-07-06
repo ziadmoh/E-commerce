@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { ComingSoonPageComponent } from './pages/others/coming-soon/coming-soon.component';
 import { IndexComponent } from './pages/home/index/index.component';
+import { AdminInitComponent } from './admin/initial/admin-initial.component';
+import { AdminHomeComponent } from './admin/home/admin-home.component';
 
 const routes: Routes = [
 	{
@@ -34,8 +36,13 @@ const routes: Routes = [
 			{
 				path: 'product',
 				loadChildren: () => import( './pages/product/product.module' ).then( m => m.ProductModule )
-			}
+			},
 		]
+	},
+	{
+		path: 'admin',
+		loadChildren: () => import( './admin/admin.module' ).then( m => m.AdminModule ),
+		canActivate:[]
 	},
 	{
 		path: '**',
@@ -43,8 +50,9 @@ const routes: Routes = [
 	}
 ];
 
+
 @NgModule( {
-	imports: [ RouterModule.forRoot( routes, { useHash: false, anchorScrolling: 'disabled', scrollPositionRestoration: 'disabled' } ) ],
+	imports: [ RouterModule.forRoot( routes, { useHash: false, anchorScrolling: 'disabled', scrollPositionRestoration: 'disabled' } )],
 	exports: [ RouterModule ]
 } )
 

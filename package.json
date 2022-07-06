@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@abacritt/angularx-social-login": "^1.2.0",
+    "@abacritt/angularx-social-login": "^1.0.2",
     "@angular/animations": "12.0.0",
     "@angular/common": "12.0.0",
     "@angular/compiler": "12.0.0",
@@ -22,6 +22,7 @@
     "@angular/platform-browser": "12.0.0",
     "@angular/platform-browser-dynamic": "12.0.0",
     "@angular/router": "12.0.0",
+    "@fortawesome/fontawesome-free": "^6.1.1",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@ngrx/effects": "^12.5.1",
     "@ngrx/entity": "^12.5.1",
@@ -41,6 +42,7 @@
     "jquery": "^3.6.0",
     "js-cookie": "^3.0.1",
     "masonry-layout": "^4.2.2",
+    "moment": "^2.29.3",
     "ng-lazyload-image": "9.1.0",
     "ng2-nouislider": "^1.8.3",
     "ngx-img-zoom": "^4.1.2",
@@ -76,6 +78,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~10.4.0",
     "tslint": "~6.1.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.2.3"
   }
 }
