@@ -1,4 +1,11 @@
 export interface Product {
+	productId?: number;
+	productName?: string;
+	productPrice?: number;
+	productImage?:string;
+	productColor:string;
+	productDescription:string;
+	box:string;
 	id?: number;
 	name?: string;
 	slug?: string;

@@ -11581,7 +11581,7 @@
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
     transition: .3s all ease;
-    color: #465DBB;
+    color: #DC4F3F;
   
     &:hover, &:focus {
       text-decoration: none !important;
@@ -11669,7 +11669,7 @@
   #sidebar {
     min-width: 270px;
     max-width: 270px;
-    background: #fff;
+    background: #48919D;
     color: #fff;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
@@ -11705,7 +11705,7 @@
   
     .admin-logo {
       display: block;
-      color: #465DBB !important;
+      color: #fff !important;
       font-weight: 900;
       padding: 10px 30px;
       -webkit-transition: 0.3s;
@@ -11830,15 +11830,15 @@
   }
   
   .btn.btn-primary {
-    background: #465DBB;
-    border-color: #465DBB;
+    background: #DC4F3F;
+    border-color: #DC4F3F;
   
     &:hover, &:focus {
-      background: #465DBB !important;
-      border-color: #465DBB !important;
+      background: #DC4F3F !important;
+      border-color: #DC4F3F !important;
     }
   }
   .main-page-container{
-    background: #fff;
+    //background: #fff;
     margin: 15px
   }

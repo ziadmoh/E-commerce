@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { UtilsService } from 'src/app/shared/services/utils.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
 	selector: 'app-ecommerce-header',
@@ -16,14 +17,26 @@ export class HeaderComponent implements OnInit {
 
 	wishCount = 0;
 
-	constructor(public activeRoute: ActivatedRoute, public utilsService: UtilsService, public modalService: ModalService) {
+	isLoggedIn: boolean = false;
+
+	constructor(
+		public activeRoute: ActivatedRoute, 
+		public utilsService: UtilsService, 
+		public modalService: ModalService,
+		private authService:AuthService) {
 	}
 
 	ngOnInit(): void {
+
+		this.isLoggedIn = this.authService.isLoggedIn;
 	}
 
 	showLoginModal(event: Event): void {
 		event.preventDefault();
 		this.modalService.showLoginModal();
+	}
+
+	logOut(){
+		this.authService.logout();
 	}
 }

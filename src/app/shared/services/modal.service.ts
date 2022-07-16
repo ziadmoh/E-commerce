@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
 export class ModalService {
 	products = [];
 	timer: any;
-
+	isLoginModalRequired:boolean = false;
 	private modalOption1: NgbModalOptions = {
 		centered: true,
 		size: 'xl',
@@ -152,5 +152,10 @@ export class ModalService {
 		);
 
 		modalRef.componentInstance.slug = product.slug;
+	}
+
+
+	closeLoginModal(modal:HTMLElement){
+		modal.click();
 	}
 }

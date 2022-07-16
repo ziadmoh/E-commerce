@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/shared/services/api.service';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 
 import { introSlider, brandSlider } from '../data';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
 	selector: 'app-ecommerce-index',
@@ -20,7 +21,11 @@ export class IndexComponent implements OnInit {
 	introSlider = introSlider;
 	brandSlider = brandSlider;
 
-	constructor(public apiService: ApiService, public utilsService: UtilsService, private modalService: ModalService,) {
+	constructor(public apiService: ApiService, 
+		public utilsService: UtilsService, 
+		private modalService: ModalService,
+		private productService:ProductService,
+		private modalSerice:ModalService) {
 
 		this.apiService.fetchHomeData().subscribe(result => {
 			this.products = result.products;
@@ -29,5 +34,12 @@ export class IndexComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.productService.getAllProducts().subscribe(res =>{
+			console.log(res)
+		})
+		if(this.modalSerice.isLoginModalRequired == true){
+			this.modalSerice.showLoginModal();
+		}
+
 	}
 }

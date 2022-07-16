@@ -1,5 +1,15 @@
 .btn-nav-toggle{
     min-width: 30px;
+    background-color: #48919D !important;
+    border-color: #48919D !important;
+    &:hover{
+        background-color: #62b5c2 !important;
+        border-color: #62b5c2 !important;
+    }
+    &:focus{
+        background-color: #62b5c2 !important;
+        border-color: #62b5c2 !important;
+    }
 }
 .admin-nav{
     background-color: #fff !important;

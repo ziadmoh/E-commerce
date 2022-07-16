@@ -1,0 +1,105 @@
+.section-header{
+    letter-spacing: 1.2px;
+    font-weight: 600;
+}
+.dashboard-container{
+    padding: 0;
+}
+.state-item{
+    padding: 10px;
+    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    background: #fff;
+    border-radius: 8px;
+    min-height: 110px;
+    .state-header{
+        font-weight: 500;
+        font-family: 'Poppins';
+        letter-spacing: .4px;
+        font-size: 16px;
+    }
+    .state-details{
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .top-selling-period{
+        
+        position: absolute;
+        bottom: 0px;
+        right: 15px;
+        font-size: 12px;
+    }
+}
+.header-icon-container{
+    font-size: 20px;
+    
+    border-radius: 50%; 
+   &.header-icon-container-1{
+    color: #00B517;
+    background: #CCF0D1;
+    padding: 5px 13px;
+   }
+   &.header-icon-container-2{
+    color: #ddb500;
+    background: #fff7d0;
+    padding: 6px 12px;
+   }
+   &.header-icon-container-3{
+    color: #00B517;
+    background: #CCF0D1;
+    padding: 7px 13px;
+   }
+   &.header-icon-container-4{
+    color: #48919D;
+    background: #cbe5ea;
+    padding: 5px 13px;
+   }
+
+}
+
+
+.orders-row{
+    width: 100%;
+    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    background: #fff;
+    border-radius: 8px;
+    .orders-row-header{
+        letter-spacing: 1.2px;
+        font-weight: 600;
+    }
+    .order-status{
+        padding: .45em .85em;
+        font-size: 0.85em;
+        font-weight: 600;
+        text-transform: capitalize;
+        border-radius: 8px;
+    }
+    .order-status-new{
+        color: #988512;
+        background-color: #f8ff93;
+    }
+    .order-status-pndg{
+        color: #98530c;
+        background-color: #ffe8d0;
+    }
+    .order-status-dlvrd{
+        background-color: #CCF0D1;
+        color: #006d0e;
+    }
+    .order-status-cncld{
+        color: #920000;
+        background-color: #fdcccc;
+    }
+}
+
+::ng-deep{
+    .p-datatable-wrapper{
+        font-size: 16px;
+    }
+    .last-cell{
+        @media (max-width:960px) {
+            border: 0 !important;
+            border-bottom: 1px solid #dee2e6 !important; 
+        }
+        
+    }
+}

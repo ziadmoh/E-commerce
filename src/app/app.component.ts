@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { filter, first } from 'rxjs/operators';
@@ -11,6 +11,8 @@ import { UtilsService } from './shared/services/utils.service';
 
 import { RefreshStoreAction } from 'src/app/core/actions/actions';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './shared/services/auth.service';
+import { ProductService } from './shared/services/product.service';
 
 declare var $: any;
 
@@ -20,7 +22,7 @@ declare var $: any;
 	styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
 
 	constructor(
 		public store: Store<any>,
@@ -28,7 +30,9 @@ export class AppComponent {
 		public viewPort: ViewportScroller,
 		public storeService: StoreService,
 		public utilsService: UtilsService,
-		public modalService: NgbModal
+		public modalService: NgbModal,
+		private authService:AuthService,
+		private productService:ProductService
 	) {
 		const navigationEnd = this.router.events.pipe(
 			filter(event => event instanceof NavigationEnd)
@@ -57,6 +61,10 @@ export class AppComponent {
 		}
 
 		localStorage.setItem("app-ecommerce-angular-demo", environment.demo);
+	}
+	ngOnInit() {
+		this.productService.getBoxProductsLength().subscribe();
+		this.productService.getNormalProductsLength().subscribe();
 	}
 
 	@HostListener('window: scroll', ['$event'])

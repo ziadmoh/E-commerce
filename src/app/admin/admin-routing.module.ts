@@ -10,27 +10,24 @@ const routes: Routes = [
         path: '',
         component: AdminInitComponent,
         children: [
+           
             {
-                path: 'home',
+                path: 'dashboard',
                 component: AdminHomeComponent,
             },
             {
                 path: 'orders',
                 component: AdminOrdersComponent,
-            },
-            {
-                path: '',
-                redirectTo: 'home',
-                pathMatch: 'full'
+                
             },
         ]
     },
-    
+
 ];
 
-@NgModule( {
-    imports: [ RouterModule.forRoot( routes, { useHash: false, anchorScrolling: 'disabled', scrollPositionRestoration: 'disabled' } ) ],
-	exports: [ RouterModule ]
-} )
+@NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
+})
 
 export class AdminRoutingModule { };

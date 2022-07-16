@@ -6,6 +6,7 @@ import { ComingSoonPageComponent } from './pages/others/coming-soon/coming-soon.
 import { IndexComponent } from './pages/home/index/index.component';
 import { AdminInitComponent } from './admin/initial/admin-initial.component';
 import { AdminHomeComponent } from './admin/home/admin-home.component';
+import { AdminGuard } from './admin/admin.guard';
 
 const routes: Routes = [
 	{
@@ -42,7 +43,7 @@ const routes: Routes = [
 	{
 		path: 'admin',
 		loadChildren: () => import( './admin/admin.module' ).then( m => m.AdminModule ),
-		canActivate:[]
+	//	canActivate: [AdminGuard],
 	},
 	{
 		path: '**',

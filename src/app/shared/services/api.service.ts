@@ -66,7 +66,7 @@ export class ApiService {
 	public fetchHeaderSearchData(searchTerm: string, cat = null): Observable<any> {
 		return this.http.get(`${environment.SERVER_URL}/shop?perPage=5&searchTerm=${searchTerm}&category=${cat}&demo=${environment.demo}`);
 	}
-
+ 
 	/**
 	 * Get Element Products
 	 */

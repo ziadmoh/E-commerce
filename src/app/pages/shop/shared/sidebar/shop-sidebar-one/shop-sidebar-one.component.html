@@ -25,28 +25,6 @@
             </div>
         </div>
 
-        <div class="widget widget-collapsible">
-            <h3 class="widget-title mb-2">
-                <a data-toggle="collapse" href="#widget-2" role="button" aria-expanded="true" aria-controls="widget-2">
-                    Size
-                </a>
-            </h3>
-
-            <div class="collapse show" id="widget-2">
-                <div class="widget-body pt-0">
-                    <div class="filter-items">
-                        <div class="filter-item" *ngFor="let item of shopData.sizes; let index = index;">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" [id]="'size-' + index"
-                                    [checked]="containsAttrInUrl('size', item.slug)"
-                                    (change)="onAttrClick('size', item.slug)">
-                                <label class="custom-control-label" [for]="'size-' + index">{{ item.size }}</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="widget widget-collapsible">
             <h3 class="widget-title mb-2">
@@ -69,28 +47,6 @@
             </div>
         </div>
 
-        <div class="widget widget-collapsible">
-            <h3 class="widget-title mb-2">
-                <a data-toggle="collapse" href="#widget-4" role="button" aria-expanded="true" aria-controls="widget-4">
-                    Brand
-                </a>
-            </h3>
-
-            <div class="collapse show" id="widget-4">
-                <div class="widget-body pt-0">
-                    <div class="filter-items">
-                        <div class="filter-item" *ngFor="let item of shopData.brands; let id = index;">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" [id]="'brand-' + id"
-                                    (click)="onAttrClick('brand', item.slug)"
-                                    [checked]="containsAttrInUrl('brand', item.slug)">
-                                <label class="custom-control-label" [for]="'brand-' + id">{{ item.brand }}</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="widget widget-collapsible">
             <h3 class="widget-title mb-2">

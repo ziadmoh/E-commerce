@@ -21,6 +21,16 @@ export class ImageComponent implements OnInit {
 	constructor(private el: ElementRef, private renderer: Renderer2) { }
 
 	ngOnInit(): void {
+		this.getImageSizes(this.src)
+	}
+
+	getImageSizes(url){
+		let img = new Image();
+		img.onload = function() {
+			this.width = img.width
+			this.height = img.height
+		}.bind(this);
+		img.src = url;
 	}
 
 	handler(event: any) {

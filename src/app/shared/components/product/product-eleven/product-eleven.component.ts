@@ -9,6 +9,7 @@ import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { CompareService } from 'src/app/shared/services/compare.service';
 
 import { environment } from 'src/environments/environment';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
 	selector: 'app-ecommerce-product-eleven',
@@ -30,27 +31,29 @@ export class ProductElevenComponent implements OnInit {
 		private modalService: ModalService,
 		private cartService: CartService,
 		private wishlistService: WishlistService,
-		private compareService: CompareService
+		private compareService: CompareService,
+		private productService:ProductService
 	) { }
 
 	ngOnInit(): void {
-		let min = this.minPrice;
-		let max = this.maxPrice;
+		console.log(this.product.productImage)
+		// let min = this.minPrice;
+		// let max = this.maxPrice;
 
-		this.product.variants.map(item => {
-			if (min > item.price) min = item.price;
-			if (max < item.price) max = item.price;
-		}, []);
+		// this.product.variants.map(item => {
+		// 	if (min > item.price) min = item.price;
+		// 	if (max < item.price) max = item.price;
+		// }, []);
 
-		if (this.product.variants.length == 0) {
-			min = this.product.sale_price
-				? this.product.sale_price
-				: this.product.price;
-			max = this.product.price;
-		}
+		// if (this.product.variants.length == 0) {
+		// 	min = this.product.sale_price
+		// 		? this.product.sale_price
+		// 		: this.product.price;
+		// 	max = this.product.price;
+		// }
 
-		this.minPrice = min;
-		this.maxPrice = max;
+		// this.minPrice = min;
+		// this.maxPrice = max;
 	}
 
 	addToCart(event: Event) {
@@ -85,5 +88,11 @@ export class ProductElevenComponent implements OnInit {
 
 	isInWishlist() {
 		return this.wishlistService.isInWishlist(this.product);
+	}
+
+	testAddProd(event){
+		this.productService.addProduct(event.target.files[0]).subscribe(res =>{
+			console.log(res)
+		})
 	}
 }

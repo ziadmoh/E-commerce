@@ -52,7 +52,7 @@ const routes: Routes = [
 		component: CheckoutComponent
 	},
 	{
-		path: 'dashboard',
+		path: 'orders',
 		component: DashboardComponent
 	},
 	{

@@ -3,14 +3,20 @@ li{
         font-weight: 500;
         letter-spacing: 1px;
         border: none !important;
-        color: #465DBB !important;
-        
+        color: #fff !important;
+        cursor: pointer;
     }
     &.active{
         .aside-link{
-            background-color: #465DBB !important;
-            color: #fff !important;
+            background-color: #fff !important;
+            color: #48919D !important;
             border-radius: 10px;
         }
+    }
+}
+.sidebar-admin{
+    min-height: 100%;
+    @media (max-width:990px) {
+        overflow: hidden;
     }
 }

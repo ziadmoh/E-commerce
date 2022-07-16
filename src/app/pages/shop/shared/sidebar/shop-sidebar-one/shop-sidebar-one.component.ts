@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 import { shopData } from '../../data';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
 	selector: 'app-ecommerce-shop-sidebar-one',
@@ -18,7 +19,8 @@ export class ShopSidebarOneComponent implements OnInit {
 
 	@ViewChild('priceSlider') priceSlider: any;
 
-	constructor(public activeRoute: ActivatedRoute, public router: Router) {
+	constructor(public activeRoute: ActivatedRoute, public router: Router,
+		private productService:ProductService) {
 		activeRoute.queryParams.subscribe(params => {
 			this.params = params;
 			if (params['minPrice'] && params['maxPrice']) {
@@ -37,6 +39,13 @@ export class ShopSidebarOneComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.shopData.categories.forEach(cat =>{
+			if(cat.name == 'Boxes' ){
+				cat.count =	this.productService.boxProductsLength
+			}else if (cat.name == 'Singly' ){
+				cat.count =	this.productService.normalProductsLength
+			}
+		})
 	}
 
 	containsAttrInUrl(type: string, value: string) {

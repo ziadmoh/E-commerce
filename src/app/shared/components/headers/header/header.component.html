@@ -4,7 +4,7 @@
             <div class="header-left overflow-hidden mr-3 mr-sm-0">
                 <div class="welcome-msg d-flex flex-nowrap">
                     <p>Welcome to Imagine for kids and printing.</p>
-                    <a href="javascript:;">&nbsp;Shop Now ...</a>
+                    <a href="javascript:;" routerLink="/shop/sidebar/3cols">&nbsp;Shop Now ...</a>
                 </div>
             </div>
 
@@ -25,8 +25,9 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="login"><a href="javascript:;" (click)="showLoginModal($event)">Sign in / Sign
+                            <li *ngIf="!isLoggedIn" class="login"><a href="javascript:;" (click)="showLoginModal($event)">Sign in / Sign
                                     up</a></li>
+                            <li *ngIf="isLoggedIn" class="login"><a href="javascript:;" (click)="logOut()">Log out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -50,7 +51,7 @@
 
             <div class="header-right">
                 <div class="account">
-                    <a routerLink="/shop/dashboard" title="My account">
+                    <a routerLink="/shop/orders" title="My account">
                         <div class="icon">
                             <i class="icon-user"></i>
                         </div>

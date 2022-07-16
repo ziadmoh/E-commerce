@@ -26,22 +26,10 @@
                         <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist" tabClick>
                             <li class="nav-item">
                                 <a class="nav-link active" href="javascript:;" role="tab"
-                                    (click)="nav.select('tab-1')">Dashboard</a>
+                                    (click)="nav.select('tab-1')">Orders</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:;" role="tab"
-                                    (click)="nav.select('tab-2')">Orders</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="javascript:;" role="tab"
-                                    (click)="nav.select('tab-3')">Downloads</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="javascript:;" role="tab"
-                                    (click)="nav.select('tab-4')">Adresses</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="javascript:;" role="tab" (click)="nav.select('tab-5')">Account
+                                <a class="nav-link" href="javascript:;" role="tab" (click)="nav.select('tab-2')">Account
                                     Details</a>
                             </li>
                             <li class="nav-item">
@@ -53,25 +41,8 @@
                     <div class="col-md-8 col-lg-9">
                         <div class="tab-content">
                             <ul ngbNav #nav="ngbNav">
-                                <li [ngbNavItem]="'tab-1'">
-                                    <ng-template ngbNavContent>
-                                        <p>Hello <span class="font-weight-normal text-dark">User</span> (not <span
-                                                class="font-weight-normal text-dark">User</span>? <a
-                                                routerLink="/">Log out</a>)
-                                            <br>
-                                            From your account dashboard you can view your <a href="javascript:;"
-                                                (click)="nav.select('tab-2'); viewTab( $event, 0, 1 );"
-                                                class="tab-trigger-link link-underline">recent orders</a>, manage your
-                                            <a href="javascript:;"
-                                                (click)="nav.select('tab-2'); viewTab( $event, 0, 3 );"
-                                                class="tab-trigger-link">shipping and billing addresses</a>, and <a
-                                                href="javascript:;"
-                                                (click)="nav.select('tab-2'); viewTab( $event, 0, 4 );"
-                                                class="tab-trigger-link">edit your password and account details</a>.</p>
-                                    </ng-template>
-                                </li>
 
-                                <li [ngbNavItem]="'tab-2'">
+                                <li [ngbNavItem]="'tab-1'">
                                     <ng-template ngbNavContent>
                                         <p>No order has been made yet.</p>
                                         <a routerLink="/shop/sidebar/list" class="btn btn-outline-primary-2"><span>GO
@@ -79,52 +50,7 @@
                                     </ng-template>
                                 </li>
 
-                                <li [ngbNavItem]="'tab-3'">
-                                    <ng-template ngbNavContent>
-                                        <p>No downloads available yet.</p>
-                                        <a routerLink="/shop/sidebar/list" class="btn btn-outline-primary-2"><span>GO
-                                                SHOP</span><i class="icon-long-arrow-right"></i></a>
-                                    </ng-template>
-                                </li>
-
-                                <li [ngbNavItem]="'tab-4'">
-                                    <ng-template ngbNavContent>
-                                        <p>The following addresses will be used on the checkout page by default.</p>
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="card card-dashboard">
-                                                    <div class="card-body">
-                                                        <h3 class="card-title">Billing Address</h3>
-
-                                                        <p>User Name<br>
-                                                            User Company<br>
-                                                            John str<br>
-                                                            New York, NY 10001<br>
-                                                            1-234-987-6543<br>
-                                                            yourmail@mail.com<br>
-                                                            <a href="javascript:;">Edit <i class="icon-edit"></i></a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="card card-dashboard">
-                                                    <div class="card-body">
-                                                        <h3 class="card-title">Shipping Address</h3>
-
-                                                        <p>You have not set up this type of address yet.<br>
-                                                            <a href="javascript:;">Edit <i class="icon-edit"></i></a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ng-template>
-                                </li>
-
-                                <li [ngbNavItem]="'tab-5'">
+                                <li [ngbNavItem]="'tab-2'">
                                     <ng-template ngbNavContent>
                                         <form action="#">
                                             <div class="row">

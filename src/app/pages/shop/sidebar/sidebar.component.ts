@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from 'src/app/shared/services/api.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 
 @Component({
@@ -21,11 +22,15 @@ export class SidebarPageComponent implements OnInit {
 	searchTerm = '';
 	loaded = false;
 	firstLoad = false;
+	category = '';
 
-	constructor(public activeRoute: ActivatedRoute, public router: Router, public utilsService: UtilsService, public apiService: ApiService) {
+	constructor(public activeRoute: ActivatedRoute, 
+		public router: Router, 
+		public utilsService: UtilsService, 
+		public apiService: ApiService,
+		public productService:ProductService) {
 		this.activeRoute.params.subscribe(params => {
 			this.type = params['type'];
-
 			if (this.type == 'list') {
 				this.pageTitle = 'List';
 			} else if (this.type == '4cols') {
@@ -41,6 +46,9 @@ export class SidebarPageComponent implements OnInit {
 			} else {
 				this.searchTerm = '';
 			}
+			if (params['category']) {
+				this.category = params['category'];
+			} 
 
 			if (params['orderBy']) {
 				this.orderBy = params['orderBy'];
@@ -48,17 +56,59 @@ export class SidebarPageComponent implements OnInit {
 				this.orderBy = 'default';
 			}
 
-			this.apiService.fetchShopData(params, this.perPage).subscribe(result => {
-				this.products = result.products;
-				this.totalCount = result.totalCount;
+			if(this.category && this.category =='boxes' ){
+				this.totalCount = this.productService.boxProductsLength
+				this.productService.getBoxProducts().subscribe((result:any) => {
+					if(result.boxProducts){
+						this.products = result.boxProducts;
+					}else{
+						this.products = []
+					}
+	
+					this.loaded = true;
+					if (!this.firstLoad) {
+						this.firstLoad = true;
+					}
+	
+					this.utilsService.scrollToPageContent();
+				})
+			}else if (this.category && this.category =='singly'){
+				this.totalCount = this.productService.normalProductsLength
+				this.productService.getSinglyProducts().subscribe((result:any) => {
+					if(result.normalProducts){
+						this.products = result.normalProducts;
+					}else{
+						this.products = []
+					}
+					
+	
+					this.loaded = true;
+					if (!this.firstLoad) {
+						this.firstLoad = true;
+					}
+	
+					this.utilsService.scrollToPageContent();
+				})
+			}else{
+				this.productService.getAllProducts().subscribe((result:any) => {
+					if(result.products){
+						this.products = result.products;
+					}else{
+						this.products = []
+					}
+					
+					this.totalCount = result.products.length;
+	
+					this.loaded = true;
+					if (!this.firstLoad) {
+						this.firstLoad = true;
+					}
+	
+					this.utilsService.scrollToPageContent();
+				})
+			}
 
-				this.loaded = true;
-				if (!this.firstLoad) {
-					this.firstLoad = true;
-				}
-
-				this.utilsService.scrollToPageContent();
-			})
+			
 		})
 	}
 

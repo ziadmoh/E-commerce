@@ -3,6 +3,7 @@ import { Router, NavigationStart, NavigationEnd, RouterOutlet } from '@angular/r
 import { Subscription } from 'rxjs';
 
 import { routeAnimation } from '../data';
+import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'app-ecommerce-layout',
@@ -21,7 +22,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
 	private subscr: Subscription;
 
-	constructor(private router: Router) {
+	constructor(private router: Router,private authService:AuthService) {
 		this.subscr = this.router.events.subscribe(event => {
 			if (event instanceof NavigationStart) {
 				this.current = event.url;
@@ -54,6 +55,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
+		this.authService.autoLogin();
 	}
 
 	ngOnDestroy(): void {

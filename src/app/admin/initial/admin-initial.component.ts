@@ -1,4 +1,6 @@
 import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { ModalService } from 'src/app/shared/services/modal.service';
 
 
 @Component({
@@ -11,7 +13,12 @@ import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
 
 export class AdminInitComponent implements OnInit {
 
-	constructor() { }
+	constructor(public modalService: ModalService,private authService:AuthService) { }
 
-	ngOnInit(): void { }
+	ngOnInit(): void { 
+		this.authService.autoLogin()
+	}
+
+
+
 }

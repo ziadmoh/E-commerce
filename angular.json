@@ -34,6 +34,9 @@
             "styles": [
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/fonts-app-ecommerce.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.scss"
             ],
@@ -113,6 +116,9 @@
             "styles": [
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/fonts-app-ecommerce.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss"
             ],
             "scripts": []

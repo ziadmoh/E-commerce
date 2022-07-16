@@ -20,28 +20,6 @@
             </div>
         </div>
 
-        <div class="widget">
-            <h3 class="widget-title mb-2">
-                <span>
-                    Brands
-                </span>
-            </h3>
-
-            <div class="collapse show" id="widget-2">
-                <div class="widget-body">
-                    <div class="filter-items">
-                        <div class="filter-item" *ngFor="let item of shopData.brands; let index = index;">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" [id]="'brand-' + index"
-                                    [checked]="containsAttrInUrl('brand', item.slug)"
-                                    (change)="onAttrClick('brand', item.slug)">
-                                <label class="custom-control-label" [for]="'brand-' + index">{{ item.brand }}</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="widget">
             <h3 class="widget-title mb-2">

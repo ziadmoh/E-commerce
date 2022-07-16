@@ -7,8 +7,10 @@ export interface User {
     password:string;
     phone:string;
     address:string;
+    email:string;
     joinDate:string
     type:User_Types;
+    token:string
 }
 
 export type User_Types = "admin" | "client";
