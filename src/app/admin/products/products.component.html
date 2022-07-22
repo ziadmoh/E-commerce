@@ -1,0 +1,42 @@
+<h1 class="mb-4 section-header">Products</h1>
+<div class="container-fluid dashboard-container">
+    <div class="row products-row">
+        <p-table [value]="products" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <!-- <th>Category</th> -->
+                    <th>Reviews</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{product.productName}}</td>
+                    <td><img [src]="product.productImage" [alt]="product.productName" width="100" class="p-shadow-4" /></td>
+                    <td>{{product.productPrice | currency:'EGP '}}</td>
+                    <!-- <td>{{product.productCategory}}</td> -->
+                    <td>
+                        <div class="ratings-container">
+                            <div class="ratings">
+                                <div class="ratings-val" [style.width]="product.ratings * 20 + '%'"></div>
+                                <span class="tooltip-text">{{ product.ratings.toFixed(2) }}</span>
+                            </div>
+                
+                        </div>
+                    </td>
+
+                 </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    In total there are {{products ? products.length : 0 }} products.
+                </div>
+            </ng-template>
+        </p-table>
+
+    </div>
+
+    
+</div>

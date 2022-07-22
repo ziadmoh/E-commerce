@@ -3,9 +3,17 @@ export interface Product {
 	productName?: string;
 	productPrice?: number;
 	productImage?:string;
+	productImages?:{
+		imageId:number,
+		image:string,
+		product_id:number
+	}[]
 	productColor:string;
 	productDescription:string;
 	box:string;
+	productRate:number;
+
+
 	id?: number;
 	name?: string;
 	slug?: string;

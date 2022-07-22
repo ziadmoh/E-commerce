@@ -12,8 +12,8 @@ import { StickyInfoPageComponent } from './sticky-info/sticky-info.component';
 
 const routes: Routes = [
     {
-        path: 'default/:slug',
-        component: DefaultPageComponent
+        path: ':productId',
+        component: ExtendedPageComponent
     },
     {
         path: 'centered/:slug',

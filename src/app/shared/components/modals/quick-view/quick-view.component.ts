@@ -70,45 +70,45 @@ export class QuickViewComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.apiService.getSingleProduct(this.slug, true).subscribe(result => {
-			this.product = result.product;
+		// this.apiService.getSingleProduct(this.slug, true).subscribe(result => {
+		// 	this.product = result.product;
 
-			let min = this.minPrice;
-			let max = this.maxPrice;
+		// 	let min = this.minPrice;
+		// 	let max = this.maxPrice;
 
-			this.variationGroup = this.product.variants.reduce((acc, cur) => {
-				cur.size.map(item => {
-					acc.push({
-						color: cur.color,
-						colorName: cur.color_name,
-						size: item.name,
-						price: cur.price
-					});
-				});
-				if (min > cur.price) min = cur.price;
-				if (max < cur.price) max = cur.price;
-				return acc;
-			}, []);
+		// 	this.variationGroup = this.product.variants.reduce((acc, cur) => {
+		// 		cur.size.map(item => {
+		// 			acc.push({
+		// 				color: cur.color,
+		// 				colorName: cur.color_name,
+		// 				size: item.name,
+		// 				price: cur.price
+		// 			});
+		// 		});
+		// 		if (min > cur.price) min = cur.price;
+		// 		if (max < cur.price) max = cur.price;
+		// 		return acc;
+		// 	}, []);
 
-			if (this.product.variants.length == 0) {
-				min = this.product.sale_price
-					? this.product.sale_price
-					: this.product.price;
-				max = this.product.price;
-			}
+		// 	if (this.product.variants.length == 0) {
+		// 		min = this.product.sale_price
+		// 			? this.product.sale_price
+		// 			: this.product.price;
+		// 		max = this.product.price;
+		// 	}
 
-			this.minPrice = min;
-			this.maxPrice = max;
+		// 	this.minPrice = min;
+		// 	this.maxPrice = max;
 
-			this.paddingTop = Math.floor((parseFloat(this.product.pictures[0].height.toString()) / parseFloat(this.product.pictures[0].width.toString()) * 1000)) / 10 + '%';
+		// 	this.paddingTop = Math.floor((parseFloat(this.product.pictures[0].height.toString()) / parseFloat(this.product.pictures[0].width.toString()) * 1000)) / 10 + '%';
 
-			this.refreshSelectableGroup();
+		// 	this.refreshSelectableGroup();
 
-			let self = this;
-			imagesLoaded(".quickView-modal").on("done", function () {
-				self.loaded = true;
-			})
-		})
+		// 	let self = this;
+		// 	imagesLoaded(".quickView-modal").on("done", function () {
+		// 		self.loaded = true;
+		// 	})
+		// })
 	}
 
 	itemChange(e: any, self: any) {

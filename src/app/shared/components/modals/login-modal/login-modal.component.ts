@@ -79,7 +79,7 @@ export class LoginModalComponent implements OnInit {
 
 	onSubmitSignup(){
 		this.inAuthService.userSignup(this.signupForm.value).subscribe(res =>{
-			console.log(res)
+		//	console.log(res)
 		})
 	}
 

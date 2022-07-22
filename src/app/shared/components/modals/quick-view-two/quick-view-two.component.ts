@@ -11,6 +11,9 @@ import { CompareService } from 'src/app/shared/services/compare.service';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { sliderOpt } from 'src/app/shared/data';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { ModalService } from 'src/app/shared/services/modal.service';
+import { NewCartService } from 'src/app/shared/services/new-cart.service';
 
 declare var $: any;
 
@@ -23,8 +26,7 @@ declare var $: any;
 
 export class QuickViewTwoComponent implements OnInit {
 
-	@Input() slug = '';
-	product: Product;
+	@Input() product: Product;
 	loaded = false;
 	options = {
 		...sliderOpt,
@@ -50,6 +52,10 @@ export class QuickViewTwoComponent implements OnInit {
 	currentIndex = 0;
 	qty = 1;
 
+	firstImgWidth = 0;
+
+	firstImgHeight = 0;
+
 	SERVER_URL = environment.SERVER_URL;
 
 	@ViewChild('singleSlider') singleSlider: any;
@@ -61,7 +67,10 @@ export class QuickViewTwoComponent implements OnInit {
 		public compareService: CompareService,
 		public utilsService: UtilsService,
 		public router: Router,
-		public el: ElementRef) {
+		public el: ElementRef,
+		private authService:AuthService,
+		private modalService:ModalService,
+		private newCartService:NewCartService) {
 	}
 
 	public trackByFn(index, item) {
@@ -69,46 +78,63 @@ export class QuickViewTwoComponent implements OnInit {
 		return item.id;
 	}
 
+	getImageSizes(url){
+		let img = new Image();
+		img.onload = function() {
+			this.paddingTop = Math.floor((parseFloat(img.height.toString()) / parseFloat(img.width.toString()) * 1000)) / 10 + '%';
+
+		}.bind(this);
+		img.src = url;
+	}
+
 	ngOnInit(): void {
-		this.apiService.getSingleProduct(this.slug, true).subscribe(result => {
-			this.product = result.product;
+		
+		this.getImageSizes(this.product.productImage)
+		//this.refreshSelectableGroup();
+		let self = this;
+		imagesLoaded(".quickView-modal").on("done", function () {
+			this.loaded = true;
+		}.bind(this))
+		// this.loaded = true
+		// this.apiService.getSingleProduct(this.slug, true).subscribe(result => {
+		// 	this.product = result.product;
 
-			let min = this.minPrice;
-			let max = this.maxPrice;
+		// 	let min = this.minPrice;
+		// 	let max = this.maxPrice;
 
-			this.variationGroup = this.product.variants.reduce((acc, cur) => {
-				cur.size.map(item => {
-					acc.push({
-						color: cur.color,
-						colorName: cur.color_name,
-						size: item.name,
-						price: cur.price
-					});
-				});
-				if (min > cur.price) min = cur.price;
-				if (max < cur.price) max = cur.price;
-				return acc;
-			}, []);
+		// 	this.variationGroup = this.product.variants.reduce((acc, cur) => {
+		// 		cur.size.map(item => {
+		// 			acc.push({
+		// 				color: cur.color,
+		// 				colorName: cur.color_name,
+		// 				size: item.name,
+		// 				price: cur.price
+		// 			});
+		// 		});
+		// 		if (min > cur.price) min = cur.price;
+		// 		if (max < cur.price) max = cur.price;
+		// 		return acc;
+		// 	}, []);
 
-			if (this.product.variants.length == 0) {
-				min = this.product.sale_price
-					? this.product.sale_price
-					: this.product.price;
-				max = this.product.price;
-			}
+		// 	if (this.product.variants.length == 0) {
+		// 		min = this.product.sale_price
+		// 			? this.product.sale_price
+		// 			: this.product.price;
+		// 		max = this.product.price;
+		// 	}
 
-			this.minPrice = min;
-			this.maxPrice = max;
+		// 	this.minPrice = min;
+		// 	this.maxPrice = max;
 
-			this.paddingTop = Math.floor((parseFloat(this.product.pictures[0].height.toString()) / parseFloat(this.product.pictures[0].width.toString()) * 1000)) / 10 + '%';
+		// 	this.paddingTop = Math.floor((parseFloat(this.product.pictures[0].height.toString()) / parseFloat(this.product.pictures[0].width.toString()) * 1000)) / 10 + '%';
 
-			this.refreshSelectableGroup();
+		// 	this.refreshSelectableGroup();
 
-			let self = this;
-			imagesLoaded(".quickView-modal").on("done", function () {
-				self.loaded = true;
-			})
-		})
+		// 	let self = this;
+		// 	imagesLoaded(".quickView-modal").on("done", function () {
+		// 		self.loaded = true;
+		// 	})
+		// })
 	}
 
 	itemChange(e: any, self: any) {
@@ -120,25 +146,28 @@ export class QuickViewTwoComponent implements OnInit {
 
 	addCart(event: Event) {
 		event.preventDefault();
-		if ((event.currentTarget as HTMLElement).classList.contains('btn-disabled')) return;
-
-		let newProduct = { ...this.product };
-		if (this.product.variants.length > 0) {
-			newProduct = {
-				...this.product,
-				name:
-					this.product.name +
-					' - ' +
-					this.selectedVariant.colorName +
-					', ' +
-					this.selectedVariant.size,
-				price: this.selectedVariant.price
-			};
+		if(this.authService.isLoggedIn){
+			this.authService.newUser.subscribe(user =>{
+				this.newCartService.openSession(user.userId).subscribe((res:any) =>{
+					console.log(res)
+					if(res.session && res.session.sessionId){
+						this.newCartService.addToCart(
+							user.userId,
+							this.product,
+							this.qty,
+							res.session.sessionId
+						).subscribe(cartRes =>{
+							console.log(cartRes)
+						})
+					}
+				})
+			})
+			
+		}else{
+			this.modalService.showLoginModal();
 		}
 
-		this.cartService.addToCart(
-			newProduct, this.qty
-		);
+		
 	}
 
 	addToWishlist(event: Event) {

@@ -38,18 +38,26 @@ export class GalleryDefaultComponent implements OnInit {
 	ngOnChanges() {
 		this.album = [];
 
-		for (let i = 0; i < this.product.pictures.length; i++) {
+		for (let i = 0; i < this.product.productImages.length; i++) {
 			this.album.push({
-				src: this.SERVER_URL + this.product.pictures[i].url,
-				thumb: this.SERVER_URL + this.product.sm_pictures[i].url,
-				caption: this.product.name
+				src:  this.product.productImages[i].image,
+				thumb: this.product.productImages[i].image,
+				caption: this.product.productName
 			});
 		}
 	}
 
-	ngOnInit(): void {
-		this.paddingTop = Math.floor((parseFloat(this.product.pictures[0].height.toString()) / parseFloat(this.product.pictures[0].width.toString()) * 1000)) / 10 + '%';
+	getImageSizes(url){
+		let img = new Image();
+		img.onload = function() {
+			this.paddingTop = Math.floor((parseFloat(img.height.toString()) / parseFloat(img.width.toString()) * 1000)) / 10 + '%';
 
+		}.bind(this);
+		img.src = url;
+	}
+
+	ngOnInit(): void {
+		this.getImageSizes(this.product.productImage)
 	}
 
 	changeImage($event: Event, index = 0) {

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminInitComponent } from './initial/admin-initial.component';
 import { AdminHomeComponent } from './home/admin-home.component';
 import { AdminOrdersComponent } from './orders/orders.component';
+import { AdminProductsComponent } from './products/products.component';
 
 const routes: Routes = [
     {
@@ -18,6 +19,11 @@ const routes: Routes = [
             {
                 path: 'orders',
                 component: AdminOrdersComponent,
+                
+            },
+            {
+                path: 'products',
+                component: AdminProductsComponent,
                 
             },
         ]

@@ -9,8 +9,8 @@
                     id="product-image-gallery" *ngIf="product">
                     <a href="#"
                         [ngClass]="'product-gallery-item h-auto p-lg-0 mb-0 mb-lg-1 ' + ( i === currentIndex ? ' active' : '' )"
-                        (click)="changeImage( $event, i )" *ngFor="let item of product.pictures; let i = index;">
-                        <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[i].url" alt="Product side"
+                        (click)="changeImage( $event, i )" *ngFor="let item of product.productImages; let i = index;">
+                        <app-ecommerce-image [src]="item.image" alt="Product side"
                             class="product-image mb-0" [fixedPt]="paddingTop">
                         </app-ecommerce-image>
                     </a>
@@ -26,7 +26,7 @@
                     <owl-carousel carouselClasses="product-gallery-carousel owl-full owl-nav-dark" [options]="options"
                         id="owl-quickview" #singleSlider>
                         <app-ecommerce-image class="d-block position-relative"
-                            *ngFor="let item of product.pictures; let i = index;" [src]="SERVER_URL + item.url">
+                            *ngFor="let item of product.productImages; let i = index;" [src]="item.image">
                         </app-ecommerce-image>
                     </owl-carousel>
                 </div>
@@ -42,39 +42,24 @@
                 </div>
 
                 <div class="product-details" *ngIf="product">
-                    <h1 class="product-title">{{ product.name }}</h1>
+                    <h1 class="product-title">{{ product.productName }}</h1>
 
                     <div class="ratings-container">
                         <div class="ratings">
-                            <div class="ratings-val" [style.width]="product.ratings * 20 + '%'"></div>
-                            <span class="tooltip-text">{{ product.ratings.toFixed(2) }}</span>
+                            <div class="ratings-val" [style.width]="product.productRate * 20 + '%'"></div>
+                            <span class="tooltip-text">{{ product.productRate  }}</span>
                         </div>
-                        <span class="ratings-text">( {{ product.review }} Reviews )</span>
                     </div>
 
-                    <div class="product-price" *ngIf="!product.stock || product.stock == 0 else elseBlock">
-                        <span class="out-price">${{ product.price.toFixed(2) }}</span>
+                    <div class="product-price" >
+                        <span class="out-price">EGP {{ product.productPrice.toFixed(2) }}</span>
                     </div>
-
-                    <ng-template #elseBlock>
-                        <div class="product-price" *ngIf="minPrice == maxPrice else elseBlock">
-                            ${{ minPrice.toFixed(2) }}</div>
-                        <ng-template #elseBlock>
-                            <div class="product-price" *ngIf="product.variants.length == 0 else elseBlock">
-                                <span class="new-price">${{ minPrice.toFixed(2) }}</span>
-                                <span class="old-price">${{ maxPrice.toFixed(2) }}</span>
-                            </div>
-                            <ng-template #elseBlock>
-                                <div class="product-price">${{minPrice.toFixed(2)}}&ndash;${{maxPrice.toFixed(2)}}</div>
-                            </ng-template>
-                        </ng-template>
-                    </ng-template>
 
                     <div class="product-content">
-                        <p>{{ product.short_desc }}</p>
+                        <p>{{ product.productDescription }}</p>
                     </div>
 
-                    <div *ngIf="product.variants.length > 1">
+                    <!-- <div *ngIf="product.variants.length > 1">
                         <div class="details-filter-row details-row-size">
                             <label>Color:</label>
                             <div class="product-nav product-nav-dots">
@@ -99,23 +84,16 @@
                             <a href="javascript:;" (click)="clearSelection()"
                                 *ngIf="selectedVariant.color || selectedVariant.size != ''">clear</a>
                         </div>
-                    </div>
-
-                    <div class="variation-price" style="display: none;">
-                        <div class="product-price">
-                            ${{ selectedVariant.price ? selectedVariant.price.toFixed( 2 ) : 0 }}
-                        </div>
-                    </div>
+                    </div> -->
 
                     <div class="details-filter-row details-row-size">
                         <label for="qty">Qty:</label>
-                        <app-ecommerce-quantity-input [max]="product.stock" (changeQty)="onChangeQty( $event )" [value]="qty">
+                        <app-ecommerce-quantity-input [max]="1000" (changeQty)="onChangeQty( $event )" [value]="qty">
                         </app-ecommerce-quantity-input>
                     </div>
 
                     <div class="product-details-action">
                         <a href="javascript:;" class="btn-product btn-cart"
-                            [class.btn-disabled]="!cartService.canAddToCart( product, qty ) || ( product.variants.length > 0 && !( selectedVariant.color && selectedVariant.size != '' ) )"
                             (click)="addCart( $event )"><span>add to cart</span></a>
 
                         <div class="details-action-wrapper">
@@ -127,12 +105,6 @@
                     </div>
 
                     <div class="product-details-footer">
-                        <div class="product-cat w-100 text-truncate">
-                            <span>Category:</span>
-                            <span *ngFor="let cat of product.category; let i =index">
-                                <a [routerLink]="['/shop/sidebar/list']" (click)="closeQuickView()"
-                                    [queryParams]="{category: cat.slug}">{{ cat.name }}</a>{{ i < product.category.length - 1 ? ',' : '' }}</span>
-                        </div>
 
                         <div class="social-icons social-icons-sm">
                             <span class="social-label">Share:</span>

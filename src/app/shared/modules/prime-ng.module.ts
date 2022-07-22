@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {TooltipModule} from 'primeng/tooltip';
 import {TableModule} from 'primeng/table';
+import {RatingModule} from 'primeng/rating';
 
 @NgModule({
   declarations: [],
@@ -13,7 +14,8 @@ import {TableModule} from 'primeng/table';
     CommonModule,
     
     TooltipModule,
-    TableModule
+    TableModule,
+    RatingModule
   ],
 })
 export class PrimeNgModule {}

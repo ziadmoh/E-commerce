@@ -2,7 +2,7 @@
     <div [class.sidebar-filter-wrapper]="toggle">
         <div class="widget widget-clean">
             <label>Filters:</label>
-            <a [routerLink]="" class="sidebar-filter-clear">Clean All</a>
+            <a [routerLink]="" class="sidebar-filter-clear" (click)="cleanAll()">Clean All</a>
         </div>
 
         <div class="widget widget-collapsible">

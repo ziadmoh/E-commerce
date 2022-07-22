@@ -60,7 +60,10 @@ export class SidebarPageComponent implements OnInit {
 				this.totalCount = this.productService.boxProductsLength
 				this.productService.getBoxProducts().subscribe((result:any) => {
 					if(result.boxProducts){
-						this.products = result.boxProducts;
+						this.products = this.productService.boxProducts;
+						this.products.map((product)=>{
+							return product['box'] = 0
+						})
 					}else{
 						this.products = []
 					}
@@ -76,7 +79,7 @@ export class SidebarPageComponent implements OnInit {
 				this.totalCount = this.productService.normalProductsLength
 				this.productService.getSinglyProducts().subscribe((result:any) => {
 					if(result.normalProducts){
-						this.products = result.normalProducts;
+						this.products = this.productService.singlyProducts;
 					}else{
 						this.products = []
 					}
@@ -92,12 +95,12 @@ export class SidebarPageComponent implements OnInit {
 			}else{
 				this.productService.getAllProducts().subscribe((result:any) => {
 					if(result.products){
-						this.products = result.products;
+						this.products = this.productService.allProducts;
 					}else{
 						this.products = []
 					}
 					
-					this.totalCount = result.products.length;
+					this.totalCount = this.productService.allProducts.length;
 	
 					this.loaded = true;
 					if (!this.firstLoad) {

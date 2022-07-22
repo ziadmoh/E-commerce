@@ -12,6 +12,5 @@ export class AdminFooterComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit(): void {
-        console.log('hello')
      }
 }

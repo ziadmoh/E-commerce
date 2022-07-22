@@ -134,7 +134,7 @@ export class ModalService {
 			}
 		);
 
-		modalRef.componentInstance.slug = product.slug;
+		modalRef.componentInstance.product = product;
 	}
 
 	/**
@@ -151,7 +151,7 @@ export class ModalService {
 			}
 		);
 
-		modalRef.componentInstance.slug = product.slug;
+		modalRef.componentInstance.product = product;
 	}
 
 

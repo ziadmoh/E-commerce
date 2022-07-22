@@ -36,7 +36,6 @@ export class ProductElevenComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		console.log(this.product.productImage)
 		// let min = this.minPrice;
 		// let max = this.maxPrice;
 
@@ -79,7 +78,10 @@ export class ProductElevenComponent implements OnInit {
 
 	quickView(event: Event) {
 		event.preventDefault();
-		this.modalService.showQuickView(this.product);
+		this.productService.getProductById(this.product.productId).subscribe(res =>{
+			this.modalService.showQuickViewTwo(res.product);
+		})
+		
 	}
 
 	isInCompare() {
@@ -92,7 +94,15 @@ export class ProductElevenComponent implements OnInit {
 
 	testAddProd(event){
 		this.productService.addProduct(event.target.files[0]).subscribe(res =>{
-			console.log(res)
+			
+		})
+	}
+	//TEST ONLY
+	selectedFiles:[]
+	selectFiles(event:any){
+		this.selectedFiles = event.target.files;
+		this.productService.addProductImages(this.selectedFiles ).subscribe(res =>{
+			//console.log(res)
 		})
 	}
 }

@@ -71,4 +71,7 @@ export class ShopSidebarOneComponent implements OnInit {
 	changeFilterPrice(value: any) {
 		this.priceRange = [value[0], value[1]];
 	}
+	cleanAll(){
+		this.productService.getAllProducts().subscribe(res =>{})
+	}
 }

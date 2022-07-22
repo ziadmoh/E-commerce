@@ -34,9 +34,7 @@ export class IndexComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.productService.getAllProducts().subscribe(res =>{
-			console.log(res)
-		})
+		this.productService.getAllProducts().subscribe()
 		if(this.modalSerice.isLoginModalRequired == true){
 			this.modalSerice.showLoginModal();
 		}

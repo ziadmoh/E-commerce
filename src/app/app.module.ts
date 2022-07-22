@@ -35,6 +35,11 @@ import { FacebookLoginProvider,GoogleLoginProvider } from '@abacritt/angularx-so
 import { environment } from 'src/environments/environment';
 import { AdminModule } from './admin/admin.module';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
+
+//Primeng
+import { PrimeNgModule } from './shared/modules/prime-ng.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +73,9 @@ import { AuthInterceptorService } from './shared/services/auth-interceptor.servi
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument(),
     // Social Login
-    SocialLoginModule
+    SocialLoginModule,
+    //Primeng
+    PrimeNgModule
   ],
 
   providers: [

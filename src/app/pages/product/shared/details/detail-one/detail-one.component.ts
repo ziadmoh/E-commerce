@@ -20,6 +20,8 @@ export class DetailOneComponent implements OnInit {
 
 	@Input() product: Product;
 
+	productLink:string ='';
+
 	variationGroup = [];
 	selectableGroup = [];
 	sizeArray = [];
@@ -46,33 +48,34 @@ export class DetailOneComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		let min = this.minPrice;
-		let max = this.maxPrice;
-		this.variationGroup = this.product.variants.reduce((acc, cur) => {
-			cur.size.map(item => {
-				acc.push({
-					color: cur.color,
-					colorName: cur.color_name,
-					size: item.name,
-					price: cur.price
-				});
-			});
-			if (min > cur.price) min = cur.price;
-			if (max < cur.price) max = cur.price;
-			return acc;
-		}, []);
+		this.productLink = window.location.href;
+		// let min = this.minPrice;
+		// let max = this.maxPrice;
+		// this.variationGroup = this.product.variants.reduce((acc, cur) => {
+		// 	cur.size.map(item => {
+		// 		acc.push({
+		// 			color: cur.color,
+		// 			colorName: cur.color_name,
+		// 			size: item.name,
+		// 			price: cur.price
+		// 		});
+		// 	});
+		// 	if (min > cur.price) min = cur.price;
+		// 	if (max < cur.price) max = cur.price;
+		// 	return acc;
+		// }, []);
 
-		if (this.product.variants.length == 0) {
-			min = this.product.sale_price
-				? this.product.sale_price
-				: this.product.price;
-			max = this.product.price;
-		}
+		// if (this.product.variants.length == 0) {
+		// 	min = this.product.sale_price
+		// 		? this.product.sale_price
+		// 		: this.product.price;
+		// 	max = this.product.price;
+		// }
 
-		this.minPrice = min;
-		this.maxPrice = max;
+		// this.minPrice = min;
+		// this.maxPrice = max;
 
-		this.refreshSelectableGroup();
+		// this.refreshSelectableGroup();
 	}
 
 	@HostListener('window:scroll', ['$event'])
@@ -250,6 +253,14 @@ export class DetailOneComponent implements OnInit {
 		}
 		if (!stickyBar.classList.contains('d-none') && this.el.nativeElement.getBoundingClientRect().bottom > 0) {
 			stickyBar.classList.add('d-none');
+		}
+	}
+
+	getProductCategory(){
+		if(this.product.box == '1'){
+			return {category: 'boxes'}
+		}else{
+			return {category: 'singly'}
 		}
 	}
 }
