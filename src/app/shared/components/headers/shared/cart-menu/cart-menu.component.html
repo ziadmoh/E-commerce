@@ -3,44 +3,45 @@
         aria-expanded="false" data-display="static">
         <div class="icon">
             <i class="icon-shopping-cart"></i>
-            <span class="cart-count">{{ cartService.qtyTotal | async }}</span>
+            <span class="cart-count"> {{numberOfcartItems}} </span>
+            <!-- {{ (newCartService.cartSubTotal).toFixed(2) }} -->
         </div>
         <p>Cart</p>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right"
-        [ngClass]="{'text-center': (cartService.cartStream | async).length == 0}">
-        <p *ngIf="(cartService.cartStream | async).length == 0 else elseBlock">No products in the cart.</p>
+        [ngClass]="{'text-center': cartItems.length == 0}">
+        <p *ngIf="cartItems.length == 0 else elseBlock">No products in the cart.</p>
 
         <ng-template #elseBlock>
             <div class="dropdown-cart-products">
-                <div class="product justify-content-between" *ngFor="let product of cartService.cartStream | async">
+                <div class="product justify-content-between" *ngFor="let item of cartItems">
                     <div class="product-cart-details">
                         <h4 class="product-title">
-                            <a [routerLink]="['/product/'+ product.productId]">{{ product.productName }}</a>
+                            <a [routerLink]="['/product/'+ item.product.productId]">{{ item.product.productName }}</a>
                         </h4>
 
                         <span class="cart-product-info">
-                            <span class="cart-product-qty">{{ product.qty }}</span>
-                            x ${{ product.productPrice.toFixed(2) }}
+                            <span class="cart-product-qty">{{ item.quantity }}</span>
+                            x EGP {{ item.product.productPrice.toFixed(2) }}
                         </span>
                     </div>
 
                     <figure class="product-image-container">
-                        <a [routerLink]="['/product/'+ product.productId]" class="product-image">
-                            <img [src]="product.productImages[0].image" alt="product" width="50" height="50">
+                        <a [routerLink]="['/product/'+ item.product.productId]" class="product-image">
+                            <img [src]="item.product.productImage" alt="product" width="50" height="50">
                         </a>
                     </figure>
 
                     <a href="javascript:;" class="btn-remove" title="Remove Product"
-                        (click)="removeFromCart( $event, product )"><i class="icon-close"></i></a>
+                        (click)="removeFromCart( $event, item.product,item.session_id )"><i class="icon-close"></i></a>
                 </div>
             </div>
 
             <div class="dropdown-cart-total">
                 <span>Total</span>
 
-                <span class="cart-total-price">${{ (cartService.priceTotal | async).toFixed(2) }}</span>
+                <span class="cart-total-price">EGP {{ (subTotal).toFixed(2) }}</span>
             </div>
 
             <div class="dropdown-cart-action">

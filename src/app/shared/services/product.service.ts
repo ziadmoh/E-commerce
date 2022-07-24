@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Product } from '../classes/product';
 
 @Injectable({
@@ -112,12 +112,26 @@ export class ProductService {
     }
 
     getProductById(productId){
-        return this.http.get(environment.SERVER_URL +'product/'+productId).pipe(
-            tap((res:any) =>{
-                if(res && res.product){
-                    this.selectedProduct = res.product
-                }
-            }
-        ))
+        return this.http.get(environment.SERVER_URL +'product/'+productId)
+        .pipe(
+                tap((res:any) =>{
+                        if(res && res.product){
+                            let modefied:Product = res.product;
+                            // console.log(res.product)
+                            modefied.productImages.unshift({
+                                imageId:0,
+                                image:res.product.productImage,
+                                product_id:res.product.productId
+                            })
+                           // console.log(modefied)
+                            this.selectedProduct = modefied
+                            return modefied;
+
+                        }else{
+                            return {}
+                        }
+                    }
+                )
+        )
     }
 }

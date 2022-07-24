@@ -149,7 +149,7 @@ export class QuickViewTwoComponent implements OnInit {
 		if(this.authService.isLoggedIn){
 			this.authService.newUser.subscribe(user =>{
 				this.newCartService.openSession(user.userId).subscribe((res:any) =>{
-					console.log(res)
+				//	console.log(res)
 					if(res.session && res.session.sessionId){
 						this.newCartService.addToCart(
 							user.userId,
@@ -157,7 +157,9 @@ export class QuickViewTwoComponent implements OnInit {
 							this.qty,
 							res.session.sessionId
 						).subscribe(cartRes =>{
-							console.log(cartRes)
+							if(cartRes && cartRes.cartItem){
+								this.newCartService.getCartItems().subscribe();
+							}
 						})
 					}
 				})

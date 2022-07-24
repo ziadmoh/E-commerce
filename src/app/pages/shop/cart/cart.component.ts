@@ -5,6 +5,9 @@ import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 import { environment } from 'src/environments/environment';
+import { NewCartService } from 'src/app/shared/services/new-cart.service';
+import { CartItem } from 'src/app/shared/classes/cart-item';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
 	selector: 'shop-cart-page',
@@ -16,21 +19,40 @@ export class CartComponent implements OnInit, OnDestroy {
 
 	cartItems = [];
 	SERVER_URL = environment.SERVER_URL;
-	shippingCost = 0;
+	shippingCost = 40;
+
+	subTotal = 0
 
 	private subscr: Subscription;
 
-	constructor(private store: Store<any>, public cartService: CartService) {
+	constructor(private store: Store<any>, public cartService: CartService,
+		public newCartService: NewCartService,
+		private authService:AuthService) {
 	}
 
 	ngOnInit() {
-		this.subscr = this.cartService.cartStream.subscribe(items => {
-			this.cartItems = items;
+		//this.getCartItems()
+		//this.cartItems = this.newCartService.cartItems;
+		this.newCartService.cartItems.subscribe(items =>{
+			this.cartItems = items
+		})
+		this.newCartService.cartSubTotal.subscribe(sub =>{
+			this.subTotal = sub
+		})
+	}
+
+	getCartItems(){
+		this.subscr = this.newCartService.getCartItems().subscribe((items:any) => {
+			// if(items && items.sessionCartItems){
+			// 	this.cartItems = this.newCartService.cartItems;
+			// }else{
+			// 	this.cartItems = []
+			// }
 		});
 	}
 
 	ngOnDestroy() {
-		this.subscr.unsubscribe();
+	//	this.subscr.unsubscribe();
 	}
 
 	trackByFn(index: number, item: any) {
@@ -53,20 +75,53 @@ export class CartComponent implements OnInit, OnDestroy {
 		this.shippingCost = value;
 	}
 
-	onChangeQty(event: number, product: any) {
+	onChangeQty(event: number, product: any,session_id) {
 		document.querySelector('.btn-cart-update.disabled') && document.querySelector('.btn-cart-update.disabled').classList.remove('disabled');
+		
+		this.authService.newUser.subscribe(user =>{
+			
+			this.newCartService.editCartItemQuantity(
+				user.userId,
+				product,
+				event,
+				session_id
+			).subscribe((res:any) =>{
+				if(res && res.message == "quantity updated succesfully"){
+					this.getCartItems();
+					this.cartItems = this.cartItems.reduce((acc, cur) => {
+						if (cur.productName === product.productName) {
+							acc.push({
+								...cur,
+								qty: event,
+								sum: (cur.productPrice) * event
+							});
+						}
+						else acc.push(cur);
+			
+						return acc;
+					}, [])
+					
+				}
+			})
+		})
+		
+	}
 
-		this.cartItems = this.cartItems.reduce((acc, cur) => {
-			if (cur.name === product.name) {
-				acc.push({
-					...cur,
-					qty: event,
-					sum: (cur.sale_price ? cur.sale_price : cur.price) * event
-				});
-			}
-			else acc.push(cur);
+	removeFromCart(product,session_id ){
+		this.authService.newUser.subscribe(user =>{
+			this.newCartService.removeFromCart(
+				user.userId,
+				product,
+				session_id
+			).subscribe((res:any) =>{
+				if(res && res.message == 'cart item is deleted successfully'){
+					this.getCartItems();
+				}
+			})
+		})
+	}
 
-			return acc;
-		}, [])
+	getTotalCartPrice(){
+
 	}
 }

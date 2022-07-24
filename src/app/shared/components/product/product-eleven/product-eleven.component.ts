@@ -25,6 +25,8 @@ export class ProductElevenComponent implements OnInit {
 	minPrice = 99999;
 
 	SERVER_URL = environment.SERVER_URL;
+	authService: any;
+	newCartService: any;
 
 	constructor(
 		private router: Router,
@@ -57,7 +59,33 @@ export class ProductElevenComponent implements OnInit {
 
 	addToCart(event: Event) {
 		event.preventDefault();
-		this.cartService.addToCart(this.product);
+		if(this.authService.isLoggedIn){
+			this.authService.newUser.subscribe(user =>{
+				this.newCartService.openSession(user.userId).subscribe((res:any) =>{
+				//	console.log(res)
+					if(res.session && res.session.sessionId){
+						this.newCartService.addToCart(
+							user.userId,
+							this.product,
+							this.qty,
+							res.session.sessionId
+						).subscribe(cartRes =>{
+							if(cartRes && cartRes.cartItem){
+								this.newCartService.getCartItems().subscribe();
+							}
+						})
+					}
+				})
+			})
+			
+		}else{
+			this.modalService.showLoginModal();
+		}
+
+		
+	}
+	qty(userId: any, product: Product, qty: any, sessionId: any) {
+		throw new Error('Method not implemented.');
 	}
 
 	addToWishlist(event: Event) {
