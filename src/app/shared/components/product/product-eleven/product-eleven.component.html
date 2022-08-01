@@ -9,23 +9,19 @@
         </a>
 
         <div class="product-action-vertical">
-            <a href="javascript:;" class="btn-product-icon btn-wishlist btn-expandable"
-                [class.added-to-wishlist]="isInWishlist()" (click)="addToWishlist($event)">
-                <span>{{ isInWishlist() ? 'go' : 'add' }} to Wishlist</span>
-            </a>
             <a href="javascript:;" class="btn-product-icon btn-quickview" title="Quick view"
                 (click)="quickView($event)"><span>Quick view</span></a>
         </div>
-        <div class="product-action" *ngIf="product.stock && product.stock !== 0">
-            <a [routerLink]="['/product/default/'+ product.slug]" class="btn-product btn-cart btn-select"
-                *ngIf="product.variants.length > 0 else cartBlock">
+        <div class="product-action" >
+            <a [routerLink]="['/product/'+ product.productId]" class="btn-product btn-cart btn-select"
+                >
                 <span>select options</span>
             </a>
-            <ng-template #cartBlock>
+            <!-- <ng-template #cartBlock>
                 <button class="btn-product btn-cart" (click)="addToCart($event)">
                     <span>add to cart</span>
                 </button>
-            </ng-template>
+            </ng-template> -->
         </div>
     </figure>
 
@@ -35,10 +31,11 @@
         </div>
 
         <h3 class="product-title">
-            <a [routerLink]="['/product/default/'+ product.slug]">{{ product.productName }}</a>
+            <a [routerLink]="['/product/'+ product.productId]">{{ product.productName }}</a>
         </h3>
 
-        <div class="product-price" >
+        <div class="product-price d-flex flex-column" >
+            <small class="old-price" *ngIf="product.productOldPrice">EGP {{ product.productOldPrice.toFixed(2) }}</small>
             <span class="out-price">EGP {{ product.productPrice.toFixed(2) }}</span>
         </div>
 

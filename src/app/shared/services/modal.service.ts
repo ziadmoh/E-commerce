@@ -12,6 +12,7 @@ import { LoginModalComponent } from '../components/modals/login-modal/login-moda
 import { VideoModalComponent } from '../components/modals/video-modal/video-modal.component';
 
 import { environment } from 'src/environments/environment';
+import { ChildDataModalComponent } from '../components/modals/child-data-modal/child-data-modal.component';
 
 @Injectable({
 	providedIn: 'root'
@@ -98,6 +99,25 @@ export class ModalService {
 		}
 	};
 
+	private childDatamodalOption: NgbModalOptions = {
+		centered: true,
+		size: 'xl',
+		windowClass: 'child-data-modal',
+		beforeDismiss: async () => {
+			document.querySelector('body')?.classList.remove('modal-open');
+
+			await new Promise((resolve) => {
+				setTimeout(() => {
+					resolve('success');
+				}, 300)
+			});
+
+			(document.querySelector('.logo') as HTMLElement).focus({ preventScroll: true });
+
+			return true;
+		}
+	}
+
 	constructor(private modalService: NgbModal, private router: Router, private http: HttpClient) {
 	}
 
@@ -108,6 +128,15 @@ export class ModalService {
 		this.modalService.open(
 			LoginModalComponent,
 			this.modalOption2
+		)
+	}
+
+	// Show Order Items modal
+	showChildDataModal() {
+		(document.querySelector('.logo') as HTMLElement).focus({ preventScroll: true });
+		this.modalService.open(
+			ChildDataModalComponent,
+			this.childDatamodalOption
 		)
 	}
 
@@ -156,6 +185,10 @@ export class ModalService {
 
 
 	closeLoginModal(modal:HTMLElement){
+		modal.click();
+	}
+
+	closeChildDataModal(modal:HTMLElement){
 		modal.click();
 	}
 }

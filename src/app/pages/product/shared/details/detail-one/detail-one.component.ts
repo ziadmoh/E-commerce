@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/shared/classes/product';
 
 import { CartService } from 'src/app/shared/services/cart.service';
-import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { CompareService } from 'src/app/shared/services/compare.service';
 import { environment } from 'src/environments/environment';
+import { NewCartService } from 'src/app/shared/services/new-cart.service';
+import { ModalService } from 'src/app/shared/services/modal.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 declare var $: any;
 
@@ -41,10 +43,12 @@ export class DetailOneComponent implements OnInit {
 
 	constructor(
 		public cartService: CartService,
-		public wishlistService: WishlistService,
 		public compareService: CompareService,
 		public router: Router,
-		public el: ElementRef) {
+		public el: ElementRef,
+		public newCartService:NewCartService,
+		public modalService:ModalService,
+		public authService:AuthService) {
 	}
 
 	ngOnInit(): void {
@@ -85,38 +89,33 @@ export class DetailOneComponent implements OnInit {
 		}
 	}
 
-	addCart(event: Event, index = 0) {
+	addToCart(event: Event) {
 		event.preventDefault();
-		if ((event.currentTarget as HTMLElement).classList.contains('btn-disabled')) return;
-
-		let newProduct = { ...this.product };
-		if (this.product.variants.length > 0) {
-			newProduct = {
-				...this.product,
-				name:
-					this.product.name +
-					' - ' +
-					this.selectedVariant.colorName +
-					', ' +
-					this.selectedVariant.size,
-				price: this.selectedVariant.price
-			};
-		}
-
-		this.cartService.addToCart(
-			newProduct, index == 0 ? this.qty : this.qty2
-		);
-	}
-
-	addToWishlist(event: Event) {
-		event.preventDefault();
-
-		if (this.isInWishlist()) {
-			this.router.navigate(['/shop/wishlist']);
-		} else {
-			this.wishlistService.addToWishList(this.product);
+		if(this.authService.isLoggedIn){
+			this.authService.newUser.subscribe(user =>{
+				this.newCartService.openSession(user.userId).subscribe((res:any) =>{
+				//	console.log(res)
+					if(res.session && res.session.sessionId){
+						this.newCartService.addToCart(
+							user.userId,
+							this.product,
+							this.qty,
+							res.session.sessionId
+						).subscribe(cartRes =>{
+							if(cartRes && cartRes.cartItem){
+								this.newCartService.getCartItems(res.session.sessionId).subscribe();
+							}
+						})
+					}
+				})
+			})
+			
+		}else{
+			this.modalService.showLoginModal();
 		}
 	}
+
+	
 
 	addToCompare(event: Event) {
 		event.preventDefault();
@@ -128,9 +127,7 @@ export class DetailOneComponent implements OnInit {
 		return this.compareService.isInCompare(this.product);
 	}
 
-	isInWishlist() {
-		return this.wishlistService.isInWishlist(this.product);
-	}
+	
 
 	refreshSelectableGroup() {
 		let tempArray = [...this.variationGroup];
@@ -229,10 +226,12 @@ export class DetailOneComponent implements OnInit {
 
 	onChangeQty(current: number) {
 		this.qty = current;
+		this.qty2 = current;
 	}
 
 	onChangeQty2(current: number) {
 		this.qty2 = current;
+		this.qty = current;
 	}
 
 	clearSelection() {

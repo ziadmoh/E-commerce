@@ -44,7 +44,8 @@
 
         <div class="col-lg-3 col-md-3 col-6 order-md-last order-lg-last">
             <div class="product-list-action">
-                <div class="product-price" >
+                <div class="product-price d-flex flex-column" >
+                    <small class="old-price" *ngIf="product.productOldPrice">EGP {{ product.productOldPrice.toFixed(2) }}</small>
                     <span class="out-price">EGP {{ product.productPrice.toFixed(2) }}</span>
                 </div>
 
@@ -73,8 +74,6 @@
                 <div class="product-action">
                     <a href="javascript:;" class="btn-product btn-quickview" title="Quick view"
                         (click)="quickView($event)"><span>Quick view</span></a>
-                    <a href="javascript:;" class="btn-product btn-wishlist" [class.added-to-wishlist]="isInWishlist()"
-                        (click)="addToWishlist($event)"><span>Wishlist</span></a>
                 </div>
 
                 <!-- <a [routerLink]="['/product/default/'+ product.slug]" class="btn-product btn-cart btn-select"

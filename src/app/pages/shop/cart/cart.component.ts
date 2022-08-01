@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 import { NewCartService } from 'src/app/shared/services/new-cart.service';
 import { CartItem } from 'src/app/shared/classes/cart-item';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ModalService } from 'src/app/shared/services/modal.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
 	selector: 'shop-cart-page',
@@ -23,26 +25,31 @@ export class CartComponent implements OnInit, OnDestroy {
 
 	subTotal = 0
 
+	canCheckOut:boolean = false;
+
 	private subscr: Subscription;
 
 	constructor(private store: Store<any>, public cartService: CartService,
 		public newCartService: NewCartService,
-		private authService:AuthService) {
+		private authService:AuthService,
+		private modalService:ModalService,
+		private orderService:OrderService) {
 	}
 
 	ngOnInit() {
 		//this.getCartItems()
 		//this.cartItems = this.newCartService.cartItems;
 		this.newCartService.cartItems.subscribe(items =>{
-			this.cartItems = items
+			this.cartItems = items;
+			this.getAllOrderChildrenInfo(items)
 		})
 		this.newCartService.cartSubTotal.subscribe(sub =>{
 			this.subTotal = sub
 		})
 	}
 
-	getCartItems(){
-		this.subscr = this.newCartService.getCartItems().subscribe((items:any) => {
+	getCartItems(session_id){
+		this.subscr = this.newCartService.getCartItems(session_id).subscribe((items:any) => {
 			// if(items && items.sessionCartItems){
 			// 	this.cartItems = this.newCartService.cartItems;
 			// }else{
@@ -73,6 +80,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
 	changeShipping(value: number) {
 		this.shippingCost = value;
+		this.newCartService.shippingCost = this.shippingCost
 	}
 
 	onChangeQty(event: number, product: any,session_id) {
@@ -87,7 +95,7 @@ export class CartComponent implements OnInit, OnDestroy {
 				session_id
 			).subscribe((res:any) =>{
 				if(res && res.message == "quantity updated succesfully"){
-					this.getCartItems();
+					this.getCartItems(session_id);
 					this.cartItems = this.cartItems.reduce((acc, cur) => {
 						if (cur.productName === product.productName) {
 							acc.push({
@@ -115,13 +123,45 @@ export class CartComponent implements OnInit, OnDestroy {
 				session_id
 			).subscribe((res:any) =>{
 				if(res && res.message == 'cart item is deleted successfully'){
-					this.getCartItems();
+					this.getCartItems(session_id);
 				}
 			})
 		})
 	}
 
-	getTotalCartPrice(){
+	customizeOrderData(item){
+		this.orderService.orderChildData = {
+			quantity:item.quantity,
+			product:item.product,
+			isBox:item.product.box == '1' ? true : false,
+			cartItemId:item.cartItemId,
+			session_id:item.session_id
+		}
+		this.modalService.showChildDataModal()
+	}
 
+	getAllOrderChildrenInfo(cartItems){
+		this.orderService.getAllOrderChildrenInfo(this.newCartService.userSessionId).subscribe((res:any) =>{
+			if(res && res.sessionOrderItemsInfo){
+				let placeHolder = [];
+				let totalCartQuantity = 0
+				cartItems.forEach(item =>{
+					totalCartQuantity = totalCartQuantity + item.quantity
+					let orderitem = res.sessionOrderItemsInfo.filter(itemInfo =>{
+						return itemInfo.cartItem_id == item.cartItemId
+					})
+					if(orderitem && orderitem.length == item.quantity){
+						placeHolder.push(true)
+					}
+				})
+				console.log(placeHolder)
+				if(placeHolder.length ==cartItems.length ){
+					this.canCheckOut = true
+					this.orderService.canCheckOut.next(true)
+				}else{
+					this.canCheckOut = false
+				}
+			}
+		})
 	}
 }

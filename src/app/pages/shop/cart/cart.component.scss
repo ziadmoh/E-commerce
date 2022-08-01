@@ -1,0 +1,60 @@
+.disabled-link{
+ // pointer-events: none;
+  cursor: not-allowed;
+  text-decoration: none;
+  opacity: .5;
+  &:hover{
+     color: #DC4F3F;
+     background-color: transparent;
+     border-color: #DC4F3F;
+  }
+  &:focus{
+    color: #DC4F3F;
+     background-color: transparent;
+     border-color: #DC4F3F;
+  }
+  &:active{
+    color: #DC4F3F;
+     background-color: transparent;
+     border-color: #DC4F3F;
+  }
+  &:-ms-keyboard-active{
+    color: #DC4F3F;
+     background-color: transparent;
+     border-color: #DC4F3F;
+  }
+}
+::ng-deep{
+  .p-tooltip{
+    min-width: 275px;
+    text-align: center;
+  }
+  .tooltip-class{
+    font-size: 15px;
+  }
+}
+
+.btn-cust-order{
+    min-width: 0;
+    border: 0!important;
+    letter-spacing: .8px;
+}
+.cust-wrapper{
+  margin: auto;
+  width: max-content;
+  background: linear-gradient(90deg, #dc4f3f 50%, transparent 50%), linear-gradient(90deg, #dc4f3f 50%, transparent 50%), linear-gradient(0deg, #dc4f3f 50%, transparent 50%), linear-gradient(0deg, #dc4f3f 50%, transparent 50%);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 10px 2px, 10px 2px, 2px 10px, 2px 10px;
+  animation: border-dance 2s infinite linear;
+}
+@keyframes border-dance {
+    0% {
+      background-position: 0 0, 100% 100%, 0 100%, 100% 0;
+    }
+    100% {
+      background-position: 100% 0, 0 100%, 0 0, 100% 100%;
+    }
+  }
+
+
+

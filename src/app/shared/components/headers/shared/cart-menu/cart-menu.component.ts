@@ -37,8 +37,8 @@ export class CartMenuComponent implements OnInit {
 		})
 	}
 
-	getCartItems(){
-		this.newCartService.getCartItems().subscribe((items:any) => {
+	getCartItems(session_id){
+		this.newCartService.getCartItems(session_id).subscribe((items:any) => {
 			// if(items && items.sessionCartItems){
 			// 	this.newCartService.cartItems.next(items.sessionCartItems);
 			// 	this.newCartService.numberOfcartItems.next(items.sessionCartItems);
@@ -58,7 +58,7 @@ export class CartMenuComponent implements OnInit {
 				session_id
 			).subscribe((res:any) =>{
 				if(res && res.message == 'cart item is deleted successfully'){
-					this.getCartItems();
+					this.getCartItems(session_id);
 				}
 			})
 		})

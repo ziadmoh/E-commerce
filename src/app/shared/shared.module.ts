@@ -9,7 +9,6 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 // Header Element
 import { CartMenuComponent } from './components/headers/shared/cart-menu/cart-menu.component';
 import { CompareMenuComponent } from './components/headers/shared/compare-menu/compare-menu.component';
-import { WishlistMenuComponent } from './components/headers/shared/wishlist-menu/wishlist-menu.component';
 import { CategoryMenuComponent } from './components/headers/shared/category-menu/category-menu.component';
 import { HeaderSearchComponent } from './components/headers/shared/header-search/header-search.component';
 import { MobileButtonComponent } from './components/headers/shared/mobile-button/mobile-button.component';
@@ -19,18 +18,8 @@ import { MobileMenuComponent } from './components/headers/shared/mobile-menu/mob
 import { HeaderComponent } from './components/headers/header/header.component';
 
 // // Product Component
-import { ProductOneComponent } from './components/product/product-one/product-one.component';
-import { ProductTwoComponent } from './components/product/product-two/product-two.component';
-import { ProductThreeComponent } from './components/product/product-three/product-three.component';
-import { ProductFourComponent } from './components/product/product-four/product-four.component';
-import { ProductFiveComponent } from './components/product/product-five/product-five.component';
-import { ProductSixComponent } from './components/product/product-six/product-six.component';
-import { ProductSevenComponent } from './components/product/product-seven/product-seven.component';
-import { ProductEightComponent } from './components/product/product-eight/product-eight.component';
 import { ProductNineComponent } from './components/product/product-nine/product-nine.component';
-import { ProductTenComponent } from './components/product/product-ten/product-ten.component';
 import { ProductElevenComponent } from './components/product/product-eleven/product-eleven.component';
-import { ProductTwelveComponent } from './components/product/product-twelve/product-twelve.component';
 
 // Footer Component
 import { FooterComponent } from './components/footer/footer.component';
@@ -65,13 +54,25 @@ import { CatFilterPipe } from './pipes/cat-filter.pipe';
 import { AttrFilterPipe } from './pipes/attr-filter.pipe';
 import { SafeContentPipe } from './pipes/safe-content.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChildDataModalComponent } from './components/modals/child-data-modal/child-data-modal.component';
+import { PrimeNgModule } from './modules/prime-ng.module';
+
+// PerfectScrollBar
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar'
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollY: true,
+
+};
+
+
 
 @NgModule({
 	declarations: [
 		// header
 		CartMenuComponent,
 		CompareMenuComponent,
-		WishlistMenuComponent,
 		CategoryMenuComponent,
 		HeaderSearchComponent,
 		MobileButtonComponent,
@@ -81,18 +82,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		FooterComponent,
 
 		// product
-		ProductOneComponent,
-		ProductTwoComponent,
-		ProductThreeComponent,
-		ProductFourComponent,
-		ProductFiveComponent,
-		ProductSixComponent,
-		ProductSevenComponent,
-		ProductEightComponent,
 		ProductNineComponent,
-		ProductTenComponent,
 		ProductElevenComponent,
-		ProductTwelveComponent,
 
 		// single-use components
 		BreadcrumbComponent,
@@ -108,6 +99,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		PaginationComponent,
 		IsotopeGridComponent,
 		ImageComponent,
+		ChildDataModalComponent,
 
 		// directives
 		BgParallaxDirective,
@@ -121,7 +113,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		SafeContentPipe,
 		CountDownComponent,
 
-		CountToComponent
+		CountToComponent,
+
 	],
 
 	imports: [
@@ -132,7 +125,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		OwlModule,
 		LazyLoadImageModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		PrimeNgModule,
+		
+		//PerfectScrollbar
+		PerfectScrollbarModule
 	],
 
 	exports: [
@@ -146,18 +143,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		FooterComponent,
 
 		// products
-		ProductOneComponent,
-		ProductTwoComponent,
-		ProductThreeComponent,
-		ProductFourComponent,
-		ProductFiveComponent,
-		ProductSixComponent,
-		ProductSevenComponent,
-		ProductEightComponent,
 		ProductNineComponent,
-		ProductTenComponent,
 		ProductElevenComponent,
-		ProductTwelveComponent,
 
 		// // single-use components
 		BreadcrumbComponent,
@@ -189,7 +176,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		QuickViewComponent,
 		QuickViewTwoComponent,
 		LoginModalComponent
-	]
+	],
+	providers: [
+		{
+		  provide: PERFECT_SCROLLBAR_CONFIG,
+		  useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+		}
+	  ],
 })
 
 export class SharedModule { }

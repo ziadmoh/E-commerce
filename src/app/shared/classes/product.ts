@@ -12,6 +12,7 @@ export interface Product {
 	productDescription:string;
 	box:string;
 	productRate:number;
+	productOldPrice:number;
 
 
 	id?: number;

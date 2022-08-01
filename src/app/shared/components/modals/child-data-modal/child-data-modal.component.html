@@ -1,0 +1,71 @@
+<div class="modal-body">
+    <button type="button" class="close" (click)="closeModal()">
+        <span aria-hidden="true"><i class="icon-close"></i></span>
+    </button>
+
+    <h3 class="modal-body-header">Children information</h3>
+    <div class="row ">
+       <div class="col-12">
+            <form [formGroup]="orderItemForm" >
+                    <div  formArrayName="boxChildDataArray" class="form-child-container">
+                        <div  *ngFor="item of getChildrenGroups();let i = index">
+                            <div class="row m-2 my-3" [formGroupName]="i">
+                                <h5 class="col-12"> Child {{i+1}} </h5>
+                                <div class="form-group col-md-6">
+                                    <label [for]="'childName'+i">Child Name</label>
+                                    <input formControlName="childName" class="form-control" type="text" [id]="'childName'+i">
+                                    <small [style.visibility]=" !orderItemForm.get('boxChildDataArray').get(i.toString())['controls'].childName.valid && orderItemForm.get('boxChildDataArray').get(i.toString())['controls'].childName.touched ? 'visible': 'hidden'" 
+                                    class="text-danger">This field is Required</small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label [for]="'favCartoon'+i">Favourite Cartoon</label>
+                                    <input formControlName="favCartoon" class="form-control" type="text" [id]="'favCartoon'+i">
+                                    <small [style.visibility]=" !orderItemForm.get('boxChildDataArray').get(i.toString())['controls'].favCartoon.valid && orderItemForm.get('boxChildDataArray').get(i.toString())['controls'].favCartoon.touched ? 'visible': 'hidden'"
+                                    class="text-danger">This field is Required</small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label [for]="'schoolName'+i">School Name</label>
+                                    <input formControlName="schoolName" class="form-control" type="text" [id]="'schoolName'+i">
+                                    <small [style.visibility]=" !orderItemForm.get('boxChildDataArray').get(i.toString())['controls'].schoolName.valid && orderItemForm.get('boxChildDataArray').get(i.toString())['controls'].schoolName.touched ? 'visible': 'hidden'"
+                                     class="text-danger">This field is Required</small>
+                                    <div class="custom-control custom-checkbox" *ngIf="i>0 && getChildrenGroups()[0].get('schoolName').value">
+                                        <input [checked]="getChildrenGroups()[0].get('schoolName').value != null && getChildrenGroups()[0].get('schoolName').value ==  getChildrenGroups()[i].get('schoolName').value" type="checkbox" class="custom-control-input" [id]="'sameSchool'+i" (change)="useSameSchool(i,$event)">
+                                        <label class="custom-control-label" [for]="'sameSchool'+i">Use the Same school</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label [for]="'parentPhone'+i">Parent Phone</label>
+                                    <input  formControlName="parentPhone" class="form-control" type="text" [id]="'parentPhone'+i">
+                                    <small [style.visibility]=" !orderItemForm.get('boxChildDataArray').get(i.toString())['controls'].parentPhone.valid && orderItemForm.get('boxChildDataArray').get(i.toString())['controls'].parentPhone.touched ? 'visible': 'hidden'"
+                                    class="text-danger">Please enter a valid phone number</small>
+                                    <div class="custom-control custom-checkbox" *ngIf="i>0 && getChildrenGroups()[0].get('parentPhone').value">
+                                        <input [checked]="getChildrenGroups()[0].get('parentPhone').value != '' && getChildrenGroups()[0].get('parentPhone').value ==  getChildrenGroups()[i].get('parentPhone').value" type="checkbox" class="custom-control-input" [id]="'sameparentPhone'+i" (change)="useSamePhone(i,$event)"> 
+                                        <label class="custom-control-label" [for]="'sameparentPhone'+i">Use the same phone</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="d-flex flex-row justify-content-between">
+                                        <label [for]="'childPhoto'+i">Child Image</label>
+                                        <a *ngIf="canEditForm" class="btn btn-link btn-link-primary image-link" target="_blank" 
+                                        (click)="viewImage(i)">View image</a>
+                                    </div>
+                                    
+                                    <p-fileUpload (onSelect)="onChangeChildPhoto($event,i)" [id]="'childPhoto'+i" mode="basic" accept="image/*"  chooseLabel="Browse"></p-fileUpload>
+                                    <small [style.visibility]="orderItemForm.get('boxChildDataArray').get(i.toString())['controls'].childImage.valid ? 'hidden': 'visible'"
+                                    class="text-danger">This field is Required</small>
+                                </div>
+                                <div class="col-12 mx-2">
+                                    <hr class="m-0">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                
+                <div class="row justify-content-center m-2 my-5">
+                    <button type="submit" class="btn btn-primary" *ngIf="!canEditForm" (click)="saveOrderItem()">Save</button>
+                    <button type="submit" class="btn btn-primary" *ngIf="canEditForm" (click)="updateOrderInfo()" >Update</button>
+                </div>
+            </form>
+    </div>
+</div>

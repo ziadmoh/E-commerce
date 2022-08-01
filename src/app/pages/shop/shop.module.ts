@@ -11,7 +11,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { SidebarPageComponent } from './sidebar/sidebar.component';
 import { NosidebarPageComponent } from './nosidebar/nosidebar.component';
 import { CartComponent } from './cart/cart.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductCategoryBoxedPageComponent } from './product-category-boxed/product-category-boxed.component';
@@ -23,13 +22,14 @@ import { MarketPageComponent } from './market/market.component';
 import { ShopListOneComponent } from './shared/list/shop-list-one/shop-list-one.component';
 import { ShopListTwoComponent } from './shared/list/shop-list-two/shop-list-two.component';
 import { ShopListThreeComponent } from './shared/list/shop-list-three/shop-list-three.component';
+import { PrimeNgModule } from 'src/app/shared/modules/prime-ng.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule( {
 	declarations: [
 		SidebarPageComponent,
 		NosidebarPageComponent,
 		CartComponent,
-		WishlistComponent,
 		CheckoutComponent,
 		DashboardComponent,
 		ProductCategoryBoxedPageComponent,
@@ -49,7 +49,10 @@ import { ShopListThreeComponent } from './shared/list/shop-list-three/shop-list-
 		RouterModule,
 		NgbModule,
 		OwlModule,
-		NouisliderModule
+		NouisliderModule,
+		PrimeNgModule,
+		ReactiveFormsModule,
+		FormsModule
 	]
 } )
 

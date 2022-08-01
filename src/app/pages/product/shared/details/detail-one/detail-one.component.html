@@ -9,7 +9,8 @@
         <!-- <span class="ratings-text">( {{ product.review }} Reviews )</span> -->
     </div>
 
-    <div class="product-price">
+    <div class="product-price d-flex flex-column">
+        <small class="old-price" *ngIf="product.productOldPrice">EGP {{ product.productOldPrice.toFixed(2) }}</small>
         <span class="out-price">EGP {{ product.productPrice.toFixed(2) }}</span>
     </div>
 
@@ -32,15 +33,8 @@
 
     <div class="product-details-action">
         <a href="javascript:;" class="btn-product btn-cart"
-            (click)="addCart( $event, 0 )"><span>add to cart</span></a>
+            (click)="addToCart( $event )"><span>add to cart</span></a>
 
-        <div class="details-action-wrapper">
-            <a href="javascript:;" class="btn-product btn-wishlist"
-                [class.added-to-wishlist]="isInWishlist()"
-                (click)="addToWishlist($event)">
-                <span>{{ isInWishlist() ? 'Go' : 'Add' }} to Wishlist</span>
-            </a>
-        </div>
     </div>
 
     <div class="product-details-footer">
@@ -58,19 +52,19 @@
                         class="icon-instagram"></i></a>
             </div>
     </div>
-    <div class="sticky-bar d-none">
+    <div class="sticky-bar ">
         <div class="container">
             <div class="row">
                 <div class="col-6">
                     <figure class="product-media">
-                        <a [routerLink]="['/product/'+ product.id]">
+                        <a [routerLink]="['/product/'+ product.productId]">
                             <app-ecommerce-image [src]="product.productImage" alt="Product"
                                 class="product-image">
                             </app-ecommerce-image>
                         </a>
                     </figure>
                     <h3 class="product-title">
-                        <a [routerLink]="['/product/'+ product.id]">{{
+                        <a [routerLink]="['/product/'+ product.productId]">{{
                             product.productName }}</a>
                     </h3>
                 </div>
@@ -87,16 +81,8 @@
 
                     <div class="product-details-action">
                         <a href="javascript:;" class="btn-product btn-cart"
-                            (click)="addCart( $event, 1 )"><span>add to cart</span></a>
-                        <div class="details-action-wrapper ml-0">
-                            <a href="javascript:;" class="btn-product
-                                btn-wishlist"
-                                [class.added-to-wishlist]="isInWishlist()"
-                                (click)="addToWishlist($event)">
-                                <span>{{ isInWishlist() ? 'go' : 'add' }} to
-                                    wishlist</span>
-                            </a>
-                        </div>
+                            (click)="addToCart( $event )"><span>add to cart</span></a>
+                        
                     </div>
                 </div>
             </div>

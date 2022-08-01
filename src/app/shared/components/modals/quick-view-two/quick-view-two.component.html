@@ -51,7 +51,8 @@
                         </div>
                     </div>
 
-                    <div class="product-price" >
+                    <div class="product-price d-flex flex-column" >
+                        <small class="old-price" *ngIf="product.productOldPrice">EGP {{ product.productOldPrice.toFixed(2) }}</small>
                         <span class="out-price">EGP {{ product.productPrice.toFixed(2) }}</span>
                     </div>
 
@@ -96,12 +97,7 @@
                         <a href="javascript:;" class="btn-product btn-cart"
                             (click)="addCart( $event )"><span>add to cart</span></a>
 
-                        <div class="details-action-wrapper">
-                            <a href="javascript:;" class="btn-product btn-wishlist"
-                                [class.added-to-wishlist]="isInWishlist()" (click)="addToWishlist($event)">
-                                <span>{{ isInWishlist() ? 'Go' : 'Add' }} to Wishlist</span>
-                            </a>
-                        </div>
+                        
                     </div>
 
                     <div class="product-details-footer">

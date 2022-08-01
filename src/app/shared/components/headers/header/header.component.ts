@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
 	@Input() containerClass = "container";
 
-	wishCount = 0;
+	
 
 	isLoggedIn: boolean = false;
 

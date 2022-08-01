@@ -31,26 +31,6 @@ export class UpdateCartAction implements Action {
 }
 
 
-/************************** Wishlist Action ***************************/
-
-/**
- * Add to Wishlist
- */
-export class AddToWishListAction implements Action {
-    readonly type = types.ADD_TO_WISHLIST;
-    constructor(public payload: { product: Product }) { }
-}
-
-/**
- * Remove from WishList
- */
-export class RemoveFromWishListAction implements Action {
-    readonly type = types.REMOVE_FROM_WISHLIST;
-    constructor(public payload: { product: Product }) { }
-}
-
-
-
 /************************** Compare Action ***************************/
 
 /**

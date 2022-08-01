@@ -118,11 +118,21 @@ export class ProductService {
                         if(res && res.product){
                             let modefied:Product = res.product;
                             // console.log(res.product)
-                            modefied.productImages.unshift({
-                                imageId:0,
-                                image:res.product.productImage,
-                                product_id:res.product.productId
-                            })
+                            if(modefied.productImages){
+                                modefied.productImages.unshift({
+                                    imageId:0,
+                                    image:res.product.productImage,
+                                    product_id:res.product.productId
+                                })
+                            }else{
+                                modefied.productImages = []
+                                modefied.productImages[0] = {
+                                    imageId:0,
+                                    image:res.product.productImage,
+                                    product_id:res.product.productId
+                                }
+                            }
+                            
                            // console.log(modefied)
                             this.selectedProduct = modefied
                             return modefied;

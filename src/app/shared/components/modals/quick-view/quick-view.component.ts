@@ -9,7 +9,6 @@ import { ApiService } from 'src/app/shared/services/api.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { CompareService } from 'src/app/shared/services/compare.service';
 import { UtilsService } from 'src/app/shared/services/utils.service';
-import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { sliderOpt } from 'src/app/shared/data';
 
 declare var $: any;
@@ -57,7 +56,6 @@ export class QuickViewComponent implements OnInit {
 	constructor(
 		public apiService: ApiService,
 		public cartService: CartService,
-		public wishlistService: WishlistService,
 		public compareService: CompareService,
 		public utilsService: UtilsService,
 		public router: Router,
@@ -141,15 +139,6 @@ export class QuickViewComponent implements OnInit {
 		);
 	}
 
-	addToWishlist(event: Event) {
-		event.preventDefault();
-
-		if (this.isInWishlist()) {
-			this.router.navigate(['/shop/wishlist']);
-		} else {
-			this.wishlistService.addToWishList(this.product);
-		}
-	}
 
 	addToCompare(event: Event) {
 		event.preventDefault();
@@ -161,9 +150,6 @@ export class QuickViewComponent implements OnInit {
 		return this.compareService.isInCompare(this.product);
 	}
 
-	isInWishlist() {
-		return this.wishlistService.isInWishlist(this.product);
-	}
 
 	refreshSelectableGroup() {
 		let tempArray = [...this.variationGroup];

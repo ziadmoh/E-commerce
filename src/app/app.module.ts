@@ -22,7 +22,6 @@ import { HomeModule } from './pages/home/home.module';
 
 // reducers
 import { appReducers, metaReducers } from './core/reducers/app.reducer';
-import { wishlistReducer } from './core/reducers/wishlist.reducer';
 import { compareReducer } from './core/reducers/compare.reducer';
 import { cartReducer } from './core/reducers/cart.reducer';
 
@@ -38,6 +37,14 @@ import { AuthInterceptorService } from './shared/services/auth-interceptor.servi
 
 //Primeng
 import { PrimeNgModule } from './shared/modules/prime-ng.module';
+// PerfectScrollBar
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar'
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollY: true,
+
+};
 
 
 @NgModule({
@@ -67,7 +74,6 @@ import { PrimeNgModule } from './shared/modules/prime-ng.module';
     }),
     StoreModule.forRoot(appReducers, { metaReducers }),
     StoreModule.forFeature('cart', cartReducer),
-    StoreModule.forFeature('wishlist', wishlistReducer),
     StoreModule.forFeature('compare', compareReducer),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
@@ -75,7 +81,9 @@ import { PrimeNgModule } from './shared/modules/prime-ng.module';
     // Social Login
     SocialLoginModule,
     //Primeng
-    PrimeNgModule
+    PrimeNgModule,
+    //PerfectScrollbar
+    PerfectScrollbarModule
   ],
 
   providers: [
@@ -102,6 +110,10 @@ import { PrimeNgModule } from './shared/modules/prime-ng.module';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
+    },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }
   ],
   bootstrap: [AppComponent]

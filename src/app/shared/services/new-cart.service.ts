@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AddToCartAction, RemoveFromCartAction } from 'src/app/core/actions/actions';
 import { CartItem } from '../classes/cart-item';
 import { cartItemsSelector } from 'src/app/core/selectors/selectors';
+import { AuthService } from './auth.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -26,15 +27,46 @@ export class NewCartService {
     public numberOfcartItems = new BehaviorSubject<number>(0!);
 	
     public cartItemsList:CartItem[] = [] 
+    public shippingCost:number = 0;
 
+    public userSessionId:number =0
 
     public cartSubTotal = new BehaviorSubject<number>(0!);
     
-    constructor(private http: HttpClient,private store: Store<any>, private toastrService: ToastrService) {
-        this.getCartItems().subscribe(items=>{
+    constructor(private http: HttpClient,private store: Store<any>, 
+        private toastrService: ToastrService,
+        private authService:AuthService) {
+        
+        this.authService.newUser.subscribe(user =>{
+            if(user && user.userId){
+                this.getOpenedSession(user.userId).subscribe((res:any) =>{
+                    if(res && res.session ){
+                        this.userSessionId = res.session.sessionId
+                        this.getCartItems(res.session.sessionId).subscribe(items=>{
+                            
+                        })
+                    }else{
+                        this.openSession(user.userId).subscribe((opened:any) =>{
+                            this.userSessionId = opened.session.sessionId
+                            if(opened && opened.session){
+                                this.getCartItems(opened.session.sessionId).subscribe(items=>{
             
+                                })
+                            }
+                        })
+                    }
+                })
+            }
         })
+    
+        
     }
+
+    getOpenedSession(userId){
+        return this.http.get(environment.SERVER_URL + 'usersession/'+userId)
+    }
+
+
 
     openSession(userId){
         return this.http.post(environment.SERVER_URL +'opensession/'+userId,{})
@@ -74,7 +106,7 @@ export class NewCartService {
         }))
     }
 
-    getCartItems(sessionId = 12){
+    getCartItems(sessionId){
         return this.http.get(environment.SERVER_URL + 'sessioncartItems/'+sessionId).pipe(
             tap((items:any) =>{
                 if(items && items.sessionCartItems){

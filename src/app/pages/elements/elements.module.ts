@@ -12,7 +12,6 @@ import { BannersPageComponent } from './banners/banner.component';
 import { ButtonsPageComponent } from './buttons/button.component';
 import { CallToActionPageComponent } from './call-to-action/call-to-action.component';
 import { IconBoxesPageComponent } from './icon-boxes/icon-box.component';
-import { ProductPageComponent } from './product/product.component';
 import { ProductCategoryPageComponent } from './product-category/product-category.component';
 import { TabsPageComponent } from './tabs/tab.component';
 import { TestimonialPageComponent } from './testimonials/testimonial.component';
@@ -29,7 +28,6 @@ import { ElementsListComponent } from './shared/elements-list/elements-list.comp
 		ButtonsPageComponent,
 		CallToActionPageComponent,
 		IconBoxesPageComponent,
-		ProductPageComponent,
 		ProductCategoryPageComponent,
 		TabsPageComponent,
 		TestimonialPageComponent,

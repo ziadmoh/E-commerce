@@ -5,7 +5,6 @@ import { Product } from 'src/app/shared/classes/product';
 
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { CartService } from 'src/app/shared/services/cart.service';
-import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { CompareService } from 'src/app/shared/services/compare.service';
 
 import { environment } from 'src/environments/environment';
@@ -32,7 +31,6 @@ export class ProductElevenComponent implements OnInit {
 		private router: Router,
 		private modalService: ModalService,
 		private cartService: CartService,
-		private wishlistService: WishlistService,
 		private compareService: CompareService,
 		private productService:ProductService
 	) { }
@@ -71,7 +69,7 @@ export class ProductElevenComponent implements OnInit {
 							res.session.sessionId
 						).subscribe(cartRes =>{
 							if(cartRes && cartRes.cartItem){
-								this.newCartService.getCartItems().subscribe();
+								this.newCartService.getCartItems(res.session.sessionId).subscribe();
 							}
 						})
 					}
@@ -88,15 +86,7 @@ export class ProductElevenComponent implements OnInit {
 		throw new Error('Method not implemented.');
 	}
 
-	addToWishlist(event: Event) {
-		event.preventDefault();
 
-		if (this.isInWishlist()) {
-			this.router.navigate(['/shop/wishlist']);
-		} else {
-			this.wishlistService.addToWishList(this.product);
-		}
-	}
 
 	addToCompare(event: Event) {
 		event.preventDefault();
@@ -116,9 +106,7 @@ export class ProductElevenComponent implements OnInit {
 		return this.compareService.isInCompare(this.product);
 	}
 
-	isInWishlist() {
-		return this.wishlistService.isInWishlist(this.product);
-	}
+	
 
 	testAddProd(event){
 		this.productService.addProduct(event.target.files[0]).subscribe(res =>{

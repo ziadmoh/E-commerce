@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ElementsListComponent } from './shared/elements-list/elements-list.component';
 import { TitlesPageComponent } from './titles/title.component';
-import { ProductPageComponent } from './product/product.component';
 import { TypographyPageComponent } from './typography/typography.component';
 import { BannersPageComponent } from './banners/banner.component';
 import { ProductCategoryPageComponent } from './product-category/product-category.component';
@@ -21,54 +20,6 @@ const routes: Routes = [
         path: '',
         component: ElementsListComponent,
         children: [
-            {
-                path: 'titles',
-                component: TitlesPageComponent
-            },
-            {
-                path: 'products',
-                component: ProductPageComponent
-            },
-            {
-                path: 'typography',
-                component: TypographyPageComponent
-            },
-            {
-                path: 'banners',
-                component: BannersPageComponent
-            },
-            {
-                path: 'categories',
-                component: ProductCategoryPageComponent
-            },
-            {
-                path: 'video-banners',
-                component: VideoBannerPageComponent
-            },
-            {
-                path: 'buttons',
-                component: ButtonsPageComponent
-            },
-            {
-                path: 'accordions',
-                component: AccordionsPageComponent
-            },
-            {
-                path: 'tabs',
-                component: TabsPageComponent
-            },
-            {
-                path: 'testimonials',
-                component: TestimonialPageComponent
-            },
-            {
-                path: 'cta',
-                component: CallToActionPageComponent
-            },
-            {
-                path: 'icon-boxes',
-                component: IconBoxesPageComponent
-            },
             {
                 path: '',
                 component: ElementsListPageComponent

@@ -40,6 +40,7 @@
                                         <th>Quantity</th>
                                         <th>Total</th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -70,30 +71,18 @@
                                             </app-ecommerce-quantity-input>
                                         </td>
                                         <td class="total-col">EGP {{ item.price }}</td>
+                                        <td>
+                                            <div class="cust-wrapper">
+                                                <button class="btn btn-outline-primary btn-cust-order"
+                                                (click)="customizeOrderData(item)">Customize</button>
+                                            </div>
+                                        </td>
                                         <td class="remove-col"><button class="btn-remove"
                                                 (click)="removeFromCart( item.product,item.session_id )"><i
                                                     class="icon-close"></i></button></td>
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <div class="cart-bottom">
-                                <div class="cart-discount">
-                                    <form action="#">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" required placeholder="coupon code">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary-2" type="submit"><i
-                                                        class="icon-long-arrow-right"></i></button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <a href="javascript:;" class="btn btn-outline-dark-2 btn-cart-update disabled"
-                                    (click)="updateCart( $event )"><span>UPDATE CART</span><i
-                                        class="icon-refresh"></i></a>
-                            </div>
                         </div>
                         <aside class="col-lg-3">
                             <div class="summary summary-cart">
@@ -155,8 +144,10 @@
                                     </tbody>
                                 </table>
 
-                                <a routerLink="/shop/checkout"
-                                    class="btn btn-outline-primary-2 btn-order btn-block">PROCEED
+                                <a  routerLink="/shop/checkout"
+                                    class="btn btn-outline-primary-2 btn-order btn-block"
+                                    [class]="canCheckOut ? '' :'disabled-link' "
+                                    [pTooltip]=" canCheckOut ? 'Checkout!' : 'Please customize your products first' " tooltipPosition="top" tooltipStyleClass="tooltip-class">PROCEED
                                     TO CHECKOUT</a>
                             </div>
 

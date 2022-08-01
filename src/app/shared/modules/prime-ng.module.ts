@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {TooltipModule} from 'primeng/tooltip';
 import {TableModule} from 'primeng/table';
 import {RatingModule} from 'primeng/rating';
+import {FileUploadModule} from 'primeng/fileupload';
 
 @NgModule({
   declarations: [],
@@ -15,7 +16,8 @@ import {RatingModule} from 'primeng/rating';
     
     TooltipModule,
     TableModule,
-    RatingModule
+    RatingModule,
+    FileUploadModule
   ],
 })
 export class PrimeNgModule {}

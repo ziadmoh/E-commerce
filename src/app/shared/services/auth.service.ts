@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {  catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, throwError } from 'rxjs';
 //import { SocialAuthService,FacebookLoginProvider, GoogleLoginProvider ,SocialUser } from "angularx-social-login";
@@ -26,7 +26,8 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router:Router,
               private toast: ToastrService,
-              private modalService:ModalService
+              private modalService:ModalService,
+              private acRoute:ActivatedRoute
               ) { }
             
 
@@ -118,7 +119,6 @@ export class AuthService {
   }
 
   autoLogin() {
-    debugger
     const user: User = JSON.parse(localStorage.getItem('user')!);
     if (!user) {
       return;
@@ -141,7 +141,7 @@ export class AuthService {
       this.newUser.next(loadedUser);
       this.isLoggedIn = true;
       if(loadedUser.type == 'admin'){
-        this.router.navigate(['/admin'])
+        this.router.navigate(['/admin/'],{ relativeTo: this.acRoute })
       }
     }
   }

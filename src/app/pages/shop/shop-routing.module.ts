@@ -5,11 +5,12 @@ import { SidebarPageComponent } from './sidebar/sidebar.component';
 import { NosidebarPageComponent } from './nosidebar/nosidebar.component';
 import { MarketPageComponent } from './market/market.component';
 import { CartComponent } from './cart/cart.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductCategoryBoxedPageComponent } from './product-category-boxed/product-category-boxed.component';
 import { ProductCategoryFluidPageComponent } from './product-category-fluid/product-category-fluid.component';
+import { CartGuard } from 'src/app/shared/services/cart.guard';
+import { CheckOutGuard } from 'src/app/shared/services/checkout.guard';
 
 const routes: Routes = [
 	{
@@ -36,33 +37,19 @@ const routes: Routes = [
 		redirectTo: 'nosidebar/boxed'
 	},
 	{
-		path: 'market',
-		component: MarketPageComponent
-	},
-	{
 		path: 'cart',
-		component: CartComponent
-	},
-	{
-		path: 'wishlist',
-		component: WishlistComponent
+		component: CartComponent,
+	//	canActivate:[CartGuard]
 	},
 	{
 		path: 'checkout',
-		component: CheckoutComponent
+		component: CheckoutComponent, //CartGuard
+		canActivate:[CheckOutGuard]
 	},
 	{
 		path: 'orders',
 		component: DashboardComponent
 	},
-	{
-		path: 'category/boxed',
-		component: ProductCategoryBoxedPageComponent
-	},
-	{
-		path: 'category/fullwidth',
-		component: ProductCategoryFluidPageComponent
-	}
 ];
 
 @NgModule( {

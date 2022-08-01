@@ -394,7 +394,7 @@ app-ecommerce-quick-view, .container.quickView-container {
 	}
 }
 
-.login-modal {
+.login-modal , .child-data-modal{
 	.modal-content {
 		max-width: 575px;
 		margin: 0 auto;
