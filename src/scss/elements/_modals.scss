@@ -156,7 +156,7 @@
 }
 
 @include mq('620px', 'max') {
-	.login-modal .modal-dialog , .child-data-modal .modal-dialog 
+	.login-modal .modal-dialog , .child-data-modal .modal-dialog ,.product-modal .modal-dialog
 	{
 		width: calc(100% - 2rem);
 		margin: 0 auto;

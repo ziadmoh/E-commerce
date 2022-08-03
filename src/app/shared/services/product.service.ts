@@ -89,26 +89,77 @@ export class ProductService {
         ))
     }
 
-    addProduct(image){
+    addProduct(
+        productName,
+        productColor,
+        productImage,
+        productDescription,
+        productPrice,
+        oldPrice,
+        box,
+    ){
         let form = new FormData()
-        form.append('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VyTmFtZSI6Ik1NTSIsImlhdCI6MTY1NjQzOTQwOX0.Ksue0mqCQr7wdj9j1MKL_XWjjhcE6i4ApoqVqENHO6c')
-        form.append('productName','prod 3')
-        form.append('productColor','pink')
-        form.append('productImage',image)
-        form.append('productDescription','lorem ipsum')
-        form.append('productPrice','34')
-        form.append('box','1')
+        form.append('productName',productName)
+        form.append('productColor',productColor)
+        form.append('productImage',productImage)
+        form.append('productDescription',productDescription)
+        form.append('productPrice',productPrice)
+        form.append('oldPrice',oldPrice)
+        form.append('box',box)
         return this.http.post(environment.SERVER_URL +'addproduct',form)
     }
-    addProductImages(images){
-        let form = new FormData()
-        form.append('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VyTmFtZSI6Ik1NTSIsImlhdCI6MTY1NjQzOTQwOX0.Ksue0mqCQr7wdj9j1MKL_XWjjhcE6i4ApoqVqENHO6c')
+
+    addProductImages(productId,images){
+        let form = new FormData();
         for(let i=0;i<images.length;i++){
 
             form.append('image'+[i],images[i])
         }
         
-        return this.http.post(environment.SERVER_URL +'addproductimages/30',form)
+        return this.http.post(environment.SERVER_URL +'addproductimages/'+productId,form)
+    }
+
+    removeProduct(productId){
+        return this.http.patch(environment.SERVER_URL +'deleteproduct/'+productId,{})
+    }
+
+    rateProduct(
+        userId,
+        productId,
+        rate: 1 | 2 | 3 | 4 | 5
+    ){
+        return this.http.post(environment.SERVER_URL +'assignrate/'+userId+'/'+productId,{
+            rate:rate
+        })
+    }
+
+    editProduct(
+        productId,
+        productName,
+        productColor,
+        productDescription,
+        productPrice,
+        oldPrice,
+        productImage?,
+    ){
+        let form = new FormData()
+        form.append('productName',productName)
+        form.append('productColor',productColor)
+        form.append('productDescription',productDescription)
+        form.append('productPrice',productPrice)
+        form.append('oldPrice',oldPrice)
+        form.append('productImage',productImage)
+        return this.http.put(environment.SERVER_URL +'editproduct/'+productId,form)
+    }
+
+    removeOneProductImage(
+        imageId
+    ){
+        return this.http.delete(environment.SERVER_URL +'deleteimage/'+imageId)
+    }
+
+    removeAllProductImages(productId){
+        return this.http.delete(environment.SERVER_URL +'deleteproductimages/'+productId)
     }
 
     getProductById(productId){
@@ -143,5 +194,9 @@ export class ProductService {
                     }
                 )
         )
+    }
+
+    getImageFromUrl(url){
+        return this.http.get(url,{responseType: "blob"})
     }
 }

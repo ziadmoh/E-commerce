@@ -29,7 +29,9 @@ export class NewCartService {
     public cartItemsList:CartItem[] = [] 
     public shippingCost:number = 0;
 
-    public userSessionId:number =0
+   // public userSessionId:number =0
+
+    public userSessionId = new BehaviorSubject(0);
 
     public cartSubTotal = new BehaviorSubject<number>(0!);
     
@@ -41,13 +43,13 @@ export class NewCartService {
             if(user && user.userId){
                 this.getOpenedSession(user.userId).subscribe((res:any) =>{
                     if(res && res.session ){
-                        this.userSessionId = res.session.sessionId
+                        this.userSessionId.next(res.session.sessionId)
                         this.getCartItems(res.session.sessionId).subscribe(items=>{
                             
                         })
                     }else{
                         this.openSession(user.userId).subscribe((opened:any) =>{
-                            this.userSessionId = opened.session.sessionId
+                            this.userSessionId.next(opened.session.sessionId)
                             if(opened && opened.session){
                                 this.getCartItems(opened.session.sessionId).subscribe(items=>{
             

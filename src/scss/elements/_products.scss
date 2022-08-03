@@ -279,7 +279,7 @@
 
 .product-price {
 	display: flex;
-	align-items: center;
+	//align-items: center;
 	flex-flow: wrap;
 	font-weight: 400;
 	font-size: 1.6rem;
@@ -296,6 +296,7 @@
 .old-price {
 	color: #9b9b9b;
 	text-decoration: line-through;
+	font-size: 1.3rem;
 }
 
 .out-price {

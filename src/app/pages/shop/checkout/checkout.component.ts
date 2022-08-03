@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
@@ -38,6 +39,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 				private authService:AuthService,
 				private orderService:OrderService,
 				private toast: ToastrService,
+				private router:Router
 		) {
 	}
 
@@ -91,7 +93,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 	addOpacity(event: any) {
 		event.target.parentElement.querySelector("label").setAttribute("style", "opacity: 0");
 		event.stopPropagation();
-
 	}
 
 	formToggle(event: any) {
@@ -116,19 +117,34 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 	checkOutOrder(){
 		if(this.checkOutForm.valid){
 				if(this.user && this.user.userId){
-					this.orderService.checkOutTheOrder(
-						this.user.userId,
-						this.newCartService.userSessionId,
-						this.checkOutForm.get('contactPhone').value,
-						this.checkOutForm.get('additionalContactPhone').value,
-						this.promoCode,
-						this.checkOutForm.get('deliveryLocation1').value + ' ' +this.checkOutForm.get('deliveryLocation2').value ,
-						).subscribe((res:any) =>{
-							if(res && res.message && res.message2){
-								this.toast.info(res.message);
-								this.toast.success(res.message2);
-							}
-						})
+					this.newCartService.userSessionId.subscribe(sessionId=>{
+						this.orderService.checkOutTheOrder(
+							this.user.userId,
+							sessionId,
+							this.checkOutForm.get('contactPhone').value,
+							this.checkOutForm.get('additionalContactPhone').value,
+							this.promoCode,
+							this.checkOutForm.get('deliveryLocation1').value + ' ' +this.checkOutForm.get('deliveryLocation2').value ,
+							).subscribe((res:any) =>{
+								if(res && res.message && res.message2){
+									this.toast.info(res.message);
+									this.toast.success(res.message2);
+									this.newCartService.cartItems.next([])
+									this.newCartService.numberOfcartItems.next(0);
+									window.location.href = location.protocol + '//' + window.location.host + '/shop/orders'
+									// this.router.navigate(['/shop/orders'])
+								}else if (res && res.message && res.order){
+									this.toast.success(res.message);
+									this.newCartService.cartItems.next([])
+									this.newCartService.numberOfcartItems.next(0)
+									window.location.href = location.protocol + '//' + window.location.host + '/shop/orders'
+									// this.router.navigate(['/shop/orders'])
+								}else{
+									this.toast.error(res.message);
+								}
+							})
+					})
+					
 				}
 
 		}else{

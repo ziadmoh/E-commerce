@@ -1,30 +1,50 @@
-<h1 class="mb-4 section-header">Products</h1>
+<div class="d-flex flex-column flex-md-row justify-content-between mb-4">
+    <h1 class="section-header">Products</h1>
+    <button class="btn btn-primary new-product-btn" 
+    (click)="openProductModal()">New Product</button>
+</div>
 <div class="container-fluid dashboard-container">
     <div class="row products-row">
-        <p-table [value]="products" responsiveLayout="scroll">
-            <ng-template pTemplate="header">
+        <p-table [value]="products" responsiveLayout="stack" [responsive]="true" [paginator]="true" [rows]="10" [totalRecords]="products.length">
+            <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th>Name</th>
                     <th>Image</th>
                     <th>Price</th>
-                    <!-- <th>Category</th> -->
+                    <th>Category</th>
+                    <th>Old price</th>
                     <th>Reviews</th>
+                    <th>Actions</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-product>
+            <ng-template pTemplate="body" let-product let-columns="columns">
                 <tr>
-                    <td>{{product.productName}}</td>
-                    <td><img [src]="product.productImage" [alt]="product.productName" width="100" class="p-shadow-4" /></td>
-                    <td>{{product.productPrice | currency:'EGP '}}</td>
-                    <!-- <td>{{product.productCategory}}</td> -->
-                    <td>
+                    <td><span class="p-column-title">Name</span>{{product.productName}}</td>
+                    <td><span class="p-column-title">Image</span><img [src]="product.productImage" [alt]="product.productName" width="100" class="p-shadow-4" /></td>
+                    <td><span class="p-column-title">Price</span>{{product.productPrice | currency:'EGP '}}</td>
+                    <td><span class="p-column-title">Category</span>{{product.box == 1? 'Box' : 'Singly' }}</td>
+                    <td><span class="p-column-title">Old price</span>{{product.oldPrice | currency:'EGP '}}</td>
+                    <td ><span class="p-column-title">Reviews</span>
                         <div class="ratings-container">
                             <div class="ratings">
-                                <div class="ratings-val" [style.width]="product.ratings * 20 + '%'"></div>
-                                <span class="tooltip-text">{{ product.ratings.toFixed(2) }}</span>
+                                <div class="ratings-val" [style.width]="product.productRate * 20 + '%'"></div>
+                                <span class="tooltip-text">{{ product.productRate }}</span>
                             </div>
                 
                         </div>
+                    </td>
+
+                    <td class="last-cell">
+                        <div ngbDropdown class="d-inline-block">
+                            <span class="pointer"  ngbDropdownToggle>
+                                
+                            <i class="fa-solid fa-ellipsis" ></i>
+                            </span>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <button ngbDropdownItem (click)="onEditProduct(product)">Edit</button>
+                              <button ngbDropdownItem (click)="deleteProduct(product)">Delete</button>
+                            </div>
+                          </div>
                     </td>
 
                  </tr>
@@ -40,3 +60,124 @@
 
     
 </div>
+
+<p-dialog [blockScroll]="true" #createProductForm header="New product" [(visible)]="isModalVisible" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}" [draggable]="false"
+[maximizable]="true" [closeOnEscape]="true" [dismissableMask]="true" [modal]="true"
+> 
+    <form [formGroup]="newProductForm" >
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="newProductName">Name*</label>
+                <input id="newProductName" type="text" formControlName="productName" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="newProductPrice">Price*</label>
+                <input id="newProductPrice" type="text" formControlName="productPrice" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="newOldPrice">Old price*</label>
+                <input id="newOldPrice" type="text" formControlName="oldPrice" class="form-control">
+            </div>
+            <div class="form-group col-md-4 d-flex flex-column">
+                <label for="newProductColor">Color*</label>
+                <p-dropdown id="newProductColor" [autoZIndex]="true" [appendTo]="createProductForm" [options]="colors" 
+                formControlName="productColor" optionLabel="name" optionDisabled=""></p-dropdown>
+            </div>
+            <div class="form-group col-md-4 d-flex flex-column">
+                <label for="newProductCat">Category*</label>
+                <p-dropdown id="newProductCat" [autoZIndex]="true" [appendTo]="createProductForm" [options]="categories" 
+                formControlName="category" optionLabel="name" optionDisabled="disabled"></p-dropdown>
+            </div>
+            
+            <div class="form-group col-md-12">
+                <label for="newProductDesc">Description*</label>
+                <textarea class="form-control" id="newProductDesc" rows="6" formControlName="productDescription"></textarea>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="newProductImages">Images*</label>
+                <!-- <p-fileUpload id="newProductImages" (onSelect)="onChangeProductPhots($event)"
+                [multiple]="true" mode="basic" accept="image/*"  chooseLabel="Browse"></p-fileUpload> -->
+                <p-fileUpload (onSelect)="onChangeProductPhots($event)"
+                        [multiple]="true" accept="image/*" [maxFileSize]="1000000"
+                        [showUploadButton]="false" [showCancelButton]="false">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="productImages.length">
+                                <li *ngFor="let file of productImages">{{file.name}} - {{file.size}} bytes</li>
+                            </ul>
+                        </ng-template>
+                </p-fileUpload>
+            </div>
+            
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <div class="d-flex flex-row justify-content-center">
+            
+            <button class="btn btn-primary" (click)="addNewProduct()">Add</button>
+        </div>
+    </ng-template>
+</p-dialog>
+<p-dialog [blockScroll]="true" #editProductForm header="Edit product" [(visible)]="isEditModalVisible" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}" [draggable]="false"
+[maximizable]="true" [modal]="true"> 
+    <form [formGroup]="updateProductForm" >
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="editProductName">Name*</label>
+                <input id="editProductName" type="text" formControlName="productName" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="editProductPrice">Price*</label>
+                <input id="editProductPrice" type="text" formControlName="productPrice" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="editOldPrice">Old price*</label>
+                <input id="editOldPrice" type="text" formControlName="oldPrice" class="form-control">
+            </div>
+            <div class="form-group col-md-4 d-flex flex-column">
+                <label for="editProductColor">Color*</label>
+                <p-dropdown id="editProductColor" [autoZIndex]="true" [appendTo]="editProductForm" [options]="colors" 
+                formControlName="productColor" optionLabel="name" optionDisabled=""></p-dropdown>
+            </div>
+            <div class="form-group col-md-4 d-flex flex-column">
+                <label for="editProductCat">Category*</label>
+                <p-dropdown id="editProductCat" [autoZIndex]="true" [appendTo]="editProductForm" [options]="categories" 
+                 optionLabel="name" [disabled]="true" formControlName="productCategory"></p-dropdown>
+            </div>
+            
+            <div class="form-group col-md-12">
+                <label for="editProductDesc">Description*</label>
+                <textarea class="form-control" id="editProductDesc" rows="6" formControlName="productDescription"></textarea>
+            </div>
+            
+        </div>
+        <div class="row my-3 edit-images-row">
+            <h3 class="mb-5">Images</h3>
+            <div class="col-12 d-flex flex-row justify-content-between single-image-row" *ngFor="let image of selectedProductImages">
+                <img [src]="image.image" style="width: 60px;">
+                <button type="button" *ngIf="selectedProductImages.length >1 && image.imageId != 0 " (click)="deleteImage(image)">
+                    <i class="fa-solid fa-xmark" ></i>
+                </button>
+                
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="editProductImages">Add more Images*</label>
+            <p-fileUpload (onSelect)="onChangeEditProductPhotos($event)"
+                    [multiple]="true" accept="image/*" [maxFileSize]="1000000"
+                    [showUploadButton]="false" [showCancelButton]="false">
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="editProductImages.length">
+                            <li *ngFor="let file of editProductImages">{{file.name}} - {{file.size}} bytes</li>
+                        </ul>
+                    </ng-template>
+            </p-fileUpload>
+        </div>
+
+    </form>
+    
+    <ng-template pTemplate="footer">
+        <div class="d-flex flex-row justify-content-center">
+            <button class="btn btn-primary" (click)="updateProduct()">Update</button>
+        </div>
+    </ng-template>
+</p-dialog>

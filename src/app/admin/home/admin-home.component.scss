@@ -73,7 +73,7 @@
         text-transform: capitalize;
         border-radius: 8px;
     }
-    .order-status-new{
+    .order-status-waiting{
         color: #988512;
         background-color: #f8ff93;
     }
@@ -88,6 +88,19 @@
     .order-status-cncld{
         color: #920000;
         background-color: #fdcccc;
+    }
+}
+
+
+.change-status{
+    font-size: 16px;
+    min-width: 120px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-transform: uppercase;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    &:disabled{
+        box-shadow:none
     }
 }
 

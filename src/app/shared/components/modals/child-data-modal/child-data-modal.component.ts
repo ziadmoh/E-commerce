@@ -122,7 +122,6 @@ export class ChildDataModalComponent implements OnInit {
 						)
 					}
 					forkJoin(httpRequests).subscribe((res:any) =>{
-						console.log(res)
 						let reArr = []
 						res.forEach(single =>{
 							if(single.message == "orderItem info added successfully"){
@@ -130,6 +129,7 @@ export class ChildDataModalComponent implements OnInit {
 							}
 						})
 						if(res && reArr.length == this.orderData.quantity){
+							window.location.reload()
 							this.toast.success('Saved successfully!');
 						}
 					});
@@ -150,24 +150,21 @@ export class ChildDataModalComponent implements OnInit {
 			this.authService.newUser.subscribe(user =>{
 				if(user && user.userId){
 					let httpRequests =[];
+					let updateFound;
 					for(let i=0;i<this.getChildrenGroups().length;i++){
-						let updateFound = this.returnedProductChildren.find((item)=>{
-							item.orderItemId == this.getChildrenGroups()[i].get('orderItemId')?.value
+						updateFound = this.returnedProductChildren.find((item)=>{
+							return item.orderItemId == this.getChildrenGroups()[i].get('orderItemId')?.value
 						})
-						console.log(updateFound)
-
+						// console.log(updateFound)
 						if(updateFound){
 							httpRequests.push(
 								this.orderService.updateOrderInfo(
-									user.userId,
-									this.orderData.cartItemId,
-									this.orderData.session_id,
 									this.getChildrenGroups()[i].value.orderItemId,
 									this.getChildrenGroups()[i].value.childName,
-									this.childrenPhotos[i],
 									this.getChildrenGroups()[i].value.schoolName,
 									this.getChildrenGroups()[i].value.favCartoon,
 									this.getChildrenGroups()[i].value.parentPhone,
+									this.childrenPhotos[i] == 1 ? null: this.childrenPhotos[i],
 								)
 							)
 						}else{
@@ -185,6 +182,7 @@ export class ChildDataModalComponent implements OnInit {
 							)
 						}
 					}
+					
 					forkJoin(httpRequests).subscribe((res:any) =>{
 						console.log(res)
 						let reArr = []
@@ -195,6 +193,7 @@ export class ChildDataModalComponent implements OnInit {
 						})
 						if(res && reArr.length == this.orderData.quantity){
 							this.toast.success('Updated successfully!');
+							window.location.reload()
 						}
 					});
 				}

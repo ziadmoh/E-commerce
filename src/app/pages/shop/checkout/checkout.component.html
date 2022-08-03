@@ -20,7 +20,7 @@
                 <div class="checkout-discount">
                     <form id="checkout-discount-form">
                         <input type="text" class="form-control" required id="checkout-discount-input"
-                            (click)="addOpacity($event)" (ngModel)="promoCode" name="promocde">
+                            (click)="addOpacity($event)" [(ngModel)]="promoCode" name="promocde">
                         <label  for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to
                                 enter your code</span></label>
                     </form>
@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <label>Full Name *</label>
-                                    <input  formControlName="fullName" type="text" class="form-control" name="firstName" >
+                                    <input  formControlName="fullName" type="text" class="form-control disabled-contol" name="firstName" >
                                 </div>
 
                                 <div class="col-sm-4">

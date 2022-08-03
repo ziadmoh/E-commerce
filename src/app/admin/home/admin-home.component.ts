@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { OrderService } from 'src/app/shared/services/order.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 
 @Component({
@@ -9,17 +12,113 @@ import { Component, OnInit } from '@angular/core';
 
 export class AdminHomeComponent implements OnInit {
 	
-	orders:{}[] = []
+	lastOrders:any[] = []
 
-	constructor() { }
+	todayOrders:any[] = []
+
+	allOrders:any[] = []
+
+	todaySales = 0
+
+	overallSales = 0
+
+	constructor(private authService:AuthService,
+		private orderService:OrderService,
+		public productService:ProductService) { }
 	ngOnInit(){
-		this.orders = [
-			{id:'1',userName:'Kareem',phone:'01110695150',productName:'product 1365',quantity:20,totalPrice:400,status:'delivered',orderDate:'23-03-2022'},
-			{id:'2',userName:'Ziad',phone:'01110695150',productName:'tickets 140',quantity:20,totalPrice:130,status:'pending',orderDate:'15-06-2022'},
-			{id:'3',userName:'Mahmoud',phone:'01110695150',productName:'box 120',quantity:20,totalPrice:36,status:'new',orderDate:'09-09-2021'},
-			{id:'4',userName:'Gemy',phone:'01110695150',productName:'product 1365',quantity:20,totalPrice:340,status:'cancelled',orderDate:'16-07-2022'},
-		]
-	 }
+		this.getLastOrders()
+		this.getTodayOrders()
+		this.getAllOrders()
+	}
 
+	getLastOrders(){
+		this.authService.newUser.subscribe(user =>{
+			if(user && user.userId && user.type == 'admin'){
+				this.orderService.getLastOrders().subscribe((res:any) =>{
+					if(res && res.orders){
+						this.lastOrders = res.orders;
+					}
+				})
+			}
+		})
+	}
+
+	getTodayOrders(){
+		this.authService.newUser.subscribe(user =>{
+			if(user && user.userId && user.type == 'admin'){
+				this.orderService.getTodayOrders().subscribe((res:any) =>{
+					if(res && res.todayOrders){
+						this.todayOrders = res.todayOrders;
+						this.todaySales =this.getTotalSales(res.todayOrders)
+					}
+				})
+			}
+		})
+	}
+
+	getAllOrders(){
+		this.authService.newUser.subscribe(user =>{
+			if(user && user.userId && user.type == 'admin'){
+				this.orderService.getAllOrders().subscribe((res:any) =>{
+					if(res && res.orders){
+						this.allOrders = res.orders;
+						this.overallSales =this.getTotalSales(res.orders)
+					}
+				})
+			}
+		})
+	}
+
+	getTotalSales(orders){
+		let total = 0
+		orders.forEach(order =>{
+			total = total + order.totalPrice
+		})
+		return total
+	}
 	
+	getNewStatus(current){
+		switch (current) {
+			case 'waiting':
+				return 'confirmed'
+			case 'confirmed':
+				return 'In printing'
+			case 'inPrinting':
+				return 'Out for delivery'
+			case 'outForDelivery':
+				return 'Delivered'
+		
+			default:
+				return 'Done'
+		}
+		
+	}
+
+	changeOrderstatus(order,index){
+		if(order && order.orderStatus == 'waiting'){
+			this.orderService.changeOrderStatus('confirmorder',order.orderId).subscribe((res:any) =>{
+				if(res && res.message == "order is confirmed succsesfully" ){
+					this.getLastOrders()
+				}
+			})
+		} else if(order && order.orderStatus == 'confirmed'){
+			this.orderService.changeOrderStatus('printingorder',order.orderId).subscribe((res:any) =>{
+				if(res && res.message == "order is now in printing "){
+					this.getLastOrders()
+				}
+			})
+		} else if(order && order.orderStatus == 'inPrinting'){
+			this.orderService.changeOrderStatus('outfordeliveryorder',order.orderId).subscribe((res:any) =>{
+				if(res && res.message == "order is now Out for delivery"){
+					this.getLastOrders()
+				}
+			})
+		} else if(order && order.orderStatus == 'outForDelivery'){
+			this.orderService.changeOrderStatus('orderdelivered',order.orderId).subscribe((res:any) =>{
+				if(res && res.message == "order is now delivered"){
+					this.getLastOrders()
+				}
+			})
+		}
+	}
 }

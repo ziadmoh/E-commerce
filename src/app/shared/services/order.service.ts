@@ -20,7 +20,7 @@ export class OrderService {
 
     public orderChildData:{} ={};
 
-    public canCheckOut = new BehaviorSubject<Boolean>(false!);
+    public canCheckOut = new BehaviorSubject<boolean>(false!);
     
     constructor(private http: HttpClient,private store: Store<any>, private toastrService: ToastrService) {
         
@@ -46,24 +46,20 @@ export class OrderService {
         return this.http.post(environment.SERVER_URL + 'addorderinfo/'+userId+'/'+cartItemId,form)
     }
     updateOrderInfo(
-        userId,
-        cartItemId,
-        sessionId,
-        orderItemId,
+        orderitemid,
         childName,
-        childImage,
         schoolName,
         favCartoon,
-        parentPhone
+        parentPhone,
+        childImage?,
     ){
         const form = new FormData()
-        form.append('sessionId',sessionId)
         form.append('childName',childName)
         form.append('schoolName',schoolName)
         form.append('favCartoon',favCartoon)
         form.append('parentPhone',parentPhone)
         form.append('childImage',childImage)
-        return this.http.patch(environment.SERVER_URL + 'updateorderinfo/'+userId+'/'+cartItemId+'/'+orderItemId,form)
+        return this.http.put(environment.SERVER_URL + 'editorderItem/'+orderitemid,form)
     }
 
     checkOutTheOrder(
@@ -128,10 +124,10 @@ export class OrderService {
     }
 
     changeOrderStatus(
-        orderType:'confirmorder' | 'printingorder' | 'outfordeliveryorder' | 'orderdelivered',
+        orderPath:'confirmorder' | 'printingorder' | 'outfordeliveryorder' | 'orderdelivered',
         orderId
     ){
-        return this.http.patch(environment.SERVER_URL +orderType+'/'+orderId,{})
+        return this.http.patch(environment.SERVER_URL +orderPath+'/'+orderId,{})
     }
 
     getOrderStatus(orderId){

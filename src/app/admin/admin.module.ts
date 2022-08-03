@@ -12,6 +12,7 @@ import { AdminNavComponent } from './nav/nav/nav.component';
 import { AdminFooterComponent } from './footer/footer.component';
 import { PrimeNgModule } from '../shared/modules/prime-ng.module';
 import { AdminProductsComponent } from './products/products.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule( {
@@ -27,6 +28,8 @@ import { AdminProductsComponent } from './products/products.component';
 	imports: [
 		CommonModule,
 		LazyLoadImageModule,
+		FormsModule,
+		ReactiveFormsModule,
 		AdminRoutingModule,
 		SharedModule,
 		NgbModule,

@@ -108,17 +108,17 @@ export class ProductElevenComponent implements OnInit {
 
 	
 
-	testAddProd(event){
-		this.productService.addProduct(event.target.files[0]).subscribe(res =>{
+	// testAddProd(event){
+	// 	this.productService.addProduct(event.target.files[0]).subscribe(res =>{
 			
-		})
-	}
+	// 	})
+	// }
 	//TEST ONLY
 	selectedFiles:[]
-	selectFiles(event:any){
-		this.selectedFiles = event.target.files;
-		this.productService.addProductImages(this.selectedFiles ).subscribe(res =>{
-			//console.log(res)
-		})
-	}
+	// selectFiles(event:any){
+	// 	this.selectedFiles = event.target.files;
+	// 	this.productService.addProductImages(this.selectedFiles ).subscribe(res =>{
+	// 		//console.log(res)
+	// 	})
+	// }
 }

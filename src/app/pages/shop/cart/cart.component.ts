@@ -10,6 +10,8 @@ import { CartItem } from 'src/app/shared/classes/cart-item';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'shop-cart-page',
@@ -33,7 +35,9 @@ export class CartComponent implements OnInit, OnDestroy {
 		public newCartService: NewCartService,
 		private authService:AuthService,
 		private modalService:ModalService,
-		private orderService:OrderService) {
+		private orderService:OrderService,
+		private router:Router,
+		private toast: ToastrService,) {
 	}
 
 	ngOnInit() {
@@ -45,6 +49,10 @@ export class CartComponent implements OnInit, OnDestroy {
 		})
 		this.newCartService.cartSubTotal.subscribe(sub =>{
 			this.subTotal = sub
+		})
+
+		this.orderService.canCheckOut.subscribe(res =>{
+			this.canCheckOut = res
 		})
 	}
 
@@ -141,27 +149,36 @@ export class CartComponent implements OnInit, OnDestroy {
 	}
 
 	getAllOrderChildrenInfo(cartItems){
-		this.orderService.getAllOrderChildrenInfo(this.newCartService.userSessionId).subscribe((res:any) =>{
-			if(res && res.sessionOrderItemsInfo){
-				let placeHolder = [];
-				let totalCartQuantity = 0
-				cartItems.forEach(item =>{
-					totalCartQuantity = totalCartQuantity + item.quantity
-					let orderitem = res.sessionOrderItemsInfo.filter(itemInfo =>{
-						return itemInfo.cartItem_id == item.cartItemId
+		this.newCartService.userSessionId.subscribe(sesseionId =>{
+			this.orderService.getAllOrderChildrenInfo(sesseionId).subscribe((res:any) =>{
+				if(res && res.sessionOrderItemsInfo){
+					let placeHolder = [];
+					let totalCartQuantity = 0
+					cartItems.forEach(item =>{
+						totalCartQuantity = totalCartQuantity + item.quantity
+						let orderitem = res.sessionOrderItemsInfo.filter(itemInfo =>{
+							return itemInfo.cartItem_id == item.cartItemId
+						})
+						if(orderitem && orderitem.length == item.quantity){
+							placeHolder.push(true)
+						}
 					})
-					if(orderitem && orderitem.length == item.quantity){
-						placeHolder.push(true)
+					if(placeHolder.length ==cartItems.length ){
+						this.orderService.canCheckOut.next(true)
+					}else{
+						this.orderService.canCheckOut.next(false)
 					}
-				})
-				console.log(placeHolder)
-				if(placeHolder.length ==cartItems.length ){
-					this.canCheckOut = true
-					this.orderService.canCheckOut.next(true)
-				}else{
-					this.canCheckOut = false
 				}
-			}
+			})
 		})
+		
+	}
+
+	checkOutNavigate(){
+		if(this.canCheckOut){
+			this.router.navigate(['/shop/checkout'])
+		}else{
+			this.toast.error('Please customize your products first!');
+		}
 	}
 }

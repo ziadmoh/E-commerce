@@ -7,6 +7,10 @@ import {TooltipModule} from 'primeng/tooltip';
 import {TableModule} from 'primeng/table';
 import {RatingModule} from 'primeng/rating';
 import {FileUploadModule} from 'primeng/fileupload';
+import {PaginatorModule} from 'primeng/paginator';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DialogModule} from 'primeng/dialog';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [],
@@ -17,7 +21,11 @@ import {FileUploadModule} from 'primeng/fileupload';
     TooltipModule,
     TableModule,
     RatingModule,
-    FileUploadModule
+    FileUploadModule,
+    PaginatorModule,
+    DynamicDialogModule,
+    DialogModule,
+    DropdownModule
   ],
 })
 export class PrimeNgModule {}

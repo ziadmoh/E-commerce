@@ -1,0 +1,44 @@
+.modal-body{
+    background-color: #fff;
+    padding: 1.5rem;
+}
+.modal-body-header{
+    color: #FBA733;
+    text-transform: uppercase;
+}
+
+.form-child-container{
+    max-height: 440px;
+    overflow: auto;
+}
+
+::ng-deep{
+    .p-button.p-fileupload-choose{
+      width: 100%;
+      height: 41px;
+      max-height: 41px;
+    }
+    .p-button{
+      background: #FBA733;
+      border: 1px solid #FBA733;
+      
+
+    }
+    .p-button:hover{
+      background: #ffb959 !important;
+      border: 1px solid #FBA733 !important;
+    }
+    .p-button:active{
+      background: #ffb959 !important; 
+      border: 1px solid #FBA733 !important;
+    }
+    .p-button:focus{
+      background: #ffb959 !important;
+      border: 1px solid #FBA733 !important;
+    }
+  }
+
+  .image-link{
+    color: #DC4F3F !important;
+    cursor: pointer;
+  }

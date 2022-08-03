@@ -61,6 +61,7 @@ import { PrimeNgModule } from './modules/prime-ng.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar'
+import { ProductModalComponent } from './components/modals/product-modal/product-modal.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollY: true,
 
@@ -100,6 +101,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 		IsotopeGridComponent,
 		ImageComponent,
 		ChildDataModalComponent,
+		ProductModalComponent,
 
 		// directives
 		BgParallaxDirective,

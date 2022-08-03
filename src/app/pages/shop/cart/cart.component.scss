@@ -24,6 +24,15 @@
      border-color: #DC4F3F;
   }
 }
+.btn-outline-primary-2{
+  color: #DC4F3F !important;
+  cursor: pointer;
+  &:hover{
+    color: #fff !important;
+  }
+}
+
+
 ::ng-deep{
   .p-tooltip{
     min-width: 275px;

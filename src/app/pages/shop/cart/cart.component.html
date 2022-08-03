@@ -144,7 +144,7 @@
                                     </tbody>
                                 </table>
 
-                                <a  routerLink="/shop/checkout"
+                                <a  (click)="checkOutNavigate()"
                                     class="btn btn-outline-primary-2 btn-order btn-block"
                                     [class]="canCheckOut ? '' :'disabled-link' "
                                     [pTooltip]=" canCheckOut ? 'Checkout!' : 'Please customize your products first' " tooltipPosition="top" tooltipStyleClass="tooltip-class">PROCEED

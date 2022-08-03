@@ -141,7 +141,7 @@ export class AuthService {
       this.newUser.next(loadedUser);
       this.isLoggedIn = true;
       if(loadedUser.type == 'admin'){
-        this.router.navigate(['/admin/'],{ relativeTo: this.acRoute })
+       // this.router.navigate(['/admin/'],{ relativeTo: this.acRoute })
       }
     }
   }

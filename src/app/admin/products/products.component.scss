@@ -1,3 +1,15 @@
+@import url('../../../scss/elements/_forms.scss');
+@import url('../../../scss/elements/_animations.scss');
+@import url('../../../scss/elements/_banners-category.scss');
+@import url('../../../scss/elements/_buttons.scss');
+@import url('../../../scss/elements/_alerts.scss');
+@import url('../../../scss/elements/_cards.scss');
+@import url('../../../scss/elements/_grid.scss');
+@import url('../../../scss/elements/_tooltips.scss');
+@import url('../../../scss/elements/_toast.scss');
+@import url('../../../scss/elements/_titles.scss');
+@import url('../../../scss/elements/_testimonials.scss');
+@import url('../../../scss/elements/_tables.scss');
 .section-header{
     letter-spacing: 1.2px;
     font-weight: 600;
@@ -91,6 +103,11 @@
     }
 }
 
+.new-product-btn{
+    font-size: 16px;
+    max-width: 100px;
+}
+
 ::ng-deep{
     .p-datatable-wrapper{
         font-size: 16px;
@@ -100,9 +117,74 @@
             border: 0 !important;
             border-bottom: 1px solid #dee2e6 !important; 
         }
-        
     }
-    .p-element{
+    p-table{
         width: 100%;
     }
+
+    .p-dialog-title{
+        font-size: 18px !important;
+    }
+    .p-dialog-content{
+        overflow-x: hidden;
+    }
+    .p-dropdown{
+        width: 100%;
+        background: #FAFAFA;
+        .p-dropdown-label{
+            font-size: 1.6rem;
+        }
+        
+    }
+    .p-dropdown-item{
+        font-size: 1.6rem;
+    }
+    .p-button.p-fileupload-choose{
+        width: 100%;
+        height: 41px;
+        max-height: 41px;
+      }
+    .p-button{
+    background: #FBA733;
+    border: 1px solid #FBA733;
+    
+    }
+    .p-button:hover{
+    background: #ffb959 !important;
+    border: 1px solid #FBA733 !important;
+    }
+    .p-button:active{
+    background: #ffb959 !important; 
+    border: 1px solid #FBA733 !important;
+    }
+    .p-button:focus{
+    background: #ffb959 !important;
+    border: 1px solid #FBA733 !important;
+    }
+    .dropdown-menu.show{
+        width: 100%;
+        font-size: 16px;
+    }
+    .dropdown-toggle::after {
+        display:none;
+    }
+    .pointer{
+        cursor: pointer;
+    }
+    .fa-xmark{
+        background-color: #df2626;
+        color: #fff;
+        font-size: 14px;
+        padding: 8px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 }
+.edit-images-row{
+    margin: 10px 20px;
+    .single-image-row{
+        margin-bottom: 20px;
+    }
+}
+
+
