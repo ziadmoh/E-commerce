@@ -1,1 +1,75 @@
-<h2 class="mb-4">ORders</h2>
+<h1 class="section-header">Orders</h1>
+
+<div class="container-fluid dashboard-container">
+    <div class="row">
+        <div class="orders-row my-4 p-5" style="width: 100%;">
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <h3 class="mb-4 orders-row-header">{{selectedFilter.name}}</h3>
+                <div class="mx-5">
+                    <p-dropdown [options]="filerOptions" (onChange)="ChangeFiler($event)" [(ngModel)]="selectedFilter" placeholder="All Orders" optionLabel="name" [showClear]="false" optionDisabled="disabled"></p-dropdown>
+                </div>
+            </div>
+
+            <p-table responsiveLayout="stack" [value]="orders" [responsive]="true">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th>User Name </th>
+                        <th>Phone</th>
+                        <th>Product</th> 
+                        <th>Total Price</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-order let-columns="columns" let-rowIndex="rowIndex">
+                    <tr>
+                        <td><span class="p-column-title">User Name</span>{{order.user.fullName}}</td>
+                        <td><span class="p-column-title">Phone</span>{{order.contactPhone}}</td>
+                        <td><span class="p-column-title">Product</span>
+                            <span class="text-capitalize" *ngFor="let product of order.products;let i =index">
+                                {{product.productName}}  <small>x </small>  {{product.quantity}}
+                                <span *ngIf="i <order.products.length-1">, <br> </span>
+                            </span></td>
+                        <td><span class="p-column-title">Total Price</span>{{order.totalPrice
+                            | currency:'EGP '}}</td>
+                        <td><span class="p-column-title">Date</span>{{order.creationDate | date:'shortDate'}}</td>
+                        <td ><span class="p-column-title">Status</span><span
+                            class="order-status"
+                            >
+                            {{order.orderStatus}}
+                            <div *ngIf="order.orderStatus !== 'delivered' " ngbDropdown class="d-inline-block">
+                                <span class="pointer"  ngbDropdownToggle>
+                                    
+                                <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                  <button ngbDropdownItem (click)="changeOrderstatus(order)" *ngIf="order.orderStatus == 'waiting'">Confirmed</button>
+                                  <button ngbDropdownItem (click)="changeOrderstatus(order)" *ngIf="order.orderStatus == 'confirmed'">in printing</button>
+                                  <button ngbDropdownItem (click)="changeOrderstatus(order)" *ngIf="order.orderStatus == 'inPrinting'">Out for delivery</button>
+                                  <button ngbDropdownItem (click)="changeOrderstatus(order)" *ngIf="order.orderStatus == 'outForDelivery'">delivered</button>
+                                </div>
+                              </div>
+                        </span></td>
+                        <td class="last-cell">
+                            <a [routerLink]="['/admin/orders/'+ order.orderId]">
+                                <i class="fa-solid fa-eye order-show-details"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <span>
+                        No orders found.
+                    </span>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        In total there are {{orders ? orders.length : 0 }} orders.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+    </div>
+</div>

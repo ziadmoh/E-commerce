@@ -17,58 +17,6 @@
 .dashboard-container{
     padding: 0;
 }
-.state-item{
-    padding: 10px;
-    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
-    background: #fff;
-    border-radius: 8px;
-    min-height: 110px;
-    .state-header{
-        font-weight: 500;
-        font-family: 'Poppins';
-        letter-spacing: .4px;
-        font-size: 16px;
-    }
-    .state-details{
-        font-size: 14px;
-        font-weight: 500;
-    }
-    .top-selling-period{
-        
-        position: absolute;
-        bottom: 0px;
-        right: 15px;
-        font-size: 12px;
-    }
-}
-.header-icon-container{
-    font-size: 20px;
-    
-    border-radius: 50%; 
-   &.header-icon-container-1{
-    color: #00B517;
-    background: #CCF0D1;
-    padding: 5px 13px;
-   }
-   &.header-icon-container-2{
-    color: #ddb500;
-    background: #fff7d0;
-    padding: 6px 12px;
-   }
-   &.header-icon-container-3{
-    color: #00B517;
-    background: #CCF0D1;
-    padding: 7px 13px;
-   }
-   &.header-icon-container-4{
-    color: #48919D;
-    background: #cbe5ea;
-    padding: 5px 13px;
-   }
-
-}
-
-
 .orders-row{
     width: 100%;
     box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
@@ -85,7 +33,7 @@
         text-transform: capitalize;
         border-radius: 8px;
     }
-    .order-status-new{
+    .order-status-waiting{
         color: #988512;
         background-color: #f8ff93;
     }
@@ -102,12 +50,6 @@
         background-color: #fdcccc;
     }
 }
-
-.new-product-btn{
-    font-size: 16px;
-    max-width: 100px;
-}
-
 ::ng-deep{
     .p-datatable-wrapper{
         font-size: 16px;
@@ -117,16 +59,7 @@
             border: 0 !important;
             border-bottom: 1px solid #dee2e6 !important; 
         }
-    }
-    p-table{
-        width: 100%;
-    }
-
-    .p-dialog-title{
-        font-size: 18px !important;
-    }
-    .p-dialog-content{
-        overflow-x: hidden;
+        
     }
     .p-dropdown{
         width: 100%;
@@ -139,28 +72,6 @@
     .p-dropdown-item{
         font-size: 1.6rem;
     }
-    .p-button.p-fileupload-choose{
-        width: 100%;
-        height: 41px;
-        max-height: 41px;
-      }
-    .p-button{
-    background: #FBA733;
-    border: 1px solid #FBA733;
-    
-    }
-    .p-button:hover{
-    background: #ffb959 !important;
-    border: 1px solid #FBA733 !important;
-    }
-    .p-button:active{
-    background: #ffb959 !important; 
-    border: 1px solid #FBA733 !important;
-    }
-    .p-button:focus{
-    background: #ffb959 !important;
-    border: 1px solid #FBA733 !important;
-    }
     .dropdown-menu.show{
         width: max-content;
         font-size: 16px;
@@ -171,20 +82,46 @@
     .pointer{
         cursor: pointer;
     }
-    .fa-xmark{
-        background-color: #df2626;
-        color: #fff;
-        font-size: 14px;
-        padding: 8px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
 }
-.edit-images-row{
-    margin: 10px 20px;
-    .single-image-row{
-        margin-bottom: 20px;
+.order-status-waiting{
+    color: #988512;
+    background-color: #f8ff93;
+}
+.order-status-pndg{
+    color: #98530c;
+    background-color: #ffe8d0;
+}
+.order-status-dlvrd{
+    background-color: #CCF0D1;
+    color: #006d0e;
+}
+.order-status-cncld{
+    color: #920000;
+    background-color: #fdcccc;
+}
+.order-show-details{
+    cursor: pointer;
+    color: #48919D;
+    font-size: 18px;
+    &:hover{
+        color: #5cb4c2;
     }
 }
 
-
+.user-info-item{
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.card{
+    box-shadow: rgb(72 145 157 / 25%) 0px 13px 27px -5px, rgb(72 145 157 / 86%) 0px 8px 16px -8px;
+}
+.card-title{
+    font-size: 2.3rem;
+    font-weight: 600;
+    letter-spacing: .8px;
+    text-transform: capitalize;
+}
+.prod-q,.prod-p{
+    font-size: 18px;
+}

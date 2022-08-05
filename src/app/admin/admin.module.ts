@@ -13,6 +13,8 @@ import { AdminFooterComponent } from './footer/footer.component';
 import { PrimeNgModule } from '../shared/modules/prime-ng.module';
 import { AdminProductsComponent } from './products/products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminOrdersComponent } from './orders/orders.component';
+import { AdminOrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule( {
@@ -20,9 +22,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		AdminHomeComponent,
         AdminInitComponent,
 		AdminAsideComponent,
+		AdminOrdersComponent,
 		AdminNavComponent,
 		AdminFooterComponent,
-		AdminProductsComponent
+		AdminProductsComponent,
+		AdminOrderDetailsComponent
 	],
 
 	imports: [

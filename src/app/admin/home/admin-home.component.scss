@@ -115,4 +115,15 @@
         }
         
     }
+    .dropdown-menu.show{
+        width: max-content;
+        font-size: 16px;
+    }
+    .dropdown-toggle::after {
+        display:none;
+    }
+    .pointer{
+        cursor: pointer;
+    }
 }
+

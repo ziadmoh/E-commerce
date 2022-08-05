@@ -114,6 +114,8 @@ export class AuthService {
             this.toast.error(res.status,res.message)
           }
           
+        },err=>{
+          this.toast.error('Server Error Occured!')
         })
       );
   }

@@ -1,0 +1,49 @@
+<div *ngIf="order.user">
+    <h1 class="section-header">Order for {{order.user.fullName}}</h1>
+    <div class="container-fluid dashboard-container">
+        <div class="orders-row user-info my-4 p-5">
+            <h3 class="mb-4 orders-row-header">Client info</h3>
+            <div class="row">
+                <div class="col-md-8 d-flex flex-column">
+                    <span class="my-4 user-info-item"><i class="fa-solid fa-user mx-3"></i> {{order.user.fullName}}</span>
+                    <span class="my-4 user-info-item"><i class="fa-solid fa-phone mx-3"></i> {{order.contactPhone}}</span>
+                    <span class="my-4 user-info-item" *ngIf="order.additionalPhone"><i class="fa-solid fa-phone mx-3"></i> {{order.additionalPhone}} <small>(additional)</small> </span>
+                    <span class="my-4 user-info-item"><i class="fa-solid fa-location-dot mx-3"></i> {{order.deliveryLocation}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="orders-row products-info my-4 p-5">
+            <h3 class="mb-4 orders-row-header">Order info</h3>
+            <div class="row">
+                <div class="col-md-12 d-flex flex-column">
+                    <span class="my-4 user-info-item"><i class="fa-solid fa-sack-dollar mx-3"></i> Total : <strong>EGP {{order.totalPrice}}</strong></span>
+                    <span class="my-4 user-info-item" *ngIf="order.promoCode"><i class="fa-solid fa-percent mx-3"></i> Promo code : <strong>{{order.promoCode}}</strong></span>
+                    <span class="my-4 user-info-item" *ngIf="!order.promoCode"><i class="fa-solid fa-x mx-3"></i>  No promo code</span>
+                    <span class="my-4 user-info-item" ><i class="fa-solid fa-calendar-day mx-3"></i>  Ordered at: <strong> {{order.creationDate | date:'dd-MM-YYYY' }}</strong></span>
+                    <span class="my-4 user-info-item" ><i class="fa-solid fa-flag mx-3"></i>  Status: <strong> {{order.orderStatus }}</strong></span>
+                    <span class="my-4 user-info-item" ><i class="fa-brands fa-product-hunt mx-3"></i>  Products:  </span>
+                    <span class="row">
+                        <div class="col-md-3 my-2" *ngFor="let product of order.products">
+                            <div class="card p-4 text-center">
+                                <h5 class="card-title">{{product.productName}}</h5>
+                                <div class="py-3">
+                                    <span class="prod-q">Quantity : <strong >{{product.quantity}}</strong></span><br>
+                                    <span class="prod-p">Price : <strong >EGP {{product.price}}</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                    </div>
+            </div>
+        </div>
+        <div class="orders-row childre-info my-4 p-5">
+            <h3 class="mb-4 orders-row-header">Children info</h3>
+            
+        </div>
+    </div>
+</div>
+<div *ngIf="!order.user && loaded">
+    <h1 class="section-header">Invalid order id</h1>
+</div>
+
+

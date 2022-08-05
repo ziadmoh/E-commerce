@@ -94,7 +94,7 @@ export class AdminHomeComponent implements OnInit {
 		
 	}
 
-	changeOrderstatus(order,index){
+	changeOrderstatus(order){
 		if(order && order.orderStatus == 'waiting'){
 			this.orderService.changeOrderStatus('confirmorder',order.orderId).subscribe((res:any) =>{
 				if(res && res.message == "order is confirmed succsesfully" ){
@@ -119,6 +119,8 @@ export class AdminHomeComponent implements OnInit {
 					this.getLastOrders()
 				}
 			})
+		} else{
+			
 		}
 	}
 }

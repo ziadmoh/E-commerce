@@ -64,7 +64,6 @@
                         <th>Total Price</th>
                         <th>Date</th>
                         <th>Status</th>
-                        <th>Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-order let-columns="columns" let-rowIndex="rowIndex">
@@ -79,21 +78,28 @@
                         <td><span class="p-column-title">Total Price</span>{{order.totalPrice
                             | currency:'EGP '}}</td>
                         <td><span class="p-column-title">Date</span>{{order.creationDate | date:'shortDate'}}</td>
-                        <td ><span class="p-column-title">Status</span><span
+                        <td class="last-cell"><span class="p-column-title">Status</span><span
                             class="order-status"
-                            [ngClass]="{
-                                'order-status-waiting':order.status == 'waiting',
-                                'order-status-pndg': order.status == 'pending',
-                                'order-status-dlvrd':order.status ==
-                                'delivered',
-                                'order-status-cncld':order.status == 'cancelled'
-                            }">{{order.orderStatus}}</span></td>
-                        <td class="last-cell">
+                            > {{order.orderStatus}}
+                            <div *ngIf="order.orderStatus !== 'delivered' " ngbDropdown class="d-inline-block">
+                                <span class="pointer"  ngbDropdownToggle>
+                                    
+                                <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                  <button ngbDropdownItem (click)="changeOrderstatus(order)" *ngIf="order.orderStatus == 'waiting'">Confirmed</button>
+                                  <button ngbDropdownItem (click)="changeOrderstatus(order)" *ngIf="order.orderStatus == 'confirmed'">in printing</button>
+                                  <button ngbDropdownItem (click)="changeOrderstatus(order)" *ngIf="order.orderStatus == 'inPrinting'">Out for delivery</button>
+                                  <button ngbDropdownItem (click)="changeOrderstatus(order)" *ngIf="order.orderStatus == 'outForDelivery'">delivered</button>
+                                </div>
+                              </div>
+                        </span></td>
+                        <!-- <td >
                             <button class="btn btn-primary change-status py-2"
                             [disabled]="order.orderStatus == 'delivered' " (click)="changeOrderstatus(order,rowIndex)">
                                 {{getNewStatus(order.orderStatus)}}
                             </button>
-                        </td>
+                        </td> -->
                     </tr>
                 </ng-template>
             </p-table>
