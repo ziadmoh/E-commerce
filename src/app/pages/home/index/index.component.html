@@ -142,59 +142,7 @@
         </div>
     </div>
 
-    <app-ecommerce-special-collection [products]="products" [loaded]="loaded"></app-ecommerce-special-collection>
-
-    <div class="deal-container pt-5 pb-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9 col-md-8" contentAnim aniName="fadeInRightShorter">
-                    <div class="banner deal-banner">
-                        <div class="deal-content">
-                            <h4 class="font-weight-normal text-primary">Limited Quantities</h4>
-                            <h2 class="text-secondary-dark">Deal Of The Day</h2>
-
-                            <h3 class="product-title"><a routerLink="/shop/sidebar/3cols">POINT</a></h3>
-
-                            <div class="product-price">
-                                <span class="new-price">$149.00</span>
-                                <span class="old-price">Was $240.00</span>
-                            </div>
-
-                            <app-ecommerce-count-down [wrap]="'deal-countdown'" until="+10h" format="HMS" [labelsShort]="true">
-                            </app-ecommerce-count-down>
-
-                            <a routerLink="/shop/sidebar/3cols" class="btn btn-outline-dark">
-                                <span>Shop Now</span><i class="icon-long-arrow-right"></i>
-                            </a>
-                        </div>
-                        <figure>
-                            <img src="assets/images/home/banners/abimg-1.png" alt="Banner" width="423" height="558"
-                                style="background-color: #fff;" />
-                        </figure>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4" contentAnim aniName="fadeInLeftShorter">
-                    <div class="banner">
-                        <a href="/shop/sidebar/3cols" class="h-100">
-                            <img src="assets/images/home/banners/2-2.jpg" alt="Banner" width="280" height="500"
-                                style="background-color: #131b34;" class="h-100" />
-                        </a>
-
-                        <div class="banner-content banner-content-top">
-                            <h4 class="banner-subtitle text-white">The Best Choice</h4>
-                            <h3 class="banner-title text-white">Indigo<br>bed linen</h3>
-                            <div class="banner-text text-white font-weight-normal">$49.99</div>
-                            <a href="/shop/sidebar/3cols" class="btn btn-outline-white banner-link">Shop Now<i
-                                    class="icon-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <app-ecommerce-top-collection [products]="products | attrFilter : 'top'" [loaded]="loaded"></app-ecommerce-top-collection>
+    <app-ecommerce-special-collection ></app-ecommerce-special-collection>
 
     <div class="container">
         <hr>
@@ -202,15 +150,14 @@
 
     <div class="icon-boxes-container">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-sm-6 col-lg-3" contentAnim aniName="fadeInLeftShorter">
                     <div class="icon-box icon-box-side">
                         <span class="icon-box-icon text-dark">
-                            <i class="icon-rocket"></i>
+                            <i class="fa-solid fa-rocket" style="color:#DC4F3F"></i>
                         </span>
                         <div class="icon-box-content">
-                            <h3 class="icon-box-title">Free Shipping</h3>
-                            <p>orders $50 or more</p>
+                            <h3 class="icon-box-title">Fast Delivery</h3>
                         </div>
                     </div>
                 </div>
@@ -218,12 +165,11 @@
                 <div class="col-sm-6 col-lg-3" contentAnim aniName="fadeInLeftShorter">
                     <div class="icon-box icon-box-side">
                         <span class="icon-box-icon text-dark">
-                            <i class="icon-rotate-left"></i>
+                            <i class="fa-solid fa-user-check" style="color:#943B3B"></i>
                         </span>
 
                         <div class="icon-box-content">
-                            <h3 class="icon-box-title">Free Returns</h3>
-                            <p>within 30 days</p>
+                            <h3 class="icon-box-title">Customized Products</h3>
                         </div>
                     </div>
                 </div>
@@ -231,12 +177,11 @@
                 <div class="col-sm-6 col-lg-3" contentAnim aniName="fadeInRightShorter">
                     <div class="icon-box icon-box-side">
                         <span class="icon-box-icon text-dark">
-                            <i class="icon-info-circle"></i>
+                            <i class="fa-solid fa-tags" style="color:#FBA734"></i>
                         </span>
 
                         <div class="icon-box-content">
-                            <h3 class="icon-box-title">Get 20% Off 1 Item</h3>
-                            <p>When you sign up</p>
+                            <h3 class="icon-box-title">Ongoing offers</h3>
                         </div>
                     </div>
                 </div>
@@ -244,12 +189,11 @@
                 <div class="col-sm-6 col-lg-3" contentAnim aniName="fadeInRightShorter">
                     <div class="icon-box icon-box-side">
                         <span class="icon-box-icon text-dark">
-                            <i class="icon-life-ring"></i>
+                            <i class="fa-solid fa-truck" style="color:#49919D"></i>
                         </span>
 
                         <div class="icon-box-content">
-                            <h3 class="icon-box-title">We Support</h3>
-                            <p>24/7 amazing services</p>
+                            <h3 class="icon-box-title">Deliver Anywhere</h3>
                         </div>
                     </div>
                 </div>

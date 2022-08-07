@@ -82,6 +82,12 @@
     .pointer{
         cursor: pointer;
     }
+    .p-dialog-title{
+        font-size: 18px !important;
+    }
+    .p-dialog-content{
+        overflow-x: hidden;
+    }
 }
 .order-status-waiting{
     color: #988512;
@@ -107,25 +113,7 @@
         color: #5cb4c2;
     }
 }
-
-.user-info-item{
+.new-user-btn{
     font-size: 16px;
-    text-transform: capitalize;
-    font-weight: 500;
-}
-.card{
-    box-shadow: rgb(72 145 157 / 25%) 0px 13px 27px -5px, rgb(72 145 157 / 86%) 0px 8px 16px -8px;
-}
-.card-title{
-    font-size: 2.3rem;
-    font-weight: 600;
-    letter-spacing: .8px;
-    text-transform: capitalize;
-}
-.prod-q,.prod-p{
-    font-size: 18px;
-}
-.products-label{
-    font-weight: 800;
-    font-size: 20px;
+    max-width: 100px;
 }

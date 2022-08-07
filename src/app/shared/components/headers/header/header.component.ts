@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { UtilsService } from 'src/app/shared/services/utils.service';
@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit {
 
 	isLoggedIn: boolean = false;
 
+	isAdmin:boolean = false
+
 	constructor(
 		public activeRoute: ActivatedRoute, 
 		public utilsService: UtilsService, 
@@ -29,6 +31,11 @@ export class HeaderComponent implements OnInit {
 	ngOnInit(): void {
 
 		this.isLoggedIn = this.authService.isLoggedIn;
+		this.authService.newUser.subscribe(user =>{
+			if(user && user.type == 'admin'){
+				this.isAdmin = true
+			}
+		})
 	}
 
 	showLoginModal(event: Event): void {
@@ -37,6 +44,7 @@ export class HeaderComponent implements OnInit {
 	}
 
 	logOut(){
+		//this.authService.newUser.unsubscribe()
 		this.authService.logout();
 	}
 }

@@ -26,15 +26,15 @@ export class IndexComponent implements OnInit {
 		private modalService: ModalService,
 		private productService:ProductService,
 		private modalSerice:ModalService) {
-
-		this.apiService.fetchHomeData().subscribe(result => {
-			this.products = result.products;
-			this.loaded = true;
-		})
 	}
 
 	ngOnInit(): void {
-		this.productService.getAllProducts().subscribe()
+		this.productService.getAllProducts().subscribe(res =>{
+			if(res && res.products){
+				this.products = res.products;
+				this.loaded = true;
+			}
+		})
 		if(this.modalSerice.isLoginModalRequired == true){
 			this.modalSerice.showLoginModal();
 		}

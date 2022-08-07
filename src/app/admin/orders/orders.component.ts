@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductService } from 'src/app/shared/services/product.service';
@@ -30,7 +31,8 @@ export class AdminOrdersComponent implements OnInit {
 
 	constructor(private authService:AuthService,
 		private orderService:OrderService,
-		public productService:ProductService) { }
+		public productService:ProductService,
+		private toast:ToastrService) { }
 
 	ngOnInit(): void { 
 		this.getAllOrders()
@@ -166,26 +168,26 @@ export class AdminOrdersComponent implements OnInit {
 	changeOrderstatus(order){
 		if(order && order.orderStatus == 'waiting'){
 			this.orderService.changeOrderStatus('confirmorder',order.orderId).subscribe((res:any) =>{
-				if(res && res.message == "order is confirmed succsesfully" ){
+				if(res && res.order ){
 					
 					this.checkSelectedFilter()
 				}
 			})
 		} else if(order && order.orderStatus == 'confirmed'){
 			this.orderService.changeOrderStatus('printingorder',order.orderId).subscribe((res:any) =>{
-				if(res && res.message == "order is now in printing "){
+				if(res && res.order){
 					this.checkSelectedFilter()
 				}
 			})
 		} else if(order && order.orderStatus == 'inPrinting'){
 			this.orderService.changeOrderStatus('outfordeliveryorder',order.orderId).subscribe((res:any) =>{
-				if(res && res.message == "order is now Out for delivery"){
+				if(res && res.order){
 					this.checkSelectedFilter()
 				}
 			})
 		} else if(order && order.orderStatus == 'outForDelivery'){
 			this.orderService.changeOrderStatus('orderdelivered',order.orderId).subscribe((res:any) =>{
-				if(res && res.message == "order is now delivered"){
+				if(res && res.order){
 					this.checkSelectedFilter()
 				}
 			})
@@ -193,6 +195,7 @@ export class AdminOrdersComponent implements OnInit {
 			
 		}
 	}
+
 
 
 }

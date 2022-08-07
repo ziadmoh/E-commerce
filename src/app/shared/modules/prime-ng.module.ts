@@ -11,6 +11,8 @@ import {PaginatorModule} from 'primeng/paginator';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [],
@@ -25,7 +27,9 @@ import {DropdownModule} from 'primeng/dropdown';
     PaginatorModule,
     DynamicDialogModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    InputNumberModule,
+    CalendarModule
   ],
 })
 export class PrimeNgModule {}

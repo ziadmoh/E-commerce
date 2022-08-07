@@ -42,12 +42,12 @@ export class LoginModalComponent implements OnInit {
 
 	initSignUp(){
 		this.signupForm = new FormGroup({
-			'fullName': new FormControl(null,[Validators.required]),
-			'userAddress': new FormControl(null,[Validators.required]),
-			'phone': new FormControl(null,Validators.required),
-			'userName': new FormControl(null,Validators.required),
-			'email':new FormControl(null,Validators.required),
-			'password':new FormControl(null,Validators.required)
+			fullName: new FormControl(null,[Validators.required]),
+			userName: new FormControl(null,Validators.required),
+			email:new FormControl(null,[Validators.required,Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+			password:new FormControl(null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
+			phone: new FormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
+			userAddress: new FormControl(null),
 		})
 	}
 
@@ -78,9 +78,18 @@ export class LoginModalComponent implements OnInit {
 	}
 
 	onSubmitSignup(){
-		this.inAuthService.userSignup(this.signupForm.value).subscribe(res =>{
-		//	console.log(res)
-		})
+		if(this.signupForm.valid){
+			this.inAuthService.userSignup(this.signupForm.value).subscribe(res =>{
+				if(res && res.user){
+					this.isLoggedin = true;
+				}else if (res && res.message){
+					this.toast.error(res.message)
+				}
+			})
+		}else{
+			this.toast.error('Please complete the missing data')
+		}
+		
 	}
 
 	onSubmitLogin(event:Event){

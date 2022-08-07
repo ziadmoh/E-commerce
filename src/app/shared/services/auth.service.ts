@@ -36,25 +36,50 @@ export class AuthService {
 
 /// Sign up ///////////////////////////////////////////////////////////////////////////////////
 
-  userSignup(userData:object) {
+  userSignup(
+    form:{
+      fullName,
+      userName,
+      email,
+      password,
+      type,
+      phone,
+      userAddress?,
+  }
+  ) {
+        //debugger
+      //  console.log(form)
+        let submittedForm = {
+          fullName:form.fullName,
+          userName:form.userName,
+          email:form.email,
+          password:form.password,
+          type:form.type,
+          phone:form.phone,
+      }
+      if(form.userAddress){
+          submittedForm['address']= form.userAddress
+      }
+
   
-    return this.http
-      .post ('http://localhost:3000/signup', {...userData},
-      {headers:{'Content-Type': 'application/json'} }
-      ,
-      )
-      .pipe( 
-        //catchError(this.handleError),
-        tap((resData) => {
-          console.log(resData);
-        //   this.handleUserAuth(
-        //     resData.user,
-        //     // resData.User_Token,
-        //     // resData.User_Type,
-        //     // resData.User_Name
-        //   );
-        })
-      );
+      return this.http
+        .post ('http://localhost:3000/signup', submittedForm,
+        {headers:{'Content-Type': 'application/json'} }
+        ,
+        )
+        .pipe( 
+          //catchError(this.handleError),
+          tap((resData:any) => {
+            if(resData && resData.user){
+                let credentials = {
+                  userName:submittedForm.userName,
+                  password:submittedForm.password
+                }
+                 this.login(credentials).subscribe()
+            }
+         
+          })
+        );
   }
 /// Handle Auth ///////////////////////////////////////////////////////////////////////
   private handleUserAuth(
@@ -78,6 +103,7 @@ export class AuthService {
     localStorage.setItem(
       'user', JSON.stringify(userNew)
     );
+
 
     this.closeLoginModal();
 

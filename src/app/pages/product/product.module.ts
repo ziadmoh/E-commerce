@@ -19,6 +19,7 @@ import { InfoOneComponent } from './shared/info-tabs/info-one/info-one.component
 import { RelatedProductsOneComponent } from './shared/related-products/related-products-one/related-products-one.component';
 import { RelatedProductsTwoComponent } from './shared/related-products/related-products-two/related-products-two.component';
 import { ToggleSidebarComponent } from './shared/toggle-sidebar/toggle-sidebar.component';
+import { PrimeNgModule } from 'src/app/shared/modules/prime-ng.module';
 
 @NgModule({
 	declarations: [
@@ -46,6 +47,7 @@ import { ToggleSidebarComponent } from './shared/toggle-sidebar/toggle-sidebar.c
 		NgbModule,
 		OwlModule,
 		LightboxModule,
+		PrimeNgModule
 	],
 
 	exports: [],

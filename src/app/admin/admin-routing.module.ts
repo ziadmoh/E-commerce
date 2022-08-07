@@ -6,6 +6,8 @@ import { AdminHomeComponent } from './home/admin-home.component';
 import { AdminOrdersComponent } from './orders/orders.component';
 import { AdminProductsComponent } from './products/products.component';
 import { AdminOrderDetailsComponent } from './order-details/order-details.component';
+import { AdminUsersComponent } from './users/users.component';
+import { AdminPromocodeComponent } from './promocode/promocode.component';
 
 const routes: Routes = [
     {
@@ -35,6 +37,16 @@ const routes: Routes = [
             {
                 path: 'products',
                 component: AdminProductsComponent,
+                
+            },
+            {
+                path: 'users',
+                component: AdminUsersComponent,
+                
+            },
+            {
+                path: 'promocodes',
+                component: AdminPromocodeComponent,
                 
             },
         ]

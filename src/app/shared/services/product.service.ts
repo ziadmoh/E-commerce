@@ -40,6 +40,26 @@ export class ProductService {
             }
         ))
     }
+
+	getAllPromoCodes(){
+        return this.http.get(environment.SERVER_URL +'allpromocodes' )
+    }
+
+
+    addPromoCode(
+        promoCode,
+        discountRatio,
+        startDate,
+        dueDate
+    ){
+        return this.http.post(environment.SERVER_URL +'createpromocode',{
+            promoCode:promoCode,
+            discountRatio:discountRatio,
+            startDate:startDate,
+            dueDate:dueDate,
+
+        } )
+    }
     
 
 	getBoxProducts(){

@@ -500,15 +500,15 @@
 .rating-stars {
 	display: flex;
 	position: relative;
-	height: 14px;
-	font-size: 1.4rem;
+	height: 42px;
+	font-size:4.2rem;
 	margin: 0 0 1.1rem;
 
 	a {
 		color: #999;
 		text-indent: -9999px;
 		letter-spacing: 1px;
-		width: 16px;
+		width: 48px;
 		letter-spacing: .2em;
 
 		&:hover {
@@ -520,7 +520,7 @@
 		content: '';
 		position: absolute;
 		left: 0;
-		height: 14px;
+		height: 42px;
 		line-height: 1;
         font-family: 'app-ecommerce';
 		text-indent: 0;

@@ -10,7 +10,8 @@
                 </div>
             </div>
 
-            <p-table responsiveLayout="stack" [value]="orders" [responsive]="true">
+            <p-table responsiveLayout="stack" [value]="orders" [responsive]="true"
+            [paginator]="true" [rows]="10" [totalRecords]="orders.length">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th>User Name </th>
@@ -28,7 +29,7 @@
                         <td><span class="p-column-title">Phone</span>{{order.contactPhone}}</td>
                         <td><span class="p-column-title">Product</span>
                             <span class="text-capitalize" *ngFor="let product of order.products;let i =index">
-                                {{product.productName}}  <small>x </small>  {{product.quantity}}
+                                {{product.productName}}  <span><small><strong>x</strong></small><strong>{{product.quantity}}</strong></span>
                                 <span *ngIf="i <order.products.length-1">, <br> </span>
                             </span></td>
                         <td><span class="p-column-title">Total Price</span>{{order.totalPrice

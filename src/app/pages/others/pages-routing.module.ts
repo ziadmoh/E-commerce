@@ -12,37 +12,13 @@ import { ContactTwoPageComponent } from './contact-two/contact-two.component';
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'about',
+        redirectTo: '404',
         pathMatch: 'full'
-    },
-    {
-        path: 'about',
-        component: AboutOneComponent
-    },
-    {
-        path: 'about-2',
-        component: AboutTwoPageComponent
     },
     {
         path: '404',
         component: PageNotFoundComponent
     },
-    {
-        path: 'login',
-        component: LoginPageComponent
-    },
-    {
-        path: 'faq',
-        component: FaqsPageComponent
-    },
-    {
-        path: 'contact',
-        component: ContactOnePageComponent
-    },
-    {
-        path: 'contact-2',
-        component: ContactTwoPageComponent
-    }
 ];
 
 @NgModule({

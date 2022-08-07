@@ -124,7 +124,7 @@ export class ChildDataModalComponent implements OnInit {
 					forkJoin(httpRequests).subscribe((res:any) =>{
 						let reArr = []
 						res.forEach(single =>{
-							if(single.message == "orderItem info added successfully"){
+							if(single && single.orderIteminfo){
 								reArr.push('valid')
 							}
 						})
@@ -187,7 +187,7 @@ export class ChildDataModalComponent implements OnInit {
 						console.log(res)
 						let reArr = []
 						res.forEach(single =>{
-							if(single.message == "orderItem info Updated successfully"){
+							if(single && (single.orderIteminfo || single.orderItem )){
 								reArr.push('valid')
 							}
 						})

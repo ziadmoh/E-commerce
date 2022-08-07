@@ -15,11 +15,11 @@ export class AttrFilterPipe implements PipeTransform {
 				return true;
 			}
 
-			if ( attr === 'sale' && item.sale_price ) {
+			if ( attr === 'sale' && item.oldPrice ) {
 				return true;
 			}
 
-			if ( attr === 'rated' && item.ratings > 3 ) {
+			if ( attr === 'rated' && item.productRate > 3 ) {
 				return true;
 			}
 

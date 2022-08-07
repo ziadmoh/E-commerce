@@ -51,9 +51,8 @@
                             </div>
                             
                             <label>Street address *</label>
-                            <input formControlName="deliveryLocation1" type="text" class="form-control" name="street1" placeholder="House number and Street name" >
-                            <input formControlName="deliveryLocation2" type="text" class="form-control" name="street2" placeholder="Appartments, suite, unit etc ..."
-                                >
+                            <textarea formControlName="deliveryLocation1" rows="6" class="form-control" placeholder="House number, Street name, City"></textarea>
+                           
                                 <small [style.visibility]=" !checkOutForm.get('deliveryLocation1').valid && checkOutForm.get('deliveryLocation1').touched ? 'visible': 'hidden'" 
                                 class="text-danger">This field is required</small>
 

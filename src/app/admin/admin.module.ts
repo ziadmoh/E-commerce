@@ -15,6 +15,8 @@ import { AdminProductsComponent } from './products/products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminOrdersComponent } from './orders/orders.component';
 import { AdminOrderDetailsComponent } from './order-details/order-details.component';
+import { AdminUsersComponent } from './users/users.component';
+import { AdminPromocodeComponent } from './promocode/promocode.component';
 
 
 @NgModule( {
@@ -26,7 +28,9 @@ import { AdminOrderDetailsComponent } from './order-details/order-details.compon
 		AdminNavComponent,
 		AdminFooterComponent,
 		AdminProductsComponent,
-		AdminOrderDetailsComponent
+		AdminOrderDetailsComponent,
+		AdminUsersComponent,
+		AdminPromocodeComponent
 	],
 
 	imports: [

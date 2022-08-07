@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/shared/classes/product';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { ModalService } from 'src/app/shared/services/modal.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
 	selector: 'product-info-one',
@@ -11,7 +15,12 @@ export class InfoOneComponent implements OnInit {
 
 	@Input() product: Product;
 
-	constructor() { }
+	score:any = 1
+
+	constructor(private modalService:ModalService,
+		private authService:AuthService,
+		private productService:ProductService,
+		private toast:ToastrService) { }
 
 	ngOnInit(): void {
 	}
@@ -24,5 +33,21 @@ export class InfoOneComponent implements OnInit {
 		}
 
 		event.currentTarget.classList.add('active');
+	}
+
+	rateProduct(num){
+			this.authService.newUser.subscribe(user =>{
+				if(user && user.userId){
+					this.productService.rateProduct(user.userId,
+						this.product.productId,num).subscribe((res:any)=>{
+							if(res && res.message){
+								this.toast.info(res.message)
+							}
+						})
+				}else{
+					console.log('Hello')
+					this.modalService.showLoginModal();
+				}
+			})
 	}
 }

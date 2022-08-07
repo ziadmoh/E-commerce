@@ -10,11 +10,11 @@
 
             <div class="header-right">
 
-                <ul class="top-menu">
+                <ul class="top-menu py-3">
                     <li>
                         <a href="javascript:;">Links</a>
                         <ul>
-                            <li>
+                            <!-- <li>
                                 <div class="header-dropdown">
                                     <a href="javascript:;">English</a>
                                     <div class="header-menu">
@@ -24,7 +24,8 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
+                            <li *ngIf="isLoggedIn && isAdmin" class="login"><a routerLink="admin" >Admin dashboard</a></li>
                             <li *ngIf="!isLoggedIn" class="login"><a href="javascript:;" (click)="showLoginModal($event)">Sign in / Sign
                                     up</a></li>
                             <li *ngIf="isLoggedIn" class="login"><a href="javascript:;" (click)="logOut()">Log out</a></li>

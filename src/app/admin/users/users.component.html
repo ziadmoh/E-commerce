@@ -1,0 +1,124 @@
+<div class="d-flex flex-column flex-md-row justify-content-between mb-4">
+    <h1 class="section-header">Clients/Admins</h1>
+    <button class="btn btn-primary new-user-btn" 
+    (click)="openNewUserModal()">New User</button>
+</div>
+<div class="container-fluid dashboard-container">
+    <div class="row">
+        <div class="orders-row my-4 p-5" style="width: 100%;">
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <h3 class="mb-4 orders-row-header">{{selectedFilter.name}}</h3>
+                <div class="mx-5">
+                    <p-dropdown [options]="filerOptions" (onChange)="ChangeFiler($event)" [(ngModel)]="selectedFilter" placeholder="All users" optionLabel="name" [showClear]="false" optionDisabled="disabled"></p-dropdown>
+                </div>
+            </div>
+
+            <p-table [value]="users" responsiveLayout="stack" [responsive]="true" [paginator]="true" [rows]="10" [totalRecords]="users.length">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th>Full name</th>
+                        <th>User name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Join date</th>
+                        <th>Type</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-user let-columns="columns">
+                    <tr>
+                        <td><span class="p-column-title">Full name</span>{{user.fullName}}</td>
+                        <td><span class="p-column-title">User name</span>{{user.userName}}</td>
+                        <td><span class="p-column-title">Phone</span>{{user.phone}}</td>
+                        <td><span class="p-column-title" >Address</span>{{user.address ? user.address  :'-' }}</td>
+                        <td><span class="p-column-title">Join date</span>{{user.joinDate | date :'shortDate' }}</td>
+                        <td class="last-cell"><span class="p-column-title">Type</span>{{user.type}} </td>
+    
+    
+                     </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        In total there are {{users ? users.length : 0 }} users.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+    </div>
+</div>
+<p-dialog [blockScroll]="true" #createUserForm header="New user" [(visible)]="isModalVisible" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}" [draggable]="false"
+[maximizable]="true" [closeOnEscape]="true" [dismissableMask]="true" [modal]="true"
+> 
+    <form [formGroup]="newUserForm" >
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="newUserFullName">Full name*</label>
+                <input id="newUserFullName" type="text" 
+                formControlName="fullName" class="form-control">
+                <span [style.visibility]=" !newUserForm.get('fullName').valid && newUserForm.get('fullName').touched ? 'visible': 'hidden'" 
+                                    class="text-danger">This field is Required</span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="newUserName">User name*</label>
+                <input id="newUserName" type="text" formControlName="userName" class="form-control">
+                <span [style.visibility]=" !newUserForm.get('userName').valid && newUserForm.get('userName').touched ? 'visible': 'hidden'" 
+                                    class="text-danger">This field is Required</span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="newUserEmail">Email*</label>
+                <input id="newUserEmail" type="email" formControlName="email" class="form-control">
+                <span [style.visibility]=" !newUserForm.get('email').valid && newUserForm.get('email').touched ? 'visible': 'hidden'" 
+                                    class="text-danger">Please enter a valid email </span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="newUserPassword">Password*</label>
+                <input id="newUserPassword" type="password" formControlName="password" class="form-control">
+                <span [style.visibility]=" !newUserForm.get('password').valid && newUserForm.get('password').touched ? 'visible': 'hidden'" 
+                                    class="text-danger">Password must contain 8 characters at least, including 1 lowercase, 1 uppercase, numbers and sympol #?!@$%^&*- </span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="newUserPhone">Phone*</label>
+                <input id="newUserPhone" type="tel" formControlName="phone" class="form-control">
+                <span [style.visibility]=" !newUserForm.get('phone').valid && newUserForm.get('phone').touched ? 'visible': 'hidden'" 
+                                    class="text-danger">Please enter a valid phone</span>
+            </div>
+            <div class="form-group col-md-6 d-flex flex-column">
+                <label for="newUserType">Type*</label>
+                <p-dropdown id="newUserType" [autoZIndex]="true" [appendTo]="createUserForm" [options]="userTypes" 
+                formControlName="type" optionLabel="name" optionDisabled="disabled"></p-dropdown>
+                <span [style.visibility]=" !newUserForm.get('type').valid && newUserForm.get('type').touched ? 'visible': 'hidden'" 
+                                    class="text-danger">This field is Required</span>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="newUserAddress">Address </label>
+                <textarea id="newUserAddress" 
+                 formControlName="address" class="form-control" rows="6">
+                </textarea>
+            </div>
+            
+            
+            
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <div class="d-flex flex-row justify-content-center">
+            
+            <button class="btn btn-primary" (click)="addNewUser()">Add</button>
+        </div>
+    </ng-template>
+</p-dialog>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+
+
