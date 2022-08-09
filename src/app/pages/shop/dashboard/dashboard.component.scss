@@ -3,5 +3,23 @@
         .dashboard ngb-tabset .nav-tabs {
             display: none;
         }
+        .p-timeline-event-content	{
+            font-size: 14px;
+            padding: 0;
+        }
+        .p-timeline-event-separator{
+            min-height: 90px;
+        }
+        .p-timeline-event-opposite,.p-timeline-event-content{
+            padding: 0 !important;
+        }
     }
+}
+
+.order-row{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.active-status{
+    font-size: 15px;
+    text-transform: uppercase;
 }

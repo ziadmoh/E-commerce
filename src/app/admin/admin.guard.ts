@@ -21,23 +21,18 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     router: RouterStateSnapshot
   ): boolean | UrlTree | Promise<boolean | UrlTree> | Observable<boolean | UrlTree> {
+    return this.checkUserPermission()
+  }
+  checkUserPermission() {
     return this.authService.newUser.pipe(
       take(1),
       map(user => {
         const isAuth = !!user;
-        if (isAuth && user.type == 'admin') {
+        if (user && user.type == 'admin') {
           return true;
-        }else{
-          return this.router.createUrlTree(['/']);
         }
-        
-        
+        return this.router.createUrlTree(['/']);
       })
-      // tap(isAuth => {
-      //   if (!isAuth) {
-      //     this.router.navigate(['/auth']);
-      //   }
-      // })
     );
   }
 }

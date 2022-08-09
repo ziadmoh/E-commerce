@@ -19,6 +19,17 @@ export class DashboardComponent implements OnInit {
 		) {
 	}
 
+	userOrders = [];
+	isLoaded= false;
+
+	statusList = [
+		{status:'Waiting',value:'waiting',index:0},
+		{status:'Confirmed',value:'confirmed',index:1},
+		{status:'In printing',value:'inPrinting',index:2},
+		{status:'Out for delivery',value:'outForDelivery',index:3},
+		{status:'Deliverd',value:'deliverd',index:4}
+	]
+
 	ngOnInit(): void {
 		this.getUserOrders()
 	}
@@ -35,12 +46,13 @@ export class DashboardComponent implements OnInit {
 			if(user && user.userId){
 				this.newCartService.userSessionId.subscribe(sessionId=>{
 					if(sessionId){
-						this.orderService.getUserSessionOrders(user.userId,sessionId).subscribe((res:any) =>{
-							if(res && res.order && res.order.orderId){
-								this.orderService.getOrderinvoice(res.order.orderId).subscribe(order=>{
-									console.log(order)
-								})
+						this.orderService.getUserOrders(user.userId).subscribe((res:any) =>{
+							if(res && res.orders.length){
+								this.userOrders = this.sortData(res.orders)
+								this.getStatusColor(this.userOrders)
+								console.log(this.userOrders)
 							}
+							this.isLoaded = true
 						})
 					}
 				})
@@ -48,4 +60,29 @@ export class DashboardComponent implements OnInit {
 			}
 		})
 	}
+	logOut(){
+		this.authService.logout();
+	}
+
+	getStatusColor(orders:any[]){
+		orders.map((order) =>{
+			if(order.orderStatus == 'waiting'){
+				return order['activeColors'] = 1 
+			}else if(order.orderStatus == 'confirmed'){
+				return order['activeColors'] = 2 
+			}else if(order.orderStatus == 'inPrinting'){
+				return order['activeColors'] = 3 
+			}else if(order.orderStatus == 'outForDelivery'){
+				return order['activeColors'] = 4 
+			}else {
+				return order['activeColors'] = 5 
+			}
+		})
+	}
+
+	sortData(orders) {
+		return orders.sort((a, b) => {
+		  return <any>new Date(b.creationDate) - <any>new Date(a.creationDate);
+		});
+	  }
 }

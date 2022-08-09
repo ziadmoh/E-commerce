@@ -53,9 +53,23 @@
                               </div>
                         </span></td>
                         <td class="last-cell">
-                            <a [routerLink]="['/admin/orders/'+ order.orderId]">
-                                <i class="fa-solid fa-eye order-show-details"></i>
-                            </a>
+                            <div ngbDropdown class="d-inline-block">
+                                <span class="pointer"  ngbDropdownToggle>
+                                    
+                                <i class="fa-solid fa-ellipsis" ></i>
+                                </span>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <a ngbDropdownItem [routerLink]="['/admin/orders/'+ order.orderId]">
+                                         Order Details
+                                    </a>
+                                    <a ngbDropdownItem [routerLink]="['/admin/childreninfo/'+ order.session_id]">
+                                         Children
+                                    </a>
+                                
+                                </div>
+                              </div>
+
+                           
                         </td>
                     </tr>
                 </ng-template>

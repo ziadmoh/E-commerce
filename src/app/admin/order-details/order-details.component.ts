@@ -15,6 +15,9 @@ export class AdminOrderDetailsComponent implements OnInit {
 
 	order:any = {}
 
+
+	childrenInfo :any[] =[]
+
 	loaded:boolean = false
 
 	constructor(private authService:AuthService,
@@ -25,6 +28,7 @@ export class AdminOrderDetailsComponent implements OnInit {
 	ngOnInit(): void { 
 		
 		this.getOrderData()
+
 	}
 
 	getOrderData(){
@@ -33,6 +37,7 @@ export class AdminOrderDetailsComponent implements OnInit {
 			this.orderService.getOrderinvoice(params['orderId']).subscribe((res:any) =>{
 				if (res && res.order) {
 					this.order = res.order;
+					this.getChlidDate(this.order.session_id)
 					this.loaded = true
 				}else{
 					this.order = {}
@@ -40,7 +45,25 @@ export class AdminOrderDetailsComponent implements OnInit {
 				this.loaded = true
 			})
 		});
+	}
 
+
+	getChlidDate(sessionId){
+		this.orderService.getAllOrderChildrenInfo(sessionId).subscribe((res:any) =>{
+			if(res && res.sessionOrderItemsInfo){
+				this.childrenInfo = res.sessionOrderItemsInfo
+			}
+		})
+	}
+
+	downloadImg(child){
+		const link = document.createElement('a');
+		link.setAttribute('target', '_blank');
+		link.setAttribute('href', child.childPhoto);
+		link.setAttribute('download', child.childName);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
 	}
 
 

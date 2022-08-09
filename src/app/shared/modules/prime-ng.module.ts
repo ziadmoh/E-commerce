@@ -13,6 +13,8 @@ import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {CalendarModule} from 'primeng/calendar';
+import {TimelineModule} from 'primeng/timeline';
+import {CardModule} from 'primeng/card';
 
 @NgModule({
   declarations: [],
@@ -29,7 +31,9 @@ import {CalendarModule} from 'primeng/calendar';
     DialogModule,
     DropdownModule,
     InputNumberModule,
-    CalendarModule
+    CalendarModule,
+    TimelineModule,
+    CardModule
   ],
 })
 export class PrimeNgModule {}

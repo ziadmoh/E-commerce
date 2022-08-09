@@ -38,7 +38,24 @@
         </div>
         <div class="orders-row childre-info my-4 p-5">
             <h3 class="mb-4 orders-row-header">Children info</h3>
-            
+            <div class="row">
+                <div class="col-md-3 my-3" *ngFor="let child of childrenInfo; let i = index">
+                    <p-card [header]=" 'Child name : '+ child.childName" styleClass="p-card-shadow">
+                        <ng-template pTemplate="header">
+                            <img [alt]="child.childName" [src]="child.childPhoto">
+                        </ng-template>
+                            <h4 class="my-4">School : <strong> {{child.schoolName}}</strong> </h4>
+                            <h4 class="my-4">Favourite cartoon : <strong>{{child.favCartoon}}</strong> </h4>
+                            <h4 class="my-4">Parent phone : <strong>{{child.parentPhone}}</strong> </h4>
+                        <ng-template pTemplate="footer" >
+                            <div class="text-center">
+                                <button class="btn btn-primary" (click)="downloadImg(child)">Download Image</button>
+                            </div>
+                           
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
         </div>
     </div>
 </div>

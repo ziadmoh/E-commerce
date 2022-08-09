@@ -17,6 +17,7 @@ import { AdminOrdersComponent } from './orders/orders.component';
 import { AdminOrderDetailsComponent } from './order-details/order-details.component';
 import { AdminUsersComponent } from './users/users.component';
 import { AdminPromocodeComponent } from './promocode/promocode.component';
+import { AdminOrderChildrenComponent } from './order-children/order-children.component';
 
 
 @NgModule( {
@@ -30,7 +31,8 @@ import { AdminPromocodeComponent } from './promocode/promocode.component';
 		AdminProductsComponent,
 		AdminOrderDetailsComponent,
 		AdminUsersComponent,
-		AdminPromocodeComponent
+		AdminPromocodeComponent,
+		AdminOrderChildrenComponent
 	],
 
 	imports: [

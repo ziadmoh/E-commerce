@@ -154,6 +154,10 @@ export class OrderService {
 
     }
 
+    getUserOrders(userId){
+        return this.http.get(environment.SERVER_URL + 'userorders/'+userId)
+    }
+
 
 
 

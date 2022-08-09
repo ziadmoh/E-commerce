@@ -1,0 +1,50 @@
+.intro-slide{
+    align-items: flex-end !important;
+    .shop-now-btn{
+        margin-bottom: 35px;
+        
+    }
+    .shop-now-btn1{
+        background: #f11477;
+        color: #fff;
+        border: 1px solid #fff;
+        font-weight: 700;
+        letter-spacing: .6px;
+        &:hover{
+            opacity: .8;
+        }
+    }
+    .shop-now-btn2{
+        background: #ae1687;
+        color: #F3DB3D;
+        border: 1px solid #F3DB3D;
+        font-weight: 700;
+        letter-spacing: .6px;
+        &:hover{
+            opacity: .8;
+        }
+    }
+    .shop-now-btn3{
+        background: #FAB951;
+        color: #fff;
+        border: 1px solid #fff;
+        font-weight: 700;
+        letter-spacing: .6px;
+        &:hover{
+            opacity: .8;
+        }
+    }
+    .shop-now-btn4{
+        background: #A7F3FF;
+        color: #E46135;
+        border: 1px solid #E46135;
+        font-weight: 700;
+        letter-spacing: .6px;
+        &:hover{
+            opacity: .8;
+        }
+    }
+}
+.banner-content{
+    top: 70%;
+}
