@@ -44,17 +44,13 @@
                         </form>
                         <div class="form-choice">
                             <p class="text-center">or sign in with</p>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <a (click)="signInWithGoogle()" href="javascript:;" class="btn btn-login btn-g">
-                                        <i class="icon-google"></i>
-                                        Login With Google
-                                    </a>
+                            <div class="row justify-content-center align-items-center">
+                                <div class="mx-4">
+                                    <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button>
                                 </div>
-                                <div class="col-sm-6">
-                                    <a (click)="signInWithFB()" href="javascript:;" class="btn btn-login btn-f">
+                                <div class="mx-4">
+                                    <a (click)="signInWithFB()" href="javascript:;" class=" facebook-style">
                                         <i class="icon-facebook-f"></i>
-                                        Login With Facebook
                                     </a>
                                 </div>
                             </div>
@@ -127,19 +123,13 @@
                         </form>
                         <div class="form-choice">
                             <p class="text-center">or sign in with</p>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <a (click)="signInWithGoogle()" href="javascript:;" class="btn btn-login btn-g">
-                                        <i class="icon-google"></i>
-                                        Login With Google
-                                    </a>
-                                    <!-- <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button> -->
-
+                            <div class="row justify-content-center align-items-center">
+                                <div class="mx-4">
+                                    <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button>
                                 </div>
-                                <div class="col-sm-6">
-                                    <a (click)="signInWithFB()" href="javascript:;" class="btn btn-login  btn-f">
+                                <div class="mx-4">
+                                    <a (click)="signInWithFB()" href="javascript:;" class=" facebook-style">
                                         <i class="icon-facebook-f"></i>
-                                        Login With Facebook
                                     </a>
                                 </div>
                             </div>

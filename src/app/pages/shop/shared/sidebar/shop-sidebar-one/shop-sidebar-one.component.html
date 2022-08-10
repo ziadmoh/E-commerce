@@ -2,7 +2,7 @@
     <div [class.sidebar-filter-wrapper]="toggle">
         <div class="widget widget-clean">
             <label>Filters:</label>
-            <a [routerLink]="" class="sidebar-filter-clear" (click)="cleanAll()">Clean All</a>
+            <a routerLink="/shop/sidebar/3cols" class="sidebar-filter-clear" (click)="cleanAll()">Clean All</a>
         </div>
 
         <div class="widget widget-collapsible">
@@ -16,7 +16,7 @@
                 <div class="widget-body pt-0">
                     <div class="filter-items filter-items-count">
                         <div class="filter-item" *ngFor="let item of shopData.categories">
-                            <a [routerLink]="" [queryParams]="{category: item.slug}" routerLinkActive="active">{{
+                            <a routerLink="/shop/sidebar/3cols" [queryParams]="{category: item.slug}" routerLinkActive="active">{{
                                 item.name }}</a>
                             <span class="item-count">{{ item.count }}</span>
                         </div>
@@ -36,7 +36,7 @@
             <div class="collapse show" id="widget-3">
                 <div class="widget-body pt-0">
                     <div class="filter-colors">
-                        <a [routerLink]="" [queryParams]="{color: getUrlForAttrs('color', item.color_name), page: 1}"
+                        <a routerLink="/shop/sidebar/3cols" [queryParams]="{color: getUrlForAttrs('color', item.color_name), page: 1}"
                             queryParamsHandling="merge" [style.background-color]="item.color"
                             [class.selected]="containsAttrInUrl('color', item.color_name)"
                             *ngFor="let item of shopData.colors">

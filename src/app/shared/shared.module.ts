@@ -62,6 +62,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar'
 import { ProductModalComponent } from './components/modals/product-modal/product-modal.component';
+import { SocialLoginModule } from '@abacritt/angularx-social-login';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollY: true,
 
@@ -131,7 +132,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 		PrimeNgModule,
 		
 		//PerfectScrollbar
-		PerfectScrollbarModule
+		PerfectScrollbarModule,
+        SocialLoginModule
 	],
 
 	exports: [

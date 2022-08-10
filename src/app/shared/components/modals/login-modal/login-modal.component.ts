@@ -29,7 +29,16 @@ export class LoginModalComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.sAuthService.authState.subscribe((user) => {
+			console.log(user)
 			this.socialUser = user;
+			if(this.socialUser && this.socialUser.email){
+				this.inAuthService.socialSignup({
+					first_name:this.socialUser.firstName,
+					last_name:this.socialUser.lastName,
+					email:this.socialUser.email,
+					name:this.socialUser.name,
+				}).subscribe()
+			}	
 			this.isLoggedin = user? true:false ;
 		});
 
@@ -59,7 +68,7 @@ export class LoginModalComponent implements OnInit {
 	}
 
 	signInWithFB(): void {
-		this.sAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+		this.sAuthService.signIn(FacebookLoginProvider.PROVIDER_ID)
 	}
 
 	googleLoginOptions = {
@@ -70,7 +79,7 @@ export class LoginModalComponent implements OnInit {
 
 
 	signInWithGoogle(): void {
-		this.sAuthService.signIn(GoogleLoginProvider.PROVIDER_ID,this.googleLoginOptions);
+		this.sAuthService.signIn(GoogleLoginProvider.PROVIDER_ID,this.googleLoginOptions)
 	}
 
 	signOut(): void {

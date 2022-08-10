@@ -188,6 +188,51 @@ export class AuthService {
 //     // }, expirationDuration);
 //   }
 
+socialSignup(
+  form:{
+    first_name,
+    last_name,
+    email,
+    name,
+}
+) {
+      //debugger
+    //  console.log(form)
+      let submittedForm = {
+        first_name:form.first_name,
+        last_name:form.last_name,
+        email:form.email,
+        name:form.name,
+    }
+
+    return this.http
+      .post ('http://localhost:3000/socialsignup', submittedForm,
+      {headers:{'Content-Type': 'application/json'} }
+      ,
+      )
+      .pipe( 
+        //catchError(this.handleError),
+        tap((resData:any) => {
+            if(resData && resData.user){
+              this.isLoggedIn = true;
+              this.handleUserAuth(
+                resData.user,
+                resData.user.token
+              );
+            }
+          
+          // if(resData && resData.user){
+          //     let credentials = {
+          //       userName:submittedForm.userName,
+          //       password:submittedForm.password
+          //     }
+          //      this.login(credentials).subscribe()
+          // }
+       
+        })
+      );
+}
+
   
 
 
