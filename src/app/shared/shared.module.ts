@@ -71,122 +71,98 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 
 @NgModule({
-	declarations: [
-		// header
-		CartMenuComponent,
-		CompareMenuComponent,
-		CategoryMenuComponent,
-		HeaderSearchComponent,
-		MobileButtonComponent,
-		MobileMenuComponent,
-
-		HeaderComponent,
-		FooterComponent,
-
-		// product
-		ProductNineComponent,
-		ProductElevenComponent,
-
-		// single-use components
-		BreadcrumbComponent,
-		PageHeaderComponent,
-		QuickViewComponent,
-		QuickViewTwoComponent,
-		LoginModalComponent,
-		VideoModalComponent,
-		QuantityInputComponent,
-		CountDownComponent,
-		AccordionComponent,
-		CardComponent,
-		PaginationComponent,
-		IsotopeGridComponent,
-		ImageComponent,
-		ChildDataModalComponent,
-		ProductModalComponent,
-
-		// directives
-		BgParallaxDirective,
-		TabClickDirective,
-		ProductHoverDirective,
-		ContentAnimDirective,
-
-		// pipes
-		CatFilterPipe,
-		AttrFilterPipe,
-		SafeContentPipe,
-		CountDownComponent,
-
-		CountToComponent,
-
-	],
-
-	imports: [
-		CommonModule,
-		RouterModule,
-		NgbModule,
-		TranslateModule,
-		OwlModule,
-		LazyLoadImageModule,
-		FormsModule,
-		ReactiveFormsModule,
-		PrimeNgModule,
-		
-		//PerfectScrollbar
-		PerfectScrollbarModule,
+    declarations: [
+        // header
+        CartMenuComponent,
+        CompareMenuComponent,
+        CategoryMenuComponent,
+        HeaderSearchComponent,
+        MobileButtonComponent,
+        MobileMenuComponent,
+        HeaderComponent,
+        FooterComponent,
+        // product
+        ProductNineComponent,
+        ProductElevenComponent,
+        // single-use components
+        BreadcrumbComponent,
+        PageHeaderComponent,
+        QuickViewComponent,
+        QuickViewTwoComponent,
+        LoginModalComponent,
+        VideoModalComponent,
+        QuantityInputComponent,
+        CountDownComponent,
+        AccordionComponent,
+        CardComponent,
+        PaginationComponent,
+        IsotopeGridComponent,
+        ImageComponent,
+        ChildDataModalComponent,
+        ProductModalComponent,
+        // directives
+        BgParallaxDirective,
+        TabClickDirective,
+        ProductHoverDirective,
+        ContentAnimDirective,
+        // pipes
+        CatFilterPipe,
+        AttrFilterPipe,
+        SafeContentPipe,
+        CountDownComponent,
+        CountToComponent,
+    ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        NgbModule,
+        TranslateModule,
+        OwlModule,
+        LazyLoadImageModule,
+        FormsModule,
+        ReactiveFormsModule,
+        PrimeNgModule,
+        //PerfectScrollbar
+        PerfectScrollbarModule,
         SocialLoginModule
-	],
-
-	exports: [
-		// header
-		HeaderComponent,
-
-		// mobile-menus
-		MobileMenuComponent,
-
-		// footer
-		FooterComponent,
-
-		// products
-		ProductNineComponent,
-		ProductElevenComponent,
-
-		// // single-use components
-		BreadcrumbComponent,
-		PageHeaderComponent,
-		CountDownComponent,
-		CountToComponent,
-		AccordionComponent,
-		CardComponent,
-		PaginationComponent,
-		QuantityInputComponent,
-		IsotopeGridComponent,
-		ImageComponent,
-
-		// directives
-		BgParallaxDirective,
-		TabClickDirective,
-		ProductHoverDirective,
-		ContentAnimDirective,
-
-		// pipes
-		CatFilterPipe,
-		AttrFilterPipe,
-		SafeContentPipe,
-
-	],
-
-	entryComponents: [
-		VideoModalComponent,
-		QuickViewComponent,
-		QuickViewTwoComponent,
-		LoginModalComponent
-	],
-	providers: [
-		{
-		  provide: PERFECT_SCROLLBAR_CONFIG,
-		  useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-		}
-	  ],
+    ],
+    exports: [
+        // header
+        HeaderComponent,
+        // mobile-menus
+        MobileMenuComponent,
+        // footer
+        FooterComponent,
+        // products
+        ProductNineComponent,
+        ProductElevenComponent,
+        // // single-use components
+        BreadcrumbComponent,
+        PageHeaderComponent,
+        CountDownComponent,
+        CountToComponent,
+        AccordionComponent,
+        CardComponent,
+        PaginationComponent,
+        QuantityInputComponent,
+        IsotopeGridComponent,
+        ImageComponent,
+        // directives
+        BgParallaxDirective,
+        TabClickDirective,
+        ProductHoverDirective,
+        ContentAnimDirective,
+        // pipes
+        CatFilterPipe,
+        AttrFilterPipe,
+        SafeContentPipe,
+    ],
+    providers: [
+        {
+            provide: PERFECT_SCROLLBAR_CONFIG,
+            useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+        }
+    ]
 })
 
 export class SharedModule { }
