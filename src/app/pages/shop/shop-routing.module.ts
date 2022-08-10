@@ -39,7 +39,7 @@ const routes: Routes = [
 	{
 		path: 'cart',
 		component: CartComponent,
-	//	canActivate:[CartGuard]
+		canActivate:[CartGuard]
 	},
 	{
 		path: 'checkout',

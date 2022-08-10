@@ -9,6 +9,7 @@ import { AdminOrderDetailsComponent } from './order-details/order-details.compon
 import { AdminUsersComponent } from './users/users.component';
 import { AdminPromocodeComponent } from './promocode/promocode.component';
 import { AdminOrderChildrenComponent } from './order-children/order-children.component';
+import { AdminDeliveryFeesComponent } from './delivery-fees/delivery-fees.component';
 
 const routes: Routes = [
     {
@@ -33,6 +34,11 @@ const routes: Routes = [
             {
                 path: 'orders/:orderId',
                 component: AdminOrderDetailsComponent,
+                
+            },
+            {
+                path: 'delivery-fees',
+                component: AdminDeliveryFeesComponent,
                 
             },
             {

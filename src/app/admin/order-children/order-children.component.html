@@ -4,7 +4,7 @@
        
         <div class="orders-row childre-info my-4 p-5">
             <div class="row">
-                <div class="col-md-3 my-3" *ngFor="let child of childrenInfo; let i = index">
+                <div class="col-md-4 my-3" *ngFor="let child of childrenInfo; let i = index">
                     <p-card [header]=" 'Child name : '+ child.childName" styleClass="p-card-shadow">
                         <ng-template pTemplate="header">
                             <img [alt]="child.childName" [src]="child.childPhoto">

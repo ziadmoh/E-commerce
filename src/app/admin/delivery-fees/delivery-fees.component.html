@@ -1,0 +1,92 @@
+<div class="d-flex flex-column flex-md-row justify-content-between mb-4">
+    <h1 class="section-header">Delivery fees</h1>
+    <button class="btn btn-primary new-product-btn" 
+    (click)="openFeeModal()">New</button>
+</div>
+<div class="container-fluid dashboard-container">
+    <div class="row products-row">
+        <p-table [value]="deliveryFees" responsiveLayout="stack" [responsive]="true" [paginator]="true" [rows]="10" [totalRecords]="deliveryFees.length">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th>Aree</th>
+                    <th>Fees</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-deliveryFee let-columns="columns">
+                <tr>
+                     <td><span class="p-column-title">Aree</span>{{deliveryFee.governorate}}</td>
+                    <td ><span class="p-column-title">Fees</span>{{deliveryFee.fee}}</td>
+                    <td class="last-cell">
+                        <div ngbDropdown class="d-inline-block">
+                            <span class="pointer"  ngbDropdownToggle>
+                                
+                            <i class="fa-solid fa-ellipsis" ></i>
+                            </span>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <button ngbDropdownItem (click)="openUpdateModal(deliveryFee)">Edit</button>
+                              <button ngbDropdownItem (click)="removeFee(deliveryFee)">Delete</button>
+                            </div>
+                          </div>
+                    </td>
+
+                 </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    In total there are {{deliveryFees ? deliveryFees.length : 0 }} Delivery fees.
+                </div>
+            </ng-template>
+        </p-table>
+
+    </div>
+
+    
+</div>
+
+<p-dialog [blockScroll]="true" header="New Fee" [(visible)]="isModalVisible" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}" [draggable]="false"
+[maximizable]="true" [closeOnEscape]="true" [dismissableMask]="true" [modal]="true"
+> 
+    <form [formGroup]="newFeeForm" >
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="newAreaName">Area*</label>
+                <input id="newAreaName" type="text" formControlName="area" class="form-control">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="newFeeName">Fee*</label>
+                <input id="newFeeName" type="number" formControlName="fee" class="form-control">
+            </div>
+            
+            
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <div class="d-flex flex-row justify-content-center">
+            
+            <button class="btn btn-primary" (click)="addNewFee()">Add</button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [blockScroll]="true" [header]="'Update fee for' +selectedFee.governorate " [(visible)]="isUpdateModalVisible" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}" [draggable]="false"
+[maximizable]="true" [closeOnEscape]="true" [dismissableMask]="true" [modal]="true"
+> 
+    <form [formGroup]="updateFeeForm" >
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="updateFeeName">Fee*</label>
+                <input id="updateFeeName" type="number" formControlName="fee" class="form-control">
+            </div>
+            
+            
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <div class="d-flex flex-row justify-content-center">
+            
+            <button class="btn btn-primary" (click)="updateFee()">Update</button>
+        </div>
+    </ng-template>
+</p-dialog>
+

@@ -23,11 +23,13 @@ export class CartComponent implements OnInit, OnDestroy {
 
 	cartItems = [];
 	SERVER_URL = environment.SERVER_URL;
-	shippingCost = 40;
+	shippingCost :any = '';
 
 	subTotal = 0
 
 	canCheckOut:boolean = false;
+
+	deliveryFees:any[] = []
 
 	private subscr: Subscription;
 
@@ -53,6 +55,12 @@ export class CartComponent implements OnInit, OnDestroy {
 
 		this.orderService.canCheckOut.subscribe(res =>{
 			this.canCheckOut = res
+		})
+
+		this.newCartService.shippingFees.subscribe(dileveryFees =>{
+			console.log('dileveryFees')
+			console.log(dileveryFees)
+			this.deliveryFees = dileveryFees
 		})
 	}
 
@@ -86,8 +94,8 @@ export class CartComponent implements OnInit, OnDestroy {
 		}, 400);
 	}
 
-	changeShipping(value: number) {
-		this.shippingCost = value;
+	changeShipping(fee) {
+		this.shippingCost = fee;
 		this.newCartService.shippingCost = this.shippingCost
 	}
 
@@ -175,10 +183,15 @@ export class CartComponent implements OnInit, OnDestroy {
 	}
 
 	checkOutNavigate(){
-		if(this.canCheckOut){
-			this.router.navigate(['/shop/checkout'])
+		if(this.shippingCost && this.shippingCost.fee >0){
+			if(this.canCheckOut){
+				this.router.navigate(['/shop/checkout'])
+			}else{
+				this.toast.error('Please customize your products first!');
+			}
 		}else{
-			this.toast.error('Please customize your products first!');
+			this.toast.error('Please select delivery area');
 		}
+		
 	}
 }

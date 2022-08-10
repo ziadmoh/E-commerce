@@ -62,8 +62,15 @@ export class LoginModalComponent implements OnInit {
 		this.sAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
 	}
 
+	googleLoginOptions = {
+		scope: 'ziadyahya01001@gmail.com'
+	  }; // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
+	  
+		
+
+
 	signInWithGoogle(): void {
-		this.sAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+		this.sAuthService.signIn(GoogleLoginProvider.PROVIDER_ID,this.googleLoginOptions);
 	}
 
 	signOut(): void {
@@ -103,4 +110,6 @@ export class LoginModalComponent implements OnInit {
 		})
 		
 	}
+
+	
 }

@@ -75,7 +75,7 @@
                 <input id="newProductPrice" type="text" formControlName="productPrice" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <label for="newOldPrice">Old price*</label>
+                <label for="newOldPrice">Old price</label>
                 <input id="newOldPrice" type="text" formControlName="oldPrice" class="form-control">
             </div>
             <div class="form-group col-md-4 d-flex flex-column">
@@ -98,7 +98,7 @@
                 <!-- <p-fileUpload id="newProductImages" (onSelect)="onChangeProductPhots($event)"
                 [multiple]="true" mode="basic" accept="image/*"  chooseLabel="Browse"></p-fileUpload> -->
                 <p-fileUpload (onSelect)="onChangeProductPhots($event)"
-                        [multiple]="true" accept="image/*" [maxFileSize]="1000000"
+                        [multiple]="true" accept="image/*" [maxFileSize]="20000000"
                         [showUploadButton]="false" [showCancelButton]="false">
                         <ng-template pTemplate="content">
                             <ul *ngIf="productImages.length">
@@ -130,7 +130,7 @@
                 <input id="editProductPrice" type="text" formControlName="productPrice" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <label for="editOldPrice">Old price*</label>
+                <label for="editOldPrice">Old price</label>
                 <input id="editOldPrice" type="text" formControlName="oldPrice" class="form-control">
             </div>
             <div class="form-group col-md-4 d-flex flex-column">
@@ -163,7 +163,7 @@
         <div class="form-group col-md-12">
             <label for="editProductImages">Add more Images*</label>
             <p-fileUpload (onSelect)="onChangeEditProductPhotos($event)"
-                    [multiple]="true" accept="image/*" [maxFileSize]="1000000"
+                    [multiple]="true" accept="image/*" [maxFileSize]="20000000"
                     [showUploadButton]="false" [showCancelButton]="false">
                     <ng-template pTemplate="content">
                         <ul *ngIf="editProductImages.length">

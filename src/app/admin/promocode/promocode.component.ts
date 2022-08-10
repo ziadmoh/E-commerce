@@ -37,15 +37,20 @@ export class AdminPromocodeComponent implements OnInit {
 		private authService:AuthService) { }
 
 	ngOnInit(): void {
-		this.newPromocodeForm = new FormGroup({
-			promoCode: new FormControl(null,Validators.required),
-			discountRatio: new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
-			dateRange: new FormControl(null,[Validators.required]),
-		})
 		
+		this.initForm()
 		this.getAllPromocodes()
 		
 		
+	}
+
+
+	initForm(){
+		this.newPromocodeForm = new FormGroup({
+			promoCode: new FormControl(null,Validators.required),
+			discountRatio: new FormControl(null,[Validators.required,Validators.pattern(/^\d*\.?\d*$/)]),
+			dateRange: new FormControl(null,[Validators.required]),
+		})
 	}
 
 	statusReturn(due){
@@ -64,8 +69,11 @@ export class AdminPromocodeComponent implements OnInit {
 
 
 	addNewPromoCode(){
+		
+		console.log(this.newPromocodeForm)
 		this.authService.newUser.subscribe(user =>{
 			if(user && user.userId && user.type == 'admin'){
+				console.log(this.newPromocodeForm.value)
 				if(this.newPromocodeForm.valid){
 					this.productsService.addPromoCode(
 						this.newPromocodeForm.get('promoCode').value,
@@ -77,6 +85,9 @@ export class AdminPromocodeComponent implements OnInit {
 							this.toast.success('Promocode created successfully!');
 							this.isModalVisible = false
 							this.getAllPromocodes()
+							this.initForm()
+						}else{
+							this.toast.error(res.message);
 						}
 					})
 				}else{

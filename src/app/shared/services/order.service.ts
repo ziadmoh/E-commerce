@@ -68,13 +68,15 @@ export class OrderService {
         contactPhone,
         additionalContactPhone,
         promoCode,
-        deliveryLocation
+        deliveryLocation,
+        feeId
     ){
         return this.http.post(environment.SERVER_URL + 'checkout/'+userId+'/'+sessionId,{
             contactPhone:contactPhone,
             additionalPhone:additionalContactPhone,
             promoCode:promoCode,
             deliveryLocation:deliveryLocation,
+            feeId:feeId,
         })
     }
 
@@ -156,6 +158,27 @@ export class OrderService {
 
     getUserOrders(userId){
         return this.http.get(environment.SERVER_URL + 'userorders/'+userId)
+    }
+
+    getAllDeliveryFees(){
+        return this.http.get(environment.SERVER_URL + 'alldeliveryFees')
+    }
+
+    addDeliveryFees(governorate,fee){
+        return this.http.post(environment.SERVER_URL + 'adddeliveryfees',{
+            governorate:governorate,
+            fee:fee
+        })
+    }
+
+    editDeliveryFee(feeId,fee){
+        return this.http.patch(environment.SERVER_URL + 'editdeliveryfees/'+feeId,{
+            fee:fee
+        })
+    }
+
+   deleteDeliveryFee(feeId){
+        return this.http.delete(environment.SERVER_URL + 'deletedeliverfee/'+feeId)
     }
 
 

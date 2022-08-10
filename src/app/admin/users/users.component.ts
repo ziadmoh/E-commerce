@@ -41,6 +41,13 @@ export class AdminUsersComponent implements OnInit {
 		private authService:AuthService) { }
 
 	ngOnInit(): void {
+		this.initForm()
+		
+		this.getAllUsers()
+		
+	}
+
+	initForm(){
 		this.newUserForm = new FormGroup({
 			fullName: new FormControl(null,Validators.required),
 			userName: new FormControl(null,Validators.required),
@@ -50,8 +57,6 @@ export class AdminUsersComponent implements OnInit {
 			type: new FormControl({name:'Admin',value:'admin'},Validators.required),
 			address: new FormControl(null)
 		})
-		this.getAllUsers()
-		
 	}
 
 	getAllUsers(){
@@ -135,6 +140,7 @@ export class AdminUsersComponent implements OnInit {
 					this.userService.createUser(form).subscribe((res:any)=>{
 						if(res && res.user){
 							this.toast.success('Created Successfully!');
+							this.initForm()
 							this.isModalVisible = false;
 							this.checkSelectedFilter()
 						}else if (res && res.message){

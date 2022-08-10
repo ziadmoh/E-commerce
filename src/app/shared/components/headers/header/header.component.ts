@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { UtilsService } from 'src/app/shared/services/utils.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
@@ -25,7 +25,8 @@ export class HeaderComponent implements OnInit {
 		public activeRoute: ActivatedRoute, 
 		public utilsService: UtilsService, 
 		public modalService: ModalService,
-		private authService:AuthService) {
+		private authService:AuthService,
+		private router:Router,) {
 	}
 
 	ngOnInit(): void {
@@ -46,5 +47,15 @@ export class HeaderComponent implements OnInit {
 	logOut(){
 		//this.authService.newUser.unsubscribe()
 		this.authService.logout();
+	}
+
+	toAccount(){
+		this.authService.newUser.subscribe(user =>{
+			if(user && user.userId){
+				this.router.navigate(['/shop/orders'])
+			}else{
+				this.modalService.showLoginModal();
+			}
+		})
 	}
 }

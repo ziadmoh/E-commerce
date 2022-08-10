@@ -101,45 +101,23 @@
                                             <td>&nbsp;</td>
                                         </tr>
 
-                                        <tr class="summary-shipping-row">
+                                        <tr class="summary-shipping-row" *ngFor="let fee of deliveryFees;let i =index">
                                             <td>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" id="free-shipping" name="shipping"
-                                                        class="custom-control-input" (change)="changeShipping(40)"
-                                                        checked>
-                                                    <label class="custom-control-label" for="free-shipping">Cairo & Giza</label>
+                                                    <input type="radio" [id]="'free-shipping'+i" [name]="'shipping'+i"
+                                                        class="custom-control-input" (change)="changeShipping(fee)"
+                                                        [checked]="shippingCost.feeId == fee.feeId ">
+                                                    <label class="custom-control-label" [for]="'free-shipping'+i">{{fee.governorate}}</label>
                                                 </div>
                                             </td>
-                                            <td>EGP 40.00</td>
+                                            <td>EGP {{(fee.fee).toFixed(2)}}</td>
                                         </tr>
-
-                                        <tr class="summary-shipping-row">
-                                            <td>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="standart-shipping" name="shipping"
-                                                        class="custom-control-input" (change)="changeShipping(50)">
-                                                    <label class="custom-control-label"
-                                                        for="standart-shipping">Greater Cairo:</label>
-                                                </div>
-                                            </td>
-                                            <td>EGP 50.00</td>
-                                        </tr>
-
-                                        <tr class="summary-shipping-row">
-                                            <td>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="express-shipping" name="shipping"
-                                                        class="custom-control-input" (change)="changeShipping(60)">
-                                                    <label class="custom-control-label"
-                                                        for="express-shipping">Other governorates :</label>
-                                                </div>
-                                            </td>
-                                            <td>EGP 60.00</td>
-                                        </tr>
+                                        
 
                                         <tr class="summary-total">
                                             <td>Total:</td>
-                                            <td>EGP {{ ((subTotal) + shippingCost).toFixed(2) }}</td>
+                                            <td *ngIf="shippingCost && shippingCost.fee">EGP {{ ((subTotal) + shippingCost.fee  ).toFixed(2) }}</td>
+                                            <td *ngIf="!shippingCost && !shippingCost.fee">EGP {{ (subTotal).toFixed(2) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -23,13 +23,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 	cartItems = [];
 
 	subTotal = 0;
-	shippingCost = 0
+	shippingCost :any = '';
 
 	checkOutForm:FormGroup;
 
 	promoCode = '';
 
-	user:User
+	user:User;
+
+	deliveryFees:any[] = []
 
 	private subscr: Subscription;
 
@@ -51,6 +53,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 			this.subTotal = sub
 		})
 
+
+		this.newCartService.shippingFees.subscribe(dileveryFees =>{
+			this.deliveryFees = dileveryFees
+		})
 		
 		
 
@@ -59,7 +65,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 		document.querySelector('body').addEventListener("click", () => this.clearOpacity())
 
 		this.checkOutForm = new FormGroup({
-			fullName:new FormControl({value: null, disabled: true},Validators.required),
+			fullName:new FormControl({value: null, disabled: false},Validators.required),
 			contactPhone:new FormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
 			additionalContactPhone:new FormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
 			deliveryLocation1:new FormControl(null,Validators.required),
@@ -69,11 +75,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 			if(user.fullName){
 				this.checkOutForm.get('fullName').patchValue(user.fullName)
 			}
+			if(user.phone){
+				this.checkOutForm.get('contactPhone').patchValue(user.phone)
+			}
+			if(user.address){
+				this.checkOutForm.get('deliveryLocation1').patchValue(user.address)
+			}
+			
 		})
 	}
 
-	changeShipping(value: number) {
-		this.shippingCost = value;
+	changeShipping(fee) {
+		this.shippingCost = fee;
 		this.newCartService.shippingCost = this.shippingCost
 	}
 
@@ -124,6 +137,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 							this.checkOutForm.get('additionalContactPhone').value,
 							this.promoCode,
 							this.checkOutForm.get('deliveryLocation1').value ,
+							this.shippingCost.feeId
 							).subscribe((res:any) =>{
 								if(res && res.order && res.message2){
 									this.toast.info(res.message);
@@ -152,4 +166,5 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 		
 		
 	}
+
 }

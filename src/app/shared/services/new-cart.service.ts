@@ -11,6 +11,7 @@ import { AddToCartAction, RemoveFromCartAction } from 'src/app/core/actions/acti
 import { CartItem } from '../classes/cart-item';
 import { cartItemsSelector } from 'src/app/core/selectors/selectors';
 import { AuthService } from './auth.service';
+import { OrderService } from './order.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -27,17 +28,20 @@ export class NewCartService {
     public numberOfcartItems = new BehaviorSubject<number>(0!);
 	
     public cartItemsList:CartItem[] = [] 
-    public shippingCost:number = 0;
+    public shippingCost:any = '';
 
    // public userSessionId:number =0
 
     public userSessionId = new BehaviorSubject(0);
 
     public cartSubTotal = new BehaviorSubject<number>(0!);
+
+    public shippingFees = new BehaviorSubject<{feeId:'',governorate:'',fee:0}[]>([]!);
     
     constructor(private http: HttpClient,private store: Store<any>, 
         private toastrService: ToastrService,
-        private authService:AuthService) {
+        private authService:AuthService,
+        private orderService:OrderService) {
         
         this.authService.newUser.subscribe(user =>{
             if(user && user.userId){
@@ -47,12 +51,27 @@ export class NewCartService {
                         this.getCartItems(res.session.sessionId).subscribe(items=>{
                             
                         })
+
+                        this.orderService.getAllDeliveryFees().subscribe((items:any) =>{
+                            if(items && items.deliveryFees){
+                                this.shippingFees.next(items.deliveryFees)
+                            }else{
+                                this.shippingFees.next([])
+                            }
+                        })
                     }else{
                         this.openSession(user.userId).subscribe((opened:any) =>{
                             this.userSessionId.next(opened.session.sessionId)
                             if(opened && opened.session){
                                 this.getCartItems(opened.session.sessionId).subscribe(items=>{
             
+                                })
+                                this.orderService.getAllDeliveryFees().subscribe((items:any) =>{
+                                    if(items && items.deliveryFees){
+                                        this.shippingFees.next(items.deliveryFees)
+                                    }else{
+                                        this.shippingFees.next([])
+                                    }
                                 })
                             }
                         })
