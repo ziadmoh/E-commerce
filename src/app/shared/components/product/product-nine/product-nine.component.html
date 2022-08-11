@@ -7,7 +7,7 @@
                 <span class="product-label label-top" *ngIf="product.top">Top</span>
                 <span class="product-label label-out" *ngIf="!product.stock || product.stock == 0">Out Of Stock</span>
 
-                <a [routerLink]="['/product/default/'+ product.slug]">
+                <a [routerLink]="['/product/'+ product.productId]">
                     <app-ecommerce-image [src]="product.productImage" alt="Product"
                         class="product-image" fixedPt="100%">
                     </app-ecommerce-image>
@@ -25,7 +25,7 @@
                 </div>
 
                 <h3 class="product-title">
-                    <a [routerLink]="['/product/default/'+ product.slug]">{{ product.productName }}</a>
+                    <a [routerLink]="['/product/'+ product.productId]">{{ product.productName }}</a>
                 </h3>
 
                 <div class="product-content">
@@ -76,7 +76,7 @@
                         (click)="quickView($event)"><span>Quick view</span></a>
                 </div>
 
-                <!-- <a [routerLink]="['/product/default/'+ product.slug]" class="btn-product btn-cart btn-select"
+                <!-- <a [routerLink]="['/product/'+ product.productId]" class="btn-product btn-cart btn-select"
                     *ngIf="product.variants.length > 0 else cartBlock">
                     <span>select options</span>
                 </a> -->

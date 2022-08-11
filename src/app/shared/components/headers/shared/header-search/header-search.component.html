@@ -15,16 +15,16 @@
 
         <div class="live-search-list" *ngIf="searchTerm.length > 2">
             <div class="autocomplete-suggestions" *ngIf="suggestions.length > 0" (click)="goProductPage()">
-                <a [routerLink]="'/product/default/' + product.slug" class="autocomplete-suggestion"
+                <a [routerLink]="'/product/' + product.productId" class="autocomplete-suggestion"
                     *ngFor="let product of suggestions">
                     <figure class="mb-0 mr-3" style="width: 40px; height: 40px;">
-                        <app-ecommerce-image [src]="SERVER_URL + product.sm_pictures[0].url" width="40" height="40" alt="Product"
+                        <app-ecommerce-image [src]="product.productImage" width="40" height="40" [alt]="product.productName"
                             class="bg-transparent">
                         </app-ecommerce-image>
                     </figure>
 
-                    <div class="search-name" [innerHTML]="matchEmphasize(product.name) | safeContent"></div>
-                    <span class="search-price">
+                    <div class="search-name" [innerHTML]="matchEmphasize(product.productName) | safeContent"></div>
+                    <!-- <span class="search-price">
                         <div class="product-price mb-0" *ngIf="product.minPrice == product.maxPrice else priceBlock">
                             ${{ product.minPrice.toFixed(2) }}</div>
                         <ng-template #priceBlock>
@@ -37,7 +37,7 @@
                                     ${{product.maxPrice.toFixed(2)}}</div>
                             </ng-template>
                         </ng-template>
-                    </span>
+                    </span> -->
                 </a>
             </div>
         </div>

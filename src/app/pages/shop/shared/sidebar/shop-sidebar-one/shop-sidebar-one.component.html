@@ -36,8 +36,8 @@
             <div class="collapse show" id="widget-3">
                 <div class="widget-body pt-0">
                     <div class="filter-colors">
-                        <a routerLink="/shop/sidebar/3cols" [queryParams]="{color: getUrlForAttrs('color', item.color_name), page: 1}"
-                            queryParamsHandling="merge" [style.background-color]="item.color"
+                        <a class="pointer" (click)="filterColor(item)"
+                            [style.background-color]="item.color"
                             [class.selected]="containsAttrInUrl('color', item.color_name)"
                             *ngFor="let item of shopData.colors">
                             <span class="sr-only">Color Name</span>
@@ -61,8 +61,8 @@
                         <div class="filter-price-text d-flex justify-content-between">
                             <span>
                                 Price Range:&nbsp;
-                                <span class="filter-price-range">${{ priceRange[0] * 10 }} -
-                                    ${{ priceRange[1] * 10 }}</span>
+                                <span class="filter-price-range">EGP {{ priceRange[0] * 10 }} -
+                                     EGP {{ priceRange[1] * 10 }}</span>
                             </span>
 
                             <button class="pr-2" (click)="filterPrice()">Filter</button>

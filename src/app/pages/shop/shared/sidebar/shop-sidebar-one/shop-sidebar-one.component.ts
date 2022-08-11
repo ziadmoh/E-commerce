@@ -65,8 +65,16 @@ export class ShopSidebarOneComponent implements OnInit {
 	}
 
 	filterPrice() {
-		this.router.navigate([], { queryParams: { minPrice: this.priceRange[0] * 10, maxPrice: this.priceRange[1] * 10, page: 1 }, queryParamsHandling: 'merge' });
+		this.router.navigate([], { queryParams: { minPrice: this.priceRange[0] * 10, maxPrice: this.priceRange[1] * 10, page: 1,category:null,color:null,orderBy:'default' , }, queryParamsHandling: 'merge' });
 	}
+
+	filterColor(item) {
+		this.router.navigate([], { queryParams: { color:item.color_name,page: 1 , category: null,minPrice: null, maxPrice: null,orderBy:'default' ,}, queryParamsHandling: 'merge' });
+	}
+
+	// filterColor() {
+	// 	this.router.navigate([], { queryParams: { minPrice: this.priceRange[0] * 10, maxPrice: this.priceRange[1] * 10, page: 1 }});
+	// }
 
 	changeFilterPrice(value: any) {
 		this.priceRange = [value[0], value[1]];

@@ -9,6 +9,7 @@ import { CompareService } from 'src/app/shared/services/compare.service';
 
 import { environment } from 'src/environments/environment';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-ecommerce-product-eleven',
@@ -32,7 +33,8 @@ export class ProductElevenComponent implements OnInit {
 		private modalService: ModalService,
 		private cartService: CartService,
 		private compareService: CompareService,
-		private productService:ProductService
+		private productService:ProductService,
+		private toast:ToastrService
 	) { }
 
 	ngOnInit(): void {
@@ -72,6 +74,8 @@ export class ProductElevenComponent implements OnInit {
 								this.newCartService.getCartItems(res.session.sessionId).subscribe();
 							}
 						})
+					}else if (res && res.message){
+						this.toast.error(res.message)
 					}
 				})
 			})

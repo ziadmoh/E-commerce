@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/shared/classes/product';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -23,9 +23,9 @@ export class AdminProductsComponent implements OnInit {
 
 	selectedProduct:any = '';
 
-	newProductForm:FormGroup;
+	newProductForm:UntypedFormGroup;
 
-	updateProductForm:FormGroup;
+	updateProductForm:UntypedFormGroup;
 
 	productImages:any[]= [];
 
@@ -36,7 +36,7 @@ export class AdminProductsComponent implements OnInit {
 	colors:any[] = [
 		{name:'Choose a color',value:' ',colorFor:'',disabled:true},
 		{name:'Blue (for boys)',value:'blue',colorFor:'boys',disabled:false},
-		{name:'Purple (for girls)',value:'purple',colorFor:'girls',disabled:false},
+		{name:'Pink (for girls)',value:'pink',colorFor:'girls',disabled:false},
 		{name:'Any',value:'any',colorFor:'both',disabled:false},
 	]
 
@@ -54,14 +54,14 @@ export class AdminProductsComponent implements OnInit {
 	ngOnInit(): void {
 		this.initForm()
 
-		this.updateProductForm = new FormGroup({
-			productName: new FormControl(null,Validators.required),
-			productPrice: new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
-			oldPrice: new FormControl(null,[Validators.pattern(/^[0-9]+$/)]),
-			productColor: new FormControl(null,Validators.required),
-			productCategory: new FormControl(null,Validators.required),
+		this.updateProductForm = new UntypedFormGroup({
+			productName: new UntypedFormControl(null,[Validators.required,Validators.min(3)]),
+			productPrice: new UntypedFormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
+			oldPrice: new UntypedFormControl(null,[Validators.pattern(/^[0-9]+$/)]),
+			productColor: new UntypedFormControl(null,Validators.required),
+			productCategory: new UntypedFormControl(null,Validators.required),
 			
-			productDescription: new FormControl(null,Validators.required),
+			productDescription: new UntypedFormControl(null,Validators.required),
 		})
 		this.getAllProducts()
 		
@@ -69,14 +69,14 @@ export class AdminProductsComponent implements OnInit {
 	}
 
 	initForm(){
-		this.newProductForm = new FormGroup({
-			productName: new FormControl(null,Validators.required),
-			productPrice: new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
-			oldPrice: new FormControl(null,[Validators.pattern(/^[0-9]+$/)]),
-			productColor: new FormControl(null,Validators.required),
+		this.newProductForm = new UntypedFormGroup({
+			productName: new UntypedFormControl(null,[Validators.required,Validators.min(3)]),
+			productPrice: new UntypedFormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
+			oldPrice: new UntypedFormControl(null,[Validators.pattern(/^[0-9]+$/)]),
+			productColor: new UntypedFormControl(null,Validators.required),
 			
-			productDescription: new FormControl(null,Validators.required),
-			category: new FormControl(null,Validators.required),
+			productDescription: new UntypedFormControl(null,Validators.required),
+			category: new UntypedFormControl(null,Validators.required),
 		})
 	}
 
@@ -115,14 +115,14 @@ export class AdminProductsComponent implements OnInit {
 								).subscribe((imgRes:any) =>{
 									if(imgRes && imgRes.images){
 										this.toast.success('Added Successfully')
-										this.newProductForm = new FormGroup({
-											productName: new FormControl(null,Validators.required),
-											productPrice: new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
-											oldPrice: new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
-											productColor: new FormControl(null,Validators.required),
+										this.newProductForm.setValue({
+											productName: null,
+											productPrice: null,
+											oldPrice: null,
+											productColor: null,
 											
-											productDescription: new FormControl(null,Validators.required),
-											category: new FormControl(null,Validators.required),
+											productDescription: null,
+											category: null,
 										})
 										this.getAllProducts();
 										this.isModalVisible = false;
@@ -134,17 +134,20 @@ export class AdminProductsComponent implements OnInit {
 							}else{
 								this.toast.success('Added Successfully')
 								this.isModalVisible = false;
-								this.newProductForm = new FormGroup({
-									productName: new FormControl(null,Validators.required),
-									productPrice: new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
-									oldPrice: new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
-									productColor: new FormControl(null,Validators.required),
+								this.newProductForm.setValue({
+									productName: null,
+									productPrice: null,
+									oldPrice: null,
+									productColor: null,
 									
-									productDescription: new FormControl(null,Validators.required),
-									category: new FormControl(null,Validators.required),
+									productDescription: null,
+									category: null,
 								})
+								this.getAllProducts()
 								this.productImages = []
 							}
+						}else if (res && res.message){
+							this.toast.error(res.message)
 						}
 					})
 				}else{
@@ -158,20 +161,20 @@ export class AdminProductsComponent implements OnInit {
 	onEditProduct(product){
 		this.editProductImages = []
 		this.selectedProduct = product;
-		this.updateProductForm = new FormGroup({
-			productName: new FormControl(product.productName,Validators.required),
-			productPrice: new FormControl(product.productPrice,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
-			oldPrice: new FormControl(product.oldPrice,[Validators.pattern(/^[0-9]+$/)]),
-			productColor: new FormControl(null,Validators.required),
-			productCategory: new FormControl(null,Validators.required),
+		this.updateProductForm = new UntypedFormGroup({
+			productName: new UntypedFormControl(product.productName,Validators.required),
+			productPrice: new UntypedFormControl(product.productPrice,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
+			oldPrice: new UntypedFormControl(product.oldPrice,[Validators.pattern(/^[0-9]+$/)]),
+			productColor: new UntypedFormControl(null,Validators.required),
+			productCategory: new UntypedFormControl(null,Validators.required),
 			
-			productDescription: new FormControl(product.productDescription,Validators.required),
+			productDescription: new UntypedFormControl(product.productDescription,Validators.required),
 		})
 		if(product.productColor =='blue'  ){
 			this.updateProductForm.get('productColor').patchValue(
 				this.colors[1]
 			)
-		}else if (product.productColor =='purple'){
+		}else if (product.productColor =='pink'){
 			this.updateProductForm.get('productColor').patchValue(
 				this.colors[2]
 			)
@@ -205,6 +208,8 @@ export class AdminProductsComponent implements OnInit {
 				this.productsService.getProductById(productId).subscribe((res)=>{
 					if(res && res.product){
 						this.selectedProductImages = res.product.productImages;
+					}else if (res && res.message){
+						this.toast.error(res.message)
 					}
 				})
 			}
@@ -290,6 +295,8 @@ export class AdminProductsComponent implements OnInit {
 					if(res && res.product){
 						this.toast.success('product deleted succssefully');
 						this.getAllProducts();
+					}else if (res && res.message){
+						this.toast.error(res.message)
 					}
 				})
 			}

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/shared/classes/product';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -27,9 +27,9 @@ export class AdminDeliveryFeesComponent implements OnInit {
 
 	selectedFee:any = '';
 
-	newFeeForm:FormGroup;
+	newFeeForm:UntypedFormGroup;
 
-	updateFeeForm:FormGroup;
+	updateFeeForm:UntypedFormGroup;
 
 
 
@@ -42,8 +42,8 @@ export class AdminDeliveryFeesComponent implements OnInit {
 	ngOnInit(): void {
 		this.initForm()
 
-		this.updateFeeForm = new FormGroup({
-			fee: new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
+		this.updateFeeForm = new UntypedFormGroup({
+			fee: new UntypedFormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
 		})
 		
 		this.getAllFees()
@@ -52,9 +52,9 @@ export class AdminDeliveryFeesComponent implements OnInit {
 	}
 
 	initForm(){
-		this.newFeeForm = new FormGroup({
-			area: new FormControl(null,Validators.required),
-			fee: new FormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
+		this.newFeeForm = new UntypedFormGroup({
+			area: new UntypedFormControl(null,Validators.required),
+			fee: new UntypedFormControl(null,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
 		})
 	}
 
@@ -75,6 +75,8 @@ export class AdminDeliveryFeesComponent implements OnInit {
 							this.isModalVisible = false
 							this.getAllFees();
 							this.initForm();
+						}else if(res && res.message){
+							this.toast.error(res.message);
 						}
 					})
 				}else{
@@ -109,8 +111,8 @@ export class AdminDeliveryFeesComponent implements OnInit {
 
 	openUpdateModal(fee){
 		this.selectedFee = fee
-		this.updateFeeForm = new FormGroup({
-			fee: new FormControl(fee.fee,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
+		this.updateFeeForm = new UntypedFormGroup({
+			fee: new UntypedFormControl(fee.fee,[Validators.required,Validators.pattern(/^[0-9]+$/)]),
 		})
 		this.isUpdateModalVisible = true;
 
@@ -123,8 +125,8 @@ export class AdminDeliveryFeesComponent implements OnInit {
 					if(res && res.deliverFee){
 						this.toast.success('Fee deleted successfully')
 						this.getAllFees()
-					}else{
-						this.toast.error(res.message)
+					}else if(res && res.message){
+						this.toast.error(res.message);
 					}
 				})
 			}
@@ -143,8 +145,8 @@ export class AdminDeliveryFeesComponent implements OnInit {
 								this.toast.success('Fee updated successfully')
 								this.getAllFees()
 								this.isUpdateModalVisible = false
-							}else{
-								this.toast.error(res.message)
+							}else if(res && res.message){
+								this.toast.error(res.message);
 							}
 						})
 				}else{

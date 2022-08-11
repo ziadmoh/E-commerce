@@ -171,24 +171,32 @@ export class AdminOrdersComponent implements OnInit {
 				if(res && res.order ){
 					
 					this.checkSelectedFilter()
+				}else if (res && res.message){
+					this.toast.error(res.message)
 				}
 			})
 		} else if(order && order.orderStatus == 'confirmed'){
 			this.orderService.changeOrderStatus('printingorder',order.orderId).subscribe((res:any) =>{
 				if(res && res.order){
 					this.checkSelectedFilter()
+				}else if (res && res.message){
+					this.toast.error(res.message)
 				}
 			})
 		} else if(order && order.orderStatus == 'inPrinting'){
 			this.orderService.changeOrderStatus('outfordeliveryorder',order.orderId).subscribe((res:any) =>{
 				if(res && res.order){
 					this.checkSelectedFilter()
+				}else if (res && res.message){
+					this.toast.error(res.message)
 				}
 			})
 		} else if(order && order.orderStatus == 'outForDelivery'){
 			this.orderService.changeOrderStatus('orderdelivered',order.orderId).subscribe((res:any) =>{
 				if(res && res.order){
 					this.checkSelectedFilter()
+				}else if (res && res.message){
+					this.toast.error(res.message)
 				}
 			})
 		} else{

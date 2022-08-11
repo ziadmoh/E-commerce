@@ -39,6 +39,8 @@ export class AdminHomeComponent implements OnInit {
 				this.orderService.getLastOrders().subscribe((res:any) =>{
 					if(res && res.orders){
 						this.lastOrders = res.orders;
+					}else{
+						this.lastOrders = []
 					}
 				})
 			}
@@ -52,6 +54,8 @@ export class AdminHomeComponent implements OnInit {
 					if(res && res.todayOrders){
 						this.todayOrders = res.todayOrders;
 						this.todaySales =this.getTotalSales(res.todayOrders)
+					}else{
+						this.todayOrders = []
 					}
 				})
 			}
@@ -65,6 +69,8 @@ export class AdminHomeComponent implements OnInit {
 					if(res && res.orders){
 						this.allOrders = res.orders;
 						this.overallSales =this.getTotalSales(res.orders)
+					}else{
+						this.allOrders = []
 					}
 				})
 			}
@@ -101,24 +107,32 @@ export class AdminHomeComponent implements OnInit {
 			this.orderService.changeOrderStatus('confirmorder',order.orderId).subscribe((res:any) =>{
 				if(res && res.order){
 					this.getLastOrders()
+				}else if (res && res.message){
+					this.toast.error(res.message)
 				}
 			})
 		} else if(order && order.orderStatus == 'confirmed'){
 			this.orderService.changeOrderStatus('printingorder',order.orderId).subscribe((res:any) =>{
 				if(res && res.order){
 					this.getLastOrders()
+				}else if (res && res.message){
+					this.toast.error(res.message)
 				}
 			})
 		} else if(order && order.orderStatus == 'inPrinting'){
 			this.orderService.changeOrderStatus('outfordeliveryorder',order.orderId).subscribe((res:any) =>{
 				if(res && res.order){
 					this.getLastOrders()
+				}else if (res && res.message){
+					this.toast.error(res.message)
 				}
 			})
 		} else if(order && order.orderStatus == 'outForDelivery'){
 			this.orderService.changeOrderStatus('orderdelivered',order.orderId).subscribe((res:any) =>{
 				if(res && res.order){
 					this.getLastOrders()
+				}else if (res && res.message){
+					this.toast.error(res.message)
 				}
 			})
 		} else{

@@ -23,6 +23,9 @@ export class SidebarPageComponent implements OnInit {
 	loaded = false;
 	firstLoad = false;
 	category = '';
+	color = '';
+	minPrice:0;
+	maxPrice:0;
 
 	constructor(public activeRoute: ActivatedRoute, 
 		public router: Router, 
@@ -40,7 +43,6 @@ export class SidebarPageComponent implements OnInit {
 		
 		this.activeRoute.queryParams.subscribe(params => {
 			this.loaded = false;
-
 			if (params['searchTerm']) {
 				this.searchTerm = params['searchTerm'];
 			} else {
@@ -48,7 +50,27 @@ export class SidebarPageComponent implements OnInit {
 			}
 			if (params['category']) {
 				this.category = params['category'];
-			} 
+			} else {
+				this.category = '';
+			}
+
+			if (params['color']) {
+				this.color = params['color'];
+			} else {
+				this.color = '';
+			}
+
+			if (params['minPrice']) {
+				this.minPrice = params['minPrice'];
+			} else {
+				this.minPrice = 0;
+			}
+
+			if (params['maxPrice']) {
+				this.maxPrice = params['maxPrice'];
+			} else {
+				this.maxPrice = 0;
+			}
 
 			if (params['orderBy']) {
 				this.orderBy = params['orderBy'];
@@ -62,7 +84,7 @@ export class SidebarPageComponent implements OnInit {
 					if(result.boxProducts){
 						this.products = this.productService.boxProducts;
 						this.products.map((product)=>{
-							return product['box'] = 0
+							return product['box'] = 1
 						})
 					}else{
 						this.products = []
@@ -92,7 +114,69 @@ export class SidebarPageComponent implements OnInit {
 	
 					this.utilsService.scrollToPageContent();
 				})
-			}else{
+			}else if (this.searchTerm){
+
+				this.productService.searchProduct(this.searchTerm).subscribe((res:any) =>{
+					if(res && res.searchResult){
+						this.products = res.searchResult
+					}else{
+						this.products = []
+					}
+					this.loaded = true;
+					if (!this.firstLoad) {
+						this.firstLoad = true;
+					}
+	
+					this.utilsService.scrollToPageContent();
+				})
+
+			}else if (this.color){
+
+				this.productService.searchByColor(this.color).subscribe((res:any) =>{
+					if(res && res.products){
+						this.products = res.products
+					}else{
+						this.products = []
+					}
+					this.loaded = true;
+					if (!this.firstLoad) {
+						this.firstLoad = true;
+					}
+	
+					this.utilsService.scrollToPageContent();
+				})
+
+			}else if (this.minPrice  ){
+
+				this.productService.searchInRange(this.minPrice,this.maxPrice).subscribe((res:any) =>{
+					if(res && res.products){
+						this.products = res.products
+					}else{
+						this.products = []
+					}
+					this.loaded = true;
+					if (!this.firstLoad) {
+						this.firstLoad = true;
+					}
+	
+					this.utilsService.scrollToPageContent();
+				})
+
+			}else if(this.orderBy == 'rating' ){
+				this.productService.sortByRate().subscribe((res:any) =>{
+					if(res && res.products){
+						this.products = res.products
+					}else{
+						this.products = []
+					}
+					this.loaded = true;
+					if (!this.firstLoad) {
+						this.firstLoad = true;
+					}
+	
+					this.utilsService.scrollToPageContent();
+				})
+			} else{
 				this.productService.getAllProducts().subscribe((result:any) => {
 					if(result.products){
 						this.products = this.productService.allProducts;
@@ -127,7 +211,7 @@ export class SidebarPageComponent implements OnInit {
 	}
 
 	changeOrderBy(event: any) {
-		this.router.navigate([], { queryParams: { orderBy: event.currentTarget.value, page: 1 }, queryParamsHandling: 'merge' });
+		this.router.navigate([], { queryParams: {orderBy: event.currentTarget.value, page: 1 ,category:null,color:null,maxPrice:null,minPrice:null, }, queryParamsHandling: 'merge' });
 	}
 
 	toggleSidebar() {

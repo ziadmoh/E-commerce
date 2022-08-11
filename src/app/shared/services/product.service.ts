@@ -219,4 +219,33 @@ export class ProductService {
     getImageFromUrl(url){
         return this.http.get(url,{responseType: "blob"})
     }
+
+    searchProduct(key){
+        return this.http.get(environment.SERVER_URL +'searchproduct?productName='+key)
+    }
+
+    sortByRate(){
+        return this.http.get(environment.SERVER_URL +'mostrated')
+    }
+
+    searchByColor(key){
+        return this.http.get(environment.SERVER_URL +'productbycolor?productColor='+key)
+    }
+
+    searchByMinPrice(key){
+        return this.http.get(environment.SERVER_URL +'produtwithminprice?minPrice='+key)
+    }
+
+    searchByMaxPrice(key){
+        return this.http.get(environment.SERVER_URL +'produtwithmaxprice?maxPrice='+key)
+    }
+
+
+    searchInRange(minPrice,maxPrice){
+        return this.http.get(environment.SERVER_URL +'productinrange?minPrice='+minPrice+'&maxPrice='+maxPrice)
+    }
+
+
+
+
 }

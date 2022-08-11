@@ -13,6 +13,7 @@ import { sliderOpt } from 'src/app/shared/data';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { NewCartService } from 'src/app/shared/services/new-cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -68,7 +69,8 @@ export class QuickViewTwoComponent implements OnInit {
 		public el: ElementRef,
 		private authService:AuthService,
 		private modalService:ModalService,
-		private newCartService:NewCartService) {
+		private newCartService:NewCartService,
+		private toast:ToastrService) {
 	}
 
 	public trackByFn(index, item) {
@@ -159,6 +161,8 @@ export class QuickViewTwoComponent implements OnInit {
 								this.newCartService.getCartItems(res.session.sessionId).subscribe();
 							}
 						})
+					}else if (res && res.message){
+						this.toast.error(res.message)
 					}
 				})
 			})

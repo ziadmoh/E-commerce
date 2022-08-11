@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from 'src/app/shared/services/api.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 
 import { environment } from 'src/environments/environment';
@@ -21,7 +22,9 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
 	timer: any;
 	SERVER_URL = environment.SERVER_URL;
 
-	constructor(public activeRoute: ActivatedRoute, public router: Router, public utilsService: UtilsService, public apiService: ApiService) {
+	constructor(public activeRoute: ActivatedRoute, public router: Router, 
+		public utilsService: UtilsService, public apiService: ApiService,
+		private productService:ProductService) {
 	}
 
 	ngOnInit(): void {
@@ -40,35 +43,8 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
 			}
 
 			this.timer = setTimeout(() => {
-				this.apiService.fetchHeaderSearchData(this.searchTerm).subscribe(result => {
-					this.suggestions = result.products.reduce(
-						(acc, cur) => {
-							let max = 0;
-							let min = 99999;
-							cur.variants.map(item => {
-								if (min > item.price)
-									min = item.price;
-								if (max < item.price)
-									max = item.price;
-							}, []);
-
-							if (cur.variants.length == 0) {
-								min = cur.sale_price
-									? cur.sale_price
-									: cur.price;
-								max = cur.price;
-							}
-							return [
-								...acc,
-								{
-									...cur,
-									minPrice: min,
-									maxPrice: max
-								}
-							];
-						},
-						[]
-					);
+				this.productService.searchProduct(this.searchTerm).subscribe((result:any) => {
+					this.suggestions = result.searchResult
 				})
 			}, 500)
 		} else {

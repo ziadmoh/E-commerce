@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -25,7 +25,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 	subTotal = 0;
 	shippingCost :any = '';
 
-	checkOutForm:FormGroup;
+	checkOutForm:UntypedFormGroup;
 
 	promoCode = '';
 
@@ -64,11 +64,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
 		document.querySelector('body').addEventListener("click", () => this.clearOpacity())
 
-		this.checkOutForm = new FormGroup({
-			fullName:new FormControl({value: null, disabled: false},Validators.required),
-			contactPhone:new FormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
-			additionalContactPhone:new FormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
-			deliveryLocation1:new FormControl(null,Validators.required),
+		this.checkOutForm = new UntypedFormGroup({
+			fullName:new UntypedFormControl({value: null, disabled: false},Validators.required),
+			contactPhone:new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
+			additionalContactPhone:new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
+			deliveryLocation1:new UntypedFormControl(null,Validators.required),
 		})
 		this.authService.newUser.subscribe(user =>{
 			this.user = user;

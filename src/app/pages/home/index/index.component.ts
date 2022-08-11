@@ -33,6 +33,8 @@ export class IndexComponent implements OnInit {
 			if(res && res.products){
 				this.products = res.products;
 				this.loaded = true;
+			}else{
+				this.products = []
 			}
 		})
 		if(this.modalSerice.isLoginModalRequired == true){

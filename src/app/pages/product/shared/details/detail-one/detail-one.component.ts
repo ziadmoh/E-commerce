@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { NewCartService } from 'src/app/shared/services/new-cart.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -48,7 +49,8 @@ export class DetailOneComponent implements OnInit {
 		public el: ElementRef,
 		public newCartService:NewCartService,
 		public modalService:ModalService,
-		public authService:AuthService) {
+		public authService:AuthService,
+		private toast:ToastrService) {
 	}
 
 	ngOnInit(): void {
@@ -106,6 +108,8 @@ export class DetailOneComponent implements OnInit {
 								this.newCartService.getCartItems(res.session.sessionId).subscribe();
 							}
 						})
+					}else if (res && res.message){
+						this.toast.error(res.message)
 					}
 				})
 			})

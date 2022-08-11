@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NewCartService } from 'src/app/shared/services/new-cart.service';
 import { OrderService } from 'src/app/shared/services/order.service';
@@ -16,6 +17,7 @@ export class DashboardComponent implements OnInit {
 		private authService:AuthService,
 		private orderService:OrderService,
 		private newCartService:NewCartService,
+		private toast:ToastrService
 		) {
 	}
 
@@ -50,7 +52,8 @@ export class DashboardComponent implements OnInit {
 							if(res && res.orders.length){
 								this.userOrders = this.sortData(res.orders)
 								this.getStatusColor(this.userOrders)
-								console.log(this.userOrders)
+							}else if (res && res.message){
+								this.toast.error(res.message)
 							}
 							this.isLoaded = true
 						})

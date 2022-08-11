@@ -22,16 +22,11 @@ export class CartGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     router: RouterStateSnapshot
   ): boolean | UrlTree | Promise<boolean | UrlTree> | Observable<boolean | UrlTree> {
-    return this.authService.newUser.pipe(
-      take(1),
-      map(user => {
-        const isAuth = (user && user.userId) ? true : false;
-        if (isAuth) {
-          return true;
-        }else{
-          return this.router.createUrlTree(['/']);
-        }
-      })
-    );
+    const user = JSON.parse(localStorage.getItem('user'))
+    if(user && user.userId){
+      return true;
+    }else{
+      return this.router.createUrlTree(['/']);
+    }
   }
 }

@@ -41,6 +41,7 @@ import { PrimeNgModule } from './shared/modules/prime-ng.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar'
+import { LoginModalComponent } from './shared/components/modals/login-modal/login-modal.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollY: true,
 
@@ -51,7 +52,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     LayoutComponent,
-    
+    LoginModalComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +69,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // HttpModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
+      timeOut: 5000,
       progressBar: false,
       enableHtml: true,
     }),

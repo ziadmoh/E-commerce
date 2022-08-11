@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "@abacritt/angularx-social-login";
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from 'src/app/shared/services/modal.service';
 
@@ -18,9 +18,9 @@ export class LoginModalComponent implements OnInit {
 
   	isLoggedin?: boolean = false;
 
-	signupForm:FormGroup
+	signupForm:UntypedFormGroup
 
-	loginForm:FormGroup
+	loginForm:UntypedFormGroup
 
 	constructor(private sAuthService: SocialAuthService,
 				private inAuthService : AuthService,
@@ -29,7 +29,6 @@ export class LoginModalComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.sAuthService.authState.subscribe((user) => {
-			console.log(user)
 			this.socialUser = user;
 			if(this.socialUser && this.socialUser.email){
 				this.inAuthService.socialSignup({
@@ -37,6 +36,8 @@ export class LoginModalComponent implements OnInit {
 					last_name:this.socialUser.lastName,
 					email:this.socialUser.email,
 					name:this.socialUser.name,
+					social_id:this.socialUser.id,
+					provider:this.socialUser.provider,
 				}).subscribe()
 			}	
 			this.isLoggedin = user? true:false ;
@@ -50,20 +51,20 @@ export class LoginModalComponent implements OnInit {
 	}
 
 	initSignUp(){
-		this.signupForm = new FormGroup({
-			fullName: new FormControl(null,[Validators.required]),
-			userName: new FormControl(null,Validators.required),
-			email:new FormControl(null,[Validators.required,Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-			password:new FormControl(null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
-			phone: new FormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
-			userAddress: new FormControl(null),
+		this.signupForm = new UntypedFormGroup({
+			fullName: new UntypedFormControl(null,[Validators.required]),
+			userName: new UntypedFormControl(null,Validators.required),
+			email:new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+			password:new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
+			phone: new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
+			userAddress: new UntypedFormControl(null),
 		})
 	}
 
 	initLogin(){
-		this.loginForm = new FormGroup({
-			'userName': new FormControl(null,[Validators.required]),
-			'password': new FormControl(null,[Validators.required])
+		this.loginForm = new UntypedFormGroup({
+			'userName': new UntypedFormControl(null,[Validators.required]),
+			'password': new UntypedFormControl(null,[Validators.required])
 		})
 	}
 

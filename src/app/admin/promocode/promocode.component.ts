@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/shared/classes/product';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -23,9 +23,9 @@ export class AdminPromocodeComponent implements OnInit {
 
 	selectedPrmocode:any = '';
 
-	newPromocodeForm:FormGroup;
+	newPromocodeForm:UntypedFormGroup;
 
-	updatePromocodeForm:FormGroup;
+	updatePromocodeForm:UntypedFormGroup;
 
 	todayDate = new Date();
 
@@ -46,10 +46,10 @@ export class AdminPromocodeComponent implements OnInit {
 
 
 	initForm(){
-		this.newPromocodeForm = new FormGroup({
-			promoCode: new FormControl(null,Validators.required),
-			discountRatio: new FormControl(null,[Validators.required,Validators.pattern(/^\d*\.?\d*$/)]),
-			dateRange: new FormControl(null,[Validators.required]),
+		this.newPromocodeForm = new UntypedFormGroup({
+			promoCode: new UntypedFormControl(null,Validators.required),
+			discountRatio: new UntypedFormControl(null,[Validators.required,Validators.pattern(/^\d*\.?\d*$/)]),
+			dateRange: new UntypedFormControl(null,[Validators.required]),
 		})
 	}
 
@@ -70,10 +70,8 @@ export class AdminPromocodeComponent implements OnInit {
 
 	addNewPromoCode(){
 		
-		console.log(this.newPromocodeForm)
 		this.authService.newUser.subscribe(user =>{
 			if(user && user.userId && user.type == 'admin'){
-				console.log(this.newPromocodeForm.value)
 				if(this.newPromocodeForm.valid){
 					this.productsService.addPromoCode(
 						this.newPromocodeForm.get('promoCode').value,
@@ -119,7 +117,6 @@ export class AdminPromocodeComponent implements OnInit {
 	}
 
 	selectDates(){
-		console.log(this.newPromocodeForm.get('dateRange'))
 	}
 
 }

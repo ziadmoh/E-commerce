@@ -58,8 +58,6 @@ export class CartComponent implements OnInit, OnDestroy {
 		})
 
 		this.newCartService.shippingFees.subscribe(dileveryFees =>{
-			console.log('dileveryFees')
-			console.log(dileveryFees)
 			this.deliveryFees = dileveryFees
 		})
 	}
@@ -176,6 +174,8 @@ export class CartComponent implements OnInit, OnDestroy {
 					}else{
 						this.orderService.canCheckOut.next(false)
 					}
+				}else if (res && res.message){
+					this.toast.error(res.message)
 				}
 			})
 		})

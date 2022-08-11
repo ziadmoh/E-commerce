@@ -45,7 +45,6 @@ export class InfoOneComponent implements OnInit {
 							}
 						})
 				}else{
-					console.log('Hello')
 					this.modalService.showLoginModal();
 				}
 			})

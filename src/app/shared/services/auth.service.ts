@@ -194,6 +194,8 @@ socialSignup(
     last_name,
     email,
     name,
+    social_id,
+    provider,
 }
 ) {
       //debugger
@@ -203,6 +205,8 @@ socialSignup(
         last_name:form.last_name,
         email:form.email,
         name:form.name,
+        id:form.social_id,
+        provider:form.provider,
     }
 
     return this.http
@@ -219,6 +223,15 @@ socialSignup(
                 resData.user,
                 resData.user.token
               );
+            }else if (resData && resData.message == 'invalid Data'){
+              if(submittedForm.provider == 'FACEBOOK'){
+                this.toast.error('This email address is attached with google, Please login with Google instead!')
+              }else if (submittedForm.provider == 'GOOGLE'){
+                this.toast.error('This email address is attached with Facebook, Please login with Facebook instead!')
+              }
+              
+            }else if (resData && resData.message == 'go to login'){
+              this.toast.error('This email address isn\'t attached with facebook or google, Please use the login button')
             }
           
           // if(resData && resData.user){

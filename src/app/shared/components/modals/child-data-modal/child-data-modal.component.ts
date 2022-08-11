@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { OrderService } from 'src/app/shared/services/order.service';
@@ -15,7 +15,7 @@ import { forkJoin } from 'rxjs';
 export class ChildDataModalComponent implements OnInit {
 
 
-	orderItemForm:FormGroup
+	orderItemForm:UntypedFormGroup
 
 	orderData:{
 		quantity?:number,
@@ -41,8 +41,8 @@ export class ChildDataModalComponent implements OnInit {
 
 	ngOnInit(): void {
 		
-		this.orderItemForm = new FormGroup({
-			boxChildDataArray: new FormArray([])	
+		this.orderItemForm = new UntypedFormGroup({
+			boxChildDataArray: new UntypedFormArray([])	
 		})
 		this.getModalData();
 	}
@@ -59,7 +59,7 @@ export class ChildDataModalComponent implements OnInit {
 	}
 
 	getChildrenGroups(){
-		return (this.orderItemForm.get('boxChildDataArray') as FormArray).controls;
+		return (this.orderItemForm.get('boxChildDataArray') as UntypedFormArray).controls;
 	}
 
 	onChangeChildPhoto(event,i){
@@ -80,13 +80,13 @@ export class ChildDataModalComponent implements OnInit {
 	}
 
 	addChildGroup(){
-		const control = new FormGroup({
-			orderItemId: new FormControl(null),
-			childName: new FormControl(null, Validators.required),
-			schoolName: new FormControl(null, Validators.required),
-			favCartoon: new FormControl(null, Validators.required),
-			parentPhone: new FormControl(null, [Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
-			childImage:new FormControl(null, Validators.required)
+		const control = new UntypedFormGroup({
+			orderItemId: new UntypedFormControl(null),
+			childName: new UntypedFormControl(null, Validators.required),
+			schoolName: new UntypedFormControl(null, Validators.required),
+			favCartoon: new UntypedFormControl(null, Validators.required),
+			parentPhone: new UntypedFormControl(null, [Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
+			childImage:new UntypedFormControl(null, Validators.required)
 		})
 		  this.getChildrenGroups().push(control);
 	}
@@ -184,7 +184,6 @@ export class ChildDataModalComponent implements OnInit {
 					}
 					
 					forkJoin(httpRequests).subscribe((res:any) =>{
-						console.log(res)
 						let reArr = []
 						res.forEach(single =>{
 							if(single && (single.orderIteminfo || single.orderItem )){
@@ -243,26 +242,26 @@ export class ChildDataModalComponent implements OnInit {
 			if(res && res.orderItemInfo){
 				this.returnedProductChildren = res.orderItemInfo;
 				for(let i=0;i<res.orderItemInfo.length;i++){
-					const control = new FormGroup({
-						orderItemId: new FormControl(res.orderItemInfo[i].orderItemId?res.orderItemInfo[i].orderItemId:null),
-						childName: new FormControl(res.orderItemInfo[i].childName?res.orderItemInfo[i].childName:null, Validators.required),
-						schoolName: new FormControl(res.orderItemInfo[i]?res.orderItemInfo[i].schoolName:null, Validators.required),
-						favCartoon: new FormControl(res.orderItemInfo[i].favCartoon?res.orderItemInfo[i].favCartoon:null, Validators.required),
-						parentPhone: new FormControl(res.orderItemInfo[i].parentPhone?res.orderItemInfo[i].parentPhone:null, [Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
-						childImage:new FormControl(res.orderItemInfo[i].childPhoto?res.orderItemInfo[i].childPhoto:null, Validators.required)
+					const control = new UntypedFormGroup({
+						orderItemId: new UntypedFormControl(res.orderItemInfo[i].orderItemId?res.orderItemInfo[i].orderItemId:null),
+						childName: new UntypedFormControl(res.orderItemInfo[i].childName?res.orderItemInfo[i].childName:null, Validators.required),
+						schoolName: new UntypedFormControl(res.orderItemInfo[i]?res.orderItemInfo[i].schoolName:null, Validators.required),
+						favCartoon: new UntypedFormControl(res.orderItemInfo[i].favCartoon?res.orderItemInfo[i].favCartoon:null, Validators.required),
+						parentPhone: new UntypedFormControl(res.orderItemInfo[i].parentPhone?res.orderItemInfo[i].parentPhone:null, [Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
+						childImage:new UntypedFormControl(res.orderItemInfo[i].childPhoto?res.orderItemInfo[i].childPhoto:null, Validators.required)
 					})
 				  this.getChildrenGroups().push(control)
 				}
 				this.canEditForm = true
 			}else{
 				for(let i=0;i<this.orderData.quantity;i++){
-					const control = new FormGroup({
-						orderItemId: new FormControl(null),
-						childName: new FormControl(null, Validators.required),
-						schoolName: new FormControl(null, Validators.required),
-						favCartoon: new FormControl(null, Validators.required),
-						parentPhone: new FormControl(null, [Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
-						childImage:new FormControl(null, Validators.required)
+					const control = new UntypedFormGroup({
+						orderItemId: new UntypedFormControl(null),
+						childName: new UntypedFormControl(null, Validators.required),
+						schoolName: new UntypedFormControl(null, Validators.required),
+						favCartoon: new UntypedFormControl(null, Validators.required),
+						parentPhone: new UntypedFormControl(null, [Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
+						childImage:new UntypedFormControl(null, Validators.required)
 					})
 					  this.getChildrenGroups().push(control)
 				}

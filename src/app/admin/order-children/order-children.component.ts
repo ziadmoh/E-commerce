@@ -43,6 +43,8 @@ export class AdminOrderChildrenComponent implements OnInit {
 		this.orderService.getAllOrderChildrenInfo(sessionId).subscribe((res:any) =>{
 			if(res && res.sessionOrderItemsInfo){
 				this.childrenInfo = res.sessionOrderItemsInfo;
+			}else{
+				this.childrenInfo = []
 			}
 			this.loaded = true
 		})

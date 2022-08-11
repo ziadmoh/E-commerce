@@ -39,7 +39,6 @@ import { CountToComponent } from './components/count-to/count-to.component';
 import { QuickViewComponent } from './components/modals/quick-view/quick-view.component';
 import { QuickViewTwoComponent } from './components/modals/quick-view-two/quick-view-two.component';
 import { VideoModalComponent } from './components/modals/video-modal/video-modal.component';
-import { LoginModalComponent } from './components/modals/login-modal/login-modal.component';
 import { IsotopeGridComponent } from './components/isotope-grid/isotope-grid.component';
 import { ImageComponent } from './components/image/image.component';
 
@@ -62,7 +61,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar'
 import { ProductModalComponent } from './components/modals/product-modal/product-modal.component';
-import { SocialLoginModule } from '@abacritt/angularx-social-login';
+// import { SocialLoginModule } from '@abacritt/angularx-social-login';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollY: true,
 
@@ -89,7 +88,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         PageHeaderComponent,
         QuickViewComponent,
         QuickViewTwoComponent,
-        LoginModalComponent,
         VideoModalComponent,
         QuantityInputComponent,
         CountDownComponent,
@@ -124,7 +122,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         PrimeNgModule,
         //PerfectScrollbar
         PerfectScrollbarModule,
-        SocialLoginModule
+       // SocialLoginModule
     ],
     exports: [
         // header
@@ -156,6 +154,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         CatFilterPipe,
         AttrFilterPipe,
         SafeContentPipe,
+        
     ],
     providers: [
         {
@@ -163,6 +162,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
             useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
         }
     ]
+    
 })
 
 export class SharedModule { }

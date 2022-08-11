@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
@@ -18,7 +18,7 @@ export class AdminUsersComponent implements OnInit {
 
 	isModalVisible:boolean = false;
 
-	newUserForm:FormGroup;
+	newUserForm:UntypedFormGroup;
 
 	userTypes  = [
 		{name:'Admin',value:'admin'},
@@ -48,14 +48,14 @@ export class AdminUsersComponent implements OnInit {
 	}
 
 	initForm(){
-		this.newUserForm = new FormGroup({
-			fullName: new FormControl(null,Validators.required),
-			userName: new FormControl(null,Validators.required),
-			email: new FormControl(null,[Validators.required,Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-			password: new FormControl(null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
-			phone: new FormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
-			type: new FormControl({name:'Admin',value:'admin'},Validators.required),
-			address: new FormControl(null)
+		this.newUserForm = new UntypedFormGroup({
+			fullName: new UntypedFormControl(null,Validators.required),
+			userName: new UntypedFormControl(null,Validators.required),
+			email: new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+			password: new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
+			phone: new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
+			type: new UntypedFormControl({name:'Admin',value:'admin'},Validators.required),
+			address: new UntypedFormControl(null)
 		})
 	}
 
@@ -140,7 +140,15 @@ export class AdminUsersComponent implements OnInit {
 					this.userService.createUser(form).subscribe((res:any)=>{
 						if(res && res.user){
 							this.toast.success('Created Successfully!');
-							this.initForm()
+							this.newUserForm.setValue({
+								fullName: null,
+								userName: null,
+								email: null,
+								password: null,
+								phone: null,
+								type: null,
+								address: null
+							})
 							this.isModalVisible = false;
 							this.checkSelectedFilter()
 						}else if (res && res.message){

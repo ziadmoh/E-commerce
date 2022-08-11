@@ -48,7 +48,8 @@ const routes: Routes = [
 	},
 	{
 		path: 'orders',
-		component: DashboardComponent
+		component: DashboardComponent,
+		canActivate:[CartGuard]
 	},
 ];
 
