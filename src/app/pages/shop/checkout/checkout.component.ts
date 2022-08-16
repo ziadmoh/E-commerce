@@ -69,6 +69,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 			contactPhone:new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
 			additionalContactPhone:new UntypedFormControl(null,[Validators.required,Validators.pattern(/^(01)[0512][0-9]{8}$/)]),
 			deliveryLocation1:new UntypedFormControl(null,Validators.required),
+			notes:new UntypedFormControl(null),
 		})
 		this.authService.newUser.subscribe(user =>{
 			this.user = user;
@@ -137,7 +138,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 							this.checkOutForm.get('additionalContactPhone').value,
 							this.promoCode,
 							this.checkOutForm.get('deliveryLocation1').value ,
-							this.shippingCost.feeId
+							this.shippingCost.feeId,
+							this.checkOutForm.get('notes').value
 							).subscribe((res:any) =>{
 								if(res && res.order && res.message2){
 									this.toast.info(res.message);

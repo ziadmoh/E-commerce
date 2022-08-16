@@ -21,6 +21,7 @@
                     <span class="my-4 user-info-item" *ngIf="!order.promoCode"><i class="fa-solid fa-x mx-3"></i>  No promo code</span>
                     <span class="my-4 user-info-item" ><i class="fa-solid fa-calendar-day mx-3"></i>  Ordered at: <strong> {{order.creationDate | date:'dd-MM-YYYY' }}</strong></span>
                     <span class="my-4 user-info-item" ><i class="fa-solid fa-flag mx-3"></i>  Status: <strong> {{order.orderStatus }}</strong></span>
+                    <span class="my-4 user-info-item" ><i class="fa-solid fa-marker mx-3"></i>  Notes: <strong> {{order.notes?order.notes:'-' }}</strong></span>
                     <span class="my-4 user-info-item products-label" ><i class="fa-brands fa-product-hunt mx-3"></i> Products:  </span>
                     <span class="row">
                         <div class="col-md-3 my-3" *ngFor="let product of order.products">

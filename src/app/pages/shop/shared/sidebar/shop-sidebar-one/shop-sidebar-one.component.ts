@@ -42,7 +42,7 @@ export class ShopSidebarOneComponent implements OnInit {
 		this.shopData.categories.forEach(cat =>{
 			if(cat.name == 'Boxes' ){
 				cat.count =	this.productService.boxProductsLength
-			}else if (cat.name == 'Singly' ){
+			}else if (cat.name == 'Other_products' ){
 				cat.count =	this.productService.normalProductsLength
 			}
 		})

@@ -11,8 +11,8 @@ export class TopCollectionComponent implements OnInit {
 	@Input() products = [];
 	@Input() loaded = false;
 
-	categories = [['all'], ['boxes'], ['singly']];
-	titles = { "all": "All", "boxes": "Boxes", "singly": "Singly" };
+	categories = [['all'], ['boxes'], ['other products']];
+	titles = { "all": "All", "boxes": "Boxes", "other products": "Other products" };
 
 	constructor() { }
 

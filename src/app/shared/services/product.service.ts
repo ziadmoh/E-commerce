@@ -17,7 +17,7 @@ export class ProductService {
 
     allProducts:[] = []
 
-    singlyProducts:[] = []
+    other_productsProducts:[] = []
 
     boxProducts:[] =[]
 
@@ -32,7 +32,7 @@ export class ProductService {
             tap((res:any) =>{
                 if(res.products){
                     this.boxProducts = []
-                    this.singlyProducts = []
+                    this.other_productsProducts = []
                     this.allProducts = res.products;
                 }else{
                     this.allProducts = []
@@ -77,13 +77,13 @@ export class ProductService {
         ))
     }
 
-	getSinglyProducts(){
+	getOther_productsProducts(){
         return this.http.get(environment.SERVER_URL +'normalproducts').pipe(
             tap((res:any) =>{
                 if(res.normalProducts){
-                    this.singlyProducts = res.normalProducts
+                    this.other_productsProducts = res.normalProducts
                 }else{
-                    this.singlyProducts = []
+                    this.other_productsProducts = []
                 }
             }
         ))

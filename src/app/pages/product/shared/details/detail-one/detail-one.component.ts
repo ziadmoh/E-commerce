@@ -263,7 +263,7 @@ export class DetailOneComponent implements OnInit {
 		if(this.product.box == '1'){
 			return {category: 'boxes'}
 		}else{
-			return {category: 'singly'}
+			return {category: 'other_products'}
 		}
 	}
 }

@@ -43,7 +43,7 @@ export class AdminProductsComponent implements OnInit {
 	categories:any[] =[
 		{name:'Choose a category ',value:-1,disabled:true},
 		{name:'Box',value:1,disabled:false},
-		{name:'Singly',value:0,disabled:false},
+		{name:'Other products',value:0,disabled:false},
 	]
 
 	constructor(private productsService:ProductService,

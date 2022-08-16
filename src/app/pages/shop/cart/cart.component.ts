@@ -174,9 +174,10 @@ export class CartComponent implements OnInit, OnDestroy {
 					}else{
 						this.orderService.canCheckOut.next(false)
 					}
-				}else if (res && res.message){
-					this.toast.error(res.message)
 				}
+				// else if (res && res.message){
+				// 	this.toast.error(res.message)
+				// }
 			})
 		})
 		

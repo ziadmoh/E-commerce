@@ -18,8 +18,8 @@ export const shopData = {
             count: 1
         },
         {
-            name: "Singly",
-            slug: "singly",
+            name: "Other products",
+            slug: "other_products",
             count: 1
         },
     ],

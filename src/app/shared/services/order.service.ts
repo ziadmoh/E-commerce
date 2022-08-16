@@ -69,15 +69,20 @@ export class OrderService {
         additionalContactPhone,
         promoCode,
         deliveryLocation,
-        feeId
+        feeId,
+        notes?
     ){
-        return this.http.post(environment.SERVER_URL + 'checkout/'+userId+'/'+sessionId,{
+        let form = {
             contactPhone:contactPhone,
             additionalPhone:additionalContactPhone,
             promoCode:promoCode,
             deliveryLocation:deliveryLocation,
             feeId:feeId,
-        })
+        }
+        if(notes){
+            form['notes'] = notes
+        }
+        return this.http.post(environment.SERVER_URL + 'checkout/'+userId+'/'+sessionId,form)
     }
 
     getOrderinvoice(

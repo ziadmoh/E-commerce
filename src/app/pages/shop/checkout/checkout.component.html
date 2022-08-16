@@ -51,13 +51,17 @@
                             </div>
                             
                             <label>Street address *</label>
-                            <textarea formControlName="deliveryLocation1" rows="6" class="form-control" placeholder="House number, Street name, City"></textarea>
+                            <input type="text" formControlName="deliveryLocation1" class="form-control" placeholder="House number, Street name, City">
                            
-                                <small [style.visibility]=" !checkOutForm.get('deliveryLocation1').valid && checkOutForm.get('deliveryLocation1').touched ? 'visible': 'hidden'" 
-                                class="text-danger">This field is required</small>
+                            <small [style.visibility]=" !checkOutForm.get('deliveryLocation1').valid && checkOutForm.get('deliveryLocation1').touched ? 'visible': 'hidden'" 
+                            class="text-danger">This field is required</small>
+                            <br>
+                            <label>Notes</label>
+                            <textarea formControlName="notes" rows="6" class="form-control" placeholder="Do you have any notes?"></textarea>
+                           
 
 
-                             </div>
+                        </div>
                         <aside class="col-lg-3">
                             <div class="summary">
                                 <h3 class="summary-title">Your Order</h3>

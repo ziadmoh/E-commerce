@@ -97,11 +97,11 @@ export class SidebarPageComponent implements OnInit {
 	
 					this.utilsService.scrollToPageContent();
 				})
-			}else if (this.category && this.category =='singly'){
+			}else if (this.category && this.category =='other_products'){
 				this.totalCount = this.productService.normalProductsLength
-				this.productService.getSinglyProducts().subscribe((result:any) => {
+				this.productService.getOther_productsProducts().subscribe((result:any) => {
 					if(result.normalProducts){
-						this.products = this.productService.singlyProducts;
+						this.products = this.productService.other_productsProducts;
 					}else{
 						this.products = []
 					}
