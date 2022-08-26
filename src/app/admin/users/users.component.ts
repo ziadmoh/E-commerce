@@ -158,6 +158,8 @@ export class AdminUsersComponent implements OnInit {
 				}else{
 					this.toast.error('Please complete the missing data')
 				}
+			}else{
+				this.toast.error('You are not Authorized!')
 			}
 		})
 	

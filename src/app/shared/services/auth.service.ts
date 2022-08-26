@@ -63,7 +63,7 @@ export class AuthService {
 
   
       return this.http
-        .post ('http://localhost:3000/signup', submittedForm,
+        .post (environment.SERVER_URL +'signup', submittedForm,
         {headers:{'Content-Type': 'application/json'} }
         ,
         )
@@ -210,7 +210,7 @@ socialSignup(
     }
 
     return this.http
-      .post ('http://localhost:3000/socialsignup', submittedForm,
+      .post (environment.SERVER_URL +'socialsignup', submittedForm,
       {headers:{'Content-Type': 'application/json'} }
       ,
       )

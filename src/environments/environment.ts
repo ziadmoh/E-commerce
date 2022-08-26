@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   appName:'Imagine',
   demo: 'demo1',
-  SERVER_URL: 'http://localhost:3000/',
+  SERVER_URL: 'https://imagineapp.azurewebsites.net/',
   FaceBookAppId:'2419387921542762',
   GoogleAppClientId:'774574771657-mpjd6avv1qndfrpr841osts3n35rmrik.apps.googleusercontent.com',
   GoogleAppClientSecret:'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',
