@@ -84,13 +84,21 @@ export class NewCartService {
     }
 
     getOpenedSession(userId){
-        return this.http.get(environment.SERVER_URL + 'usersession/'+userId)
+        return this.http.get(environment.SERVER_URL + 'usersession/'+userId).pipe(
+            tap(res =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
 
 
     openSession(userId){
-        return this.http.post(environment.SERVER_URL +'opensession/'+userId,{})
+        return this.http.post(environment.SERVER_URL +'opensession/'+userId,{}).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     addToCart(userId,product,qty,sessionId){
@@ -111,6 +119,8 @@ export class NewCartService {
             }
 
             
+        },err=>{
+            this.toastrService.error('Server Error!')
         }))
     }
 
@@ -124,6 +134,8 @@ export class NewCartService {
                 this.store.dispatch(new RemoveFromCartAction({ product }));
                 this.toastrService.success('Product removed from Cart.');
             }
+        },err=>{
+            this.toastrService.error('Server Error!')
         }))
     }
 
@@ -151,6 +163,8 @@ export class NewCartService {
                     this.cartItems.next([])
                     this.numberOfcartItems.next(0)
                 }
+            },err=>{
+                this.toastrService.error('Server Error!')
             })
         )
     }
@@ -160,7 +174,11 @@ export class NewCartService {
         return this.http.patch(environment.SERVER_URL + 'editquantity/'+userId+'/'+product.productId,{
             quantity:qty,
             sessionId:sessionId
-        })
+        }).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
 

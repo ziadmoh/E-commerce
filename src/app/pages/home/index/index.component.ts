@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { ApiService } from 'src/app/shared/services/api.service';
@@ -20,7 +20,7 @@ export class IndexComponent implements OnInit {
 	loaded = false;
 	introSlider = introSlider;
 	brandSlider = brandSlider;
-
+	innerWidth: any = '';
 	constructor(public apiService: ApiService, 
 		public utilsService: UtilsService, 
 		private modalService: ModalService,
@@ -29,6 +29,7 @@ export class IndexComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.innerWidth = window.innerWidth;
 		this.productService.getAllProducts().subscribe(res =>{
 			if(res && res.products){
 				this.products = res.products;
@@ -41,5 +42,9 @@ export class IndexComponent implements OnInit {
 			this.modalSerice.showLoginModal();
 		}
 
+	}
+	@HostListener('window:resize', ['$event'])
+	onResize(event) {
+	this.innerWidth = window.innerWidth;
 	}
 }

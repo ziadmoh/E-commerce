@@ -20,7 +20,7 @@
             <ng-template pTemplate="body" let-product let-columns="columns">
                 <tr>
                     <td><span class="p-column-title">Name</span>{{product.productName}}</td>
-                    <td><span class="p-column-title">Image</span><img [src]="product.productImage" [alt]="product.productName" width="100" class="p-shadow-4" /></td>
+                    <td><span class="p-column-title">Image</span><img [src]="'https://aukidocyyq.cloudimg.io/'+product.productImage+'?org_if_sml=1&width=600'" [alt]="product.productName" width="100" class="p-shadow-4" /></td>
                     <td><span class="p-column-title">Price</span>{{product.productPrice | currency:'EGP '}}</td>
                     <td><span class="p-column-title">Category</span>{{product.box == 1? 'Box' : 'Other products' }}</td>
                     <td><span class="p-column-title">Old price</span>{{product.oldPrice | currency:'EGP '}}</td>

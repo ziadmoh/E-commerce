@@ -2,9 +2,10 @@
     <figure class="product-media">
         
         <a [routerLink]="['/product/'+ product.productId]">
-            <app-ecommerce-image [src]="product.productImage" alt="Product" class="product-image">
+        
+            <app-ecommerce-image [src]="'https://aukidocyyq.cloudimg.io/'+product.productImage+'?org_if_sml=1&width=600' " alt="Product" class="product-image">
             </app-ecommerce-image>
-            <app-ecommerce-image [src]="product.productImage" alt="Product" class="product-image-hover"
+            <app-ecommerce-image [src]="'https://aukidocyyq.cloudimg.io/'+product.productImage+'?org_if_sml=1&width=600' " alt="Product" class="product-image-hover"
                 *ngIf="product.productImage"></app-ecommerce-image>
         </a>
 

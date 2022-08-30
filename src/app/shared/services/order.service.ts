@@ -43,7 +43,11 @@ export class OrderService {
         form.append('favCartoon',favCartoon)
         form.append('parentPhone',parentPhone)
         form.append('childImage',childImage)
-        return this.http.post(environment.SERVER_URL + 'addorderinfo/'+userId+'/'+cartItemId,form)
+        return this.http.post(environment.SERVER_URL + 'addorderinfo/'+userId+'/'+cartItemId,form).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
     updateOrderInfo(
         orderitemid,
@@ -59,7 +63,11 @@ export class OrderService {
         form.append('favCartoon',favCartoon)
         form.append('parentPhone',parentPhone)
         form.append('childImage',childImage)
-        return this.http.put(environment.SERVER_URL + 'editorderItem/'+orderitemid,form)
+        return this.http.put(environment.SERVER_URL + 'editorderItem/'+orderitemid,form).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     checkOutTheOrder(
@@ -82,108 +90,188 @@ export class OrderService {
         if(notes){
             form['notes'] = notes
         }
-        return this.http.post(environment.SERVER_URL + 'checkout/'+userId+'/'+sessionId,form)
+        return this.http.post(environment.SERVER_URL + 'checkout/'+userId+'/'+sessionId,form).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     getOrderinvoice(
         orderid
     ){
-        return this.http.get(environment.SERVER_URL + 'orderinvoice/'+orderid)
+        return this.http.get(environment.SERVER_URL + 'orderinvoice/'+orderid).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     getUserSessionOrders(
         userId,
         sessionid
     ){
-        return this.http.get(environment.SERVER_URL + 'order/'+userId+'/'+sessionid)
+        return this.http.get(environment.SERVER_URL + 'order/'+userId+'/'+sessionid).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     getAllOrders(){
-        return this.http.get(environment.SERVER_URL + 'allorders')
+        return this.http.get(environment.SERVER_URL + 'allorders').pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     getLastOrders(){
-        return this.http.get(environment.SERVER_URL + 'lastorders')
+        return this.http.get(environment.SERVER_URL + 'lastorders').pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
     
     getTodayOrders(){
-        return this.http.get(environment.SERVER_URL + 'todayorders')
+        return this.http.get(environment.SERVER_URL + 'todayorders').pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
         
     }
     
     getWaitingOrders(){
-        return this.http.get(environment.SERVER_URL + 'waitingOrders')
+        return this.http.get(environment.SERVER_URL + 'waitingOrders').pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
         
     }
     
     getConfirmedorders(){
-        return this.http.get(environment.SERVER_URL + 'confirmedorders')
+        return this.http.get(environment.SERVER_URL + 'confirmedorders').pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
         
     }
     
     getInprintingOrders(){
-        return this.http.get(environment.SERVER_URL + 'inprintingOrders')
+        return this.http.get(environment.SERVER_URL + 'inprintingOrders').pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
 
     }
 
     getOutForDeliveryOrders(){
-        return this.http.get(environment.SERVER_URL + 'outfordeliveryorders')
+        return this.http.get(environment.SERVER_URL + 'outfordeliveryorders').pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     changeOrderStatus(
         orderPath:'confirmorder' | 'printingorder' | 'outfordeliveryorder' | 'orderdelivered',
         orderId
     ){
-        return this.http.patch(environment.SERVER_URL +orderPath+'/'+orderId,{})
+        return this.http.patch(environment.SERVER_URL +orderPath+'/'+orderId,{}).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     getOrderStatus(orderId){
-        return this.http.get(environment.SERVER_URL + 'orderstatus/'+orderId)
+        return this.http.get(environment.SERVER_URL + 'orderstatus/'+orderId).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
     
     getOrderSpecificProductChildrenInfo(
         sessionId,
         cartItemId
     ){
-        return this.http.get(environment.SERVER_URL + 'orderiteminfo/'+sessionId+'/'+cartItemId)
+        return this.http.get(environment.SERVER_URL + 'orderiteminfo/'+sessionId+'/'+cartItemId).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
     
     getAllOrderChildrenInfo(
         sessionId
     ){
-        return this.http.get(environment.SERVER_URL + 'sessionorderitemsinfo/'+sessionId)   
+        return this.http.get(environment.SERVER_URL + 'sessionorderitemsinfo/'+sessionId).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )   
     }
     
     getOrderSpecificProductSpecificChildInfo(
         orderItemId
     ){
-        return this.http.get(environment.SERVER_URL + 'iteminfo/'+orderItemId)
+        return this.http.get(environment.SERVER_URL + 'iteminfo/'+orderItemId).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
 
     }
 
     getUserOrders(userId){
-        return this.http.get(environment.SERVER_URL + 'userorders/'+userId)
+        return this.http.get(environment.SERVER_URL + 'userorders/'+userId).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     getAllDeliveryFees(){
-        return this.http.get(environment.SERVER_URL + 'alldeliveryFees')
+        return this.http.get(environment.SERVER_URL + 'alldeliveryFees').pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     addDeliveryFees(governorate,fee){
         return this.http.post(environment.SERVER_URL + 'adddeliveryfees',{
             governorate:governorate,
             fee:fee
-        })
+        }).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     editDeliveryFee(feeId,fee){
         return this.http.patch(environment.SERVER_URL + 'editdeliveryfees/'+feeId,{
             fee:fee
-        })
+        }).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
    deleteDeliveryFee(feeId){
-        return this.http.delete(environment.SERVER_URL + 'deletedeliverfee/'+feeId)
+        return this.http.delete(environment.SERVER_URL + 'deletedeliverfee/'+feeId).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
 

@@ -18,7 +18,7 @@
                 <a [routerLink]="'/product/' + product.productId" class="autocomplete-suggestion"
                     *ngFor="let product of suggestions">
                     <figure class="mb-0 mr-3" style="width: 40px; height: 40px;">
-                        <app-ecommerce-image [src]="product.productImage" width="40" height="40" [alt]="product.productName"
+                        <app-ecommerce-image [src]="'https://aukidocyyq.cloudimg.io/'+product.productImage+'?org_if_sml=1&width=600' " width="40" height="40" [alt]="product.productName"
                             class="bg-transparent">
                         </app-ecommerce-image>
                     </figure>

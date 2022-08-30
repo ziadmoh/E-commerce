@@ -134,9 +134,6 @@ export class QuickViewComponent implements OnInit {
 			};
 		}
 
-		this.cartService.addToCart(
-			newProduct, this.qty
-		);
 	}
 
 

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map, tap } from 'rxjs/operators';
 import { Product } from '../classes/product';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,7 +13,7 @@ import { Product } from '../classes/product';
 
 export class ProductService {
 
-	constructor(private http: HttpClient) {
+	constructor(private http: HttpClient,private toastrService:ToastrService) {
 	}
 
     allProducts:[] = []
@@ -37,12 +38,18 @@ export class ProductService {
                 }else{
                     this.allProducts = []
                 }
+            },err =>{
+                this.toastrService.error('Server error!')
             }
         ))
     }
 
 	getAllPromoCodes(){
-        return this.http.get(environment.SERVER_URL +'allpromocodes' )
+        return this.http.get(environment.SERVER_URL +'allpromocodes' ).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
 
@@ -58,7 +65,11 @@ export class ProductService {
             startDate:startDate,
             dueDate:dueDate,
 
-        } )
+        } ).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
     
 
@@ -73,6 +84,8 @@ export class ProductService {
                 }else{
                     this.boxProducts = []
                 }
+            },err=>{
+                this.toastrService.error('Server Error!')
             }
         ))
     }
@@ -85,6 +98,8 @@ export class ProductService {
                 }else{
                     this.other_productsProducts = []
                 }
+            },err=>{
+                this.toastrService.error('Server Error!')
             }
         ))
     }
@@ -95,6 +110,8 @@ export class ProductService {
                 if(res && res.numberOfBox){
                     this.boxProductsLength = res.numberOfBox
                 }
+            },err=>{
+                this.toastrService.error('Server Error!')
             }
         ))
     }
@@ -105,6 +122,8 @@ export class ProductService {
                 if(res && res.numberOfNormal){
                     this.normalProductsLength = res.numberOfNormal
                 }
+            },err=>{
+                this.toastrService.error('Server Error!')
             }
         ))
     }
@@ -126,7 +145,11 @@ export class ProductService {
         form.append('productPrice',productPrice)
         form.append('oldPrice',oldPrice)
         form.append('box',box)
-        return this.http.post(environment.SERVER_URL +'addproduct',form)
+        return this.http.post(environment.SERVER_URL +'addproduct',form).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     addProductImages(productId,images){
@@ -136,11 +159,19 @@ export class ProductService {
             form.append('image'+[i],images[i])
         }
         
-        return this.http.post(environment.SERVER_URL +'addproductimages/'+productId,form)
+        return this.http.post(environment.SERVER_URL +'addproductimages/'+productId,form).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     removeProduct(productId){
-        return this.http.patch(environment.SERVER_URL +'deleteproduct/'+productId,{})
+        return this.http.patch(environment.SERVER_URL +'deleteproduct/'+productId,{}).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     rateProduct(
@@ -150,7 +181,11 @@ export class ProductService {
     ){
         return this.http.post(environment.SERVER_URL +'assignrate/'+userId+'/'+productId,{
             rate:rate
-        })
+        }).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     editProduct(
@@ -169,17 +204,29 @@ export class ProductService {
         form.append('productPrice',productPrice)
         form.append('oldPrice',oldPrice)
         form.append('productImage',productImage)
-        return this.http.put(environment.SERVER_URL +'editproduct/'+productId,form)
+        return this.http.put(environment.SERVER_URL +'editproduct/'+productId,form).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     removeOneProductImage(
         imageId
     ){
-        return this.http.delete(environment.SERVER_URL +'deleteimage/'+imageId)
+        return this.http.delete(environment.SERVER_URL +'deleteimage/'+imageId).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     removeAllProductImages(productId){
-        return this.http.delete(environment.SERVER_URL +'deleteproductimages/'+productId)
+        return this.http.delete(environment.SERVER_URL +'deleteproductimages/'+productId).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     getProductById(productId){
@@ -211,38 +258,68 @@ export class ProductService {
                         }else{
                             return {}
                         }
+                    },err=>{
+                        this.toastrService.error('Server error!')
                     }
                 )
         )
     }
 
     getImageFromUrl(url){
-        return this.http.get(url,{responseType: "blob"})
+        return this.http.get(url,{responseType: "blob"}).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     searchProduct(key){
-        return this.http.get(environment.SERVER_URL +'searchproduct?productName='+key)
+        return this.http.get(environment.SERVER_URL +'searchproduct?productName='+key).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     sortByRate(){
-        return this.http.get(environment.SERVER_URL +'mostrated')
+        return this.http.get(environment.SERVER_URL +'mostrated').pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     searchByColor(key){
-        return this.http.get(environment.SERVER_URL +'productbycolor?productColor='+key)
+        return this.http.get(environment.SERVER_URL +'productbycolor?productColor='+key).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     searchByMinPrice(key){
-        return this.http.get(environment.SERVER_URL +'produtwithminprice?minPrice='+key)
+        return this.http.get(environment.SERVER_URL +'produtwithminprice?minPrice='+key).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
     searchByMaxPrice(key){
-        return this.http.get(environment.SERVER_URL +'produtwithmaxprice?maxPrice='+key)
+        return this.http.get(environment.SERVER_URL +'produtwithmaxprice?maxPrice='+key).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
 
     searchInRange(minPrice,maxPrice){
-        return this.http.get(environment.SERVER_URL +'productinrange?minPrice='+minPrice+'&maxPrice='+maxPrice)
+        return this.http.get(environment.SERVER_URL +'productinrange?minPrice='+minPrice+'&maxPrice='+maxPrice).pipe(
+            tap(next =>{},err=>{
+                this.toastrService.error('Server Error!')
+            })
+        )
     }
 
 

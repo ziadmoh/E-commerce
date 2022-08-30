@@ -10,26 +10,23 @@
                     <a href="#"
                         [ngClass]="'product-gallery-item h-auto p-lg-0 mb-0 mb-lg-1 ' + ( i === currentIndex ? ' active' : '' )"
                         (click)="changeImage( $event, i )" *ngFor="let item of product.productImages; let i = index;">
-                        <app-ecommerce-image [src]="item.image" alt="Product side"
+                         <app-ecommerce-image [src]="'https://aukidocyyq.cloudimg.io/'+ item.image+'?org_if_sml=1&width=600'" alt="Product side"
                             class="product-image mb-0" [fixedPt]="paddingTop">
                         </app-ecommerce-image>
                     </a>
                 </div>
                 <div class="product-lg mb-1 mb-lg-0 col-lg-10 pl-lg-3 pl-0 pr-0 pr-lg-3 order-lg-last order-first"
                     *ngIf="product">
-                    <span class="product-label label-new" *ngIf="product.new">New</span>
-                    <span class="product-label label-sale" *ngIf="product.sale_price">Sale</span>
-                    <span class="product-label label-top" *ngIf="product.top">Top</span>
-                    <span class="product-label label-out" *ngIf="!product.stock || product.stock == 0">Out Of
-                        Stock</span>
+                    
 
                     <owl-carousel carouselClasses="product-gallery-carousel owl-full owl-nav-dark" [options]="options"
                         id="owl-quickview" #singleSlider>
                         <app-ecommerce-image class="d-block position-relative"
-                            *ngFor="let item of product.productImages; let i = index;" [src]="item.image">
+                            *ngFor="let item of product.productImages; let i = index;" [src]="'https://aukidocyyq.cloudimg.io/'+item.image+'?org_if_sml=1&width=600'">
                         </app-ecommerce-image>
                     </owl-carousel>
                 </div>
+                 
             </div>
             <div class="col-lg-6 quickview-desc pl-0 pl-lg-4 pr-0 mt-3 mt-lg-0">
                 <div class="entry-summary">

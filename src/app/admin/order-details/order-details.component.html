@@ -43,7 +43,8 @@
                 <div class="col-md-4 my-3" *ngFor="let child of childrenInfo; let i = index">
                     <p-card [header]=" 'Child name : '+ child.childName" styleClass="p-card-shadow">
                         <ng-template pTemplate="header">
-                            <img [alt]="child.childName" [src]="child.childPhoto">
+                            <img [alt]="child.childName" [src]=" 'https://aukidocyyq.cloudimg.io/'+ child.childPhoto +'?org_if_sml=1&width=600' ">
+                            
                         </ng-template>
                             <h4 class="my-4">School : <strong> {{child.schoolName}}</strong> </h4>
                             <h4 class="my-4">Favourite cartoon : <strong>{{child.favCartoon}}</strong> </h4>

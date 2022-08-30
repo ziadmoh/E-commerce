@@ -50,7 +50,9 @@
                                             <div class="product">
                                                 <figure class="product-media">
                                                     <a [routerLink]="['/product/'+ item.product.productId]">
-                                                        <app-ecommerce-image [src]="item.product.productImage"
+
+          
+                                                        <app-ecommerce-image [src]="'https://aukidocyyq.cloudimg.io/'+item.product.productImage+'?org_if_sml=1&width=600' "
                                                             alt="Product">
                                                         </app-ecommerce-image>
                                                     </a>

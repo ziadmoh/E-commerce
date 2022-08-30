@@ -78,6 +78,8 @@ export class AuthService {
                  this.login(credentials).subscribe()
             }
          
+          },err=>{
+            this.toast.error('Server error!')
           })
         );
   }
@@ -242,6 +244,8 @@ socialSignup(
           //      this.login(credentials).subscribe()
           // }
        
+        },err=>{
+          this.toast.error('Server error!')
         })
       );
 }

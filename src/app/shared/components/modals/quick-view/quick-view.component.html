@@ -6,11 +6,7 @@
             <div class="col-lg-6 p-0 pr-lg-2 mb-2 mb-lg-0">
                 <div class="skel-product-gallery"></div>
                 <div class="product-lg mb-1 position-relative" *ngIf="product">
-                    <span class="product-label label-new" *ngIf="product.new">New</span>
-                    <span class="product-label label-sale" *ngIf="product.sale_price">Sale</span>
-                    <span class="product-label label-top" *ngIf="product.top">Top</span>
-                    <span class="product-label label-out" *ngIf="!product.stock || product.stock == 0">Out Of
-                        Stock</span>
+                   
 
                     <owl-carousel carouselClasses="product-gallery-carousel owl-full owl-nav-dark" [options]="options"
                         id="owl-quickview" #singleSlider>
@@ -49,23 +45,7 @@
                         <span class="ratings-text">( {{ product.review }} Reviews )</span>
                     </div>
 
-                    <div class="product-price" *ngIf="!product.stock || product.stock == 0 else elseBlock">
-                        <span class="out-price">${{ product.price.toFixed(2) }}</span>
-                    </div>
-
-                    <ng-template #elseBlock>
-                        <div class="product-price" *ngIf="minPrice == maxPrice else elseBlock">
-                            ${{ minPrice.toFixed(2) }}</div>
-                        <ng-template #elseBlock>
-                            <div class="product-price" *ngIf="product.variants.length == 0 else elseBlock">
-                                <span class="new-price">${{ minPrice.toFixed(2) }}</span>
-                                <span class="old-price">${{ maxPrice.toFixed(2) }}</span>
-                            </div>
-                            <ng-template #elseBlock>
-                                <div class="product-price">${{minPrice.toFixed(2)}}&ndash;${{maxPrice.toFixed(2)}}</div>
-                            </ng-template>
-                        </ng-template>
-                    </ng-template>
+            
 
                     <div class="product-content">
                         <p>{{ product.short_desc }}</p>
@@ -104,18 +84,7 @@
                         </div>
                     </div>
 
-                    <div class="details-filter-row details-row-size">
-                        <label for="qty">Qty:</label>
-                        <app-ecommerce-quantity-input [max]="product.stock" (changeQty)="onChangeQty( $event )" [value]="qty">
-                        </app-ecommerce-quantity-input>
-                    </div>
-
-                    <div class="product-details-action">
-                        <a href="javascript:;" class="btn-product btn-cart"
-                            [class.btn-disabled]="!cartService.canAddToCart( product, qty ) || ( product.variants.length > 0 && !( selectedVariant.color && selectedVariant.size != '' ) )"
-                            (click)="addCart( $event )"><span>add to cart</span></a>
-
-                    </div>
+                    
 
                     <div class="product-details-footer">
                         <div class="product-cat w-100 text-truncate">

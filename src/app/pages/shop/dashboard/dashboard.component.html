@@ -49,7 +49,7 @@
                                                     <h5>Ordered at {{order.creationDate | date:'dd-MM-YYYY' }} </h5>
                                                     <div>
                                                         <div class="d-flex flex-row align-items-center my-5" *ngFor="let prod of order.products">
-                                                            <img [src]="prod.productImage" [alt]="prod.productName" style="width: 60px;">
+                                                            <img [src]="'https://aukidocyyq.cloudimg.io/'+prod.productImage+'?org_if_sml=1&width=600'" [alt]="prod.productName" style="width: 60px;">
                                                             <div class="d-flex flex-column align-items-start mx-4">
                                                                 <h6 class="m-0"> {{prod.productName}} </h6> 
                                                                 <span>EGP {{prod.productPrice}}</span>

@@ -2,16 +2,12 @@
     <div class="row pr-2">
         <div class="col-lg-3 col-md-3 col-6">
             <figure class="product-media">
-                <span class="product-label label-new" *ngIf="product.new">New</span>
-                <span class="product-label label-sale" *ngIf="product.sale_price">Sale</span>
-                <span class="product-label label-top" *ngIf="product.top">Top</span>
-                <span class="product-label label-out" *ngIf="!product.stock || product.stock == 0">Out Of Stock</span>
-
+                
                 <a [routerLink]="['/product/'+ product.productId]">
-                    <app-ecommerce-image [src]="product.productImage" alt="Product"
+                    <app-ecommerce-image [src]="'https://aukidocyyq.cloudimg.io/'+product.productImage+'?org_if_sml=1&width=600' " alt="Product"
                         class="product-image" fixedPt="100%">
                     </app-ecommerce-image>
-                    <app-ecommerce-image [src]="product.productImage" alt="Product" class="product-image-hover"
+                    <app-ecommerce-image [src]="'https://aukidocyyq.cloudimg.io/'+product.productImage+'?org_if_sml=1&width=600' " alt="Product" class="product-image-hover"
                         *ngIf="product.productImage" fixedPt="100%"></app-ecommerce-image>
                 </a>
             </figure>
